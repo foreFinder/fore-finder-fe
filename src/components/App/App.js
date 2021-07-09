@@ -1,10 +1,24 @@
 import './App.css';
+import Header from '../Header/Header'
+import Dashboard from '../Dashboard/Dashboard'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <div>
-      <h1>Hello, world!</h1>
-    </div>
+    <Router>
+      <Header/>
+      <Switch>
+        <Route 
+        exact path='/'
+          render={() => (
+            <Dashboard
+              // passing state
+            />
+          )}
+        />
+
+      </Switch>
+    </Router>
   )
 }
 
