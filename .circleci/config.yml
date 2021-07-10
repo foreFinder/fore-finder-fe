@@ -8,3 +8,5 @@ workflows:
 parameters:
   api-key:
     default: 50abdacc-320e-4340-8dd3-8591982492f0
+    description: The name of the environment variable containing your Heroku API Key.
+    type: env_var_name
