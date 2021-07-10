@@ -4,10 +4,8 @@ import './Dashboard.css'
 const Dashboard = () => {
   return (
     <div className='dashboard'>
-      <h2>Commited Tee Times</h2>
-      <TeeTimeContainer />
-      <h2>Available Tee Times</h2>
-      <TeeTimeContainer />
+      <TeeTimeContainer title='Committed Tee Times'/>
+      <TeeTimeContainer title='Available Tee Times'/>
     </div>
   )
 }
