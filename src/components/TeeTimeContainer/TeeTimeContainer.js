@@ -12,7 +12,6 @@ const TTWrapper = styled.div`
 `
 
 const TTLabel = styled.h2`
-  align-self: center;
   margin-bottom: 16px;
   font-size: 1.25em;
   font-weight: 600;
