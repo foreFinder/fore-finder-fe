@@ -4,7 +4,10 @@ orbs:
 workflows:
   heroku_deploy:
     jobs:
-      - heroku/deploy-via-git
+      - heroku/deploy-via-git:
+          app-name: forefinder
+          requires:
+            - node/test
       filters:
         branches:
           only: main
