@@ -1,8 +1,11 @@
+import './Dashboard.css'
+
 const Dashboard = () => {
   return (
-    <>
-      <h3>this is the dashboard</h3>
-    </>
+    <div className='dashboard'>
+      <h2>Commited Tee Times</h2>
+      <h2>Available Tee Times</h2>
+    </div>
   )
 }
 
