@@ -2,19 +2,34 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 16px;
-  /* border-top: solid 1px rgba(0, 0, 0, .25); */
   border-radius: 8px;
   box-shadow: 0 1px 8px rgba(0, 0, 0, .2);
 }
 
-.tee-time > div {
-  margin-bottom: 12px;
-}
-
 .tee-time h3 {
   font-size: 1em;
-  margin-bottom: 4px;
+}
+
+.tt-details {
+  display: grid;
+  grid-template-columns: 2;
+  grid-template-rows: 2;
+  row-gap: 12px;
+}
+
+.course-name {
+  padding: 12px;
+  font-weight: 500;
+}
+
+.date-and-time {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.host-name {
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .invitation-actions {
