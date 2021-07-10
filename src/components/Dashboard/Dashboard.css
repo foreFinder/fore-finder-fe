@@ -1,0 +1,7 @@
+.dashboard {
+  padding: 16px;
+}
+
+.dashboard > h2 {
+  margin-bottom: 16px;
+}
