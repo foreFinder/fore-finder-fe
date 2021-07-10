@@ -11,17 +11,18 @@ const TeeTime = () => {
         </div>
         <div className='date-and-time'>
           <h3>When</h3>
-          <p>July 10, 2021</p>
-          <p>@ 8:15 AM</p>
+          <p>Jul 10th @ 8:15 AM</p>
         </div>
+        <div className='hole-count'>
+          <h3>Holes</h3>
+          <p>18</p>
+        </div>
+        <div className='invitation-actions'>
+          <button>Cancel</button>
+      </div>
       </div>
     </div>
   )
 }
 
 export default TeeTime
-
-      // <div className='invitation-actions'>
-      //   <button>Decline</button>
-      //   <button>Accept</button>
-      // </div>

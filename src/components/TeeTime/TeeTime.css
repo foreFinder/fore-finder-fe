@@ -3,11 +3,12 @@
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, .2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
 }
 
 .tee-time h3 {
   font-size: 1em;
+  font-weight: 600;
 }
 
 .tt-details {
@@ -15,23 +16,52 @@
   grid-template-columns: 2;
   grid-template-rows: 2;
   row-gap: 12px;
+  margin: 12px;
+}
+
+.tt-details h3 {
+  margin-bottom: 4px;
 }
 
 .course-name {
+  background-color: rgb(233, 234, 235);
   padding: 12px;
-  font-weight: 500;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .date-and-time {
-  grid-column: 1;
+  grid-column: 1 / span 2;
   grid-row: 1;
+}
+
+.hole-count {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: right;
 }
 
 .host-name {
-  grid-column: 2;
-  grid-row: 1;
+  grid-column: 1;
+  grid-row: 2;
 }
 
 .invitation-actions {
-  align-self: flex-end;
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.invitation-actions > button {
+  background-color: unset;
+  width: fit-content;
+  height: fit-content;
+  padding: 4px 12px;
+  border: solid 2px rgb(212,74,68);
+  border-radius: 16px;
+  font-size: 1em;
+  font-weight: 700;
+  color: rgb(212, 74, 68);
 }
