@@ -1,3 +1,4 @@
+import TeeTimeContainer from '../TeeTimeContainer/TeeTimeContainer'
 import './Dashboard.css'
 
 const Dashboard = () => {
