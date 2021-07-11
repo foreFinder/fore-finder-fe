@@ -9,6 +9,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   margin-bottom: 24px;
   border-radius: 8px;
+
+  @media only screen and (min-width: 768px) {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+  }
 `
 
 const EventTitle = styled.h2`
