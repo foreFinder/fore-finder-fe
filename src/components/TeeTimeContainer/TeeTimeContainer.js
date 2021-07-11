@@ -3,7 +3,7 @@ import TeeTime from '../TeeTime/TeeTime'
 import styled from 'styled-components';
 import './TeeTimeContainer.css'
 
-const TTWrapper = styled.div`
+const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -11,18 +11,26 @@ const TTWrapper = styled.div`
   border-radius: 8px;
 `
 
-const TTLabel = styled.h2`
+const EventTitle = styled.h2`
   margin-bottom: 16px;
   font-size: 1.25em;
   font-weight: 600;
 `
 
 const TeeTimeContainer = ({ title }) => {
+  const getEventType = () => {
+    if (title === 'Committed Tee Times') {
+      return 'committed'
+    } else if (title === 'Available Tee Times') {
+      return 'available'
+    }
+  }
+
   return (
-    <TTWrapper>
-      <TTLabel>{title}</TTLabel>
-      <TeeTime />
-    </TTWrapper>
+    <Wrapper>
+      <EventTitle>{title}</EventTitle>
+      <TeeTime type={getEventType()}/>
+    </Wrapper>
   )
 }
 
