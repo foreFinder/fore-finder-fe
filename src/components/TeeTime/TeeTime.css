@@ -13,7 +13,7 @@
 .tt-details {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 3;
+  grid-template-rows: 2;
   row-gap: 12px;
   margin: 12px 12px 20px 12px;
 }
@@ -66,6 +66,12 @@
   grid-row: 2;
 }
 
+.spot-counter {
+  grid-column: 3;
+  grid-row: 2;
+  text-align: right;
+}
+
 .invitation-actions {
   display: flex;
   justify-content: flex-end;
@@ -78,7 +84,7 @@
 .primary-btn {
   width: fit-content;
   height: fit-content;
-  padding: 8px 16px;
+  padding: 6px 16px;
   border: solid 2px;
   border-radius: 32px;
   font-size: .9em;
