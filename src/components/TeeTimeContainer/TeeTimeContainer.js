@@ -12,7 +12,9 @@ const StyleWrapper = styled.div`
   margin-bottom: 24px;
 
   @media only screen and (min-width: 768px) {
+    height: 480px;
     align-items: center;
+    margin-bottom: unset;
     padding: 16px 16px 32px 16px;
     border-radius: 16px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
@@ -43,7 +45,7 @@ const TypeSelector = styled.span`
     background-color: unset;
     padding: unset;
     border: unset;
-    font-size: 1.2em;
+    font-size: 1.15em;
     font-weight: 500;
     cursor: pointer;
   }
