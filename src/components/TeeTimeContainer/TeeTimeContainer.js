@@ -35,6 +35,7 @@ const ContainerTitle = styled.h2`
 const TypeSelector = styled.span`
   align-self: flex-end;
   display: flex;
+  align-items: center;
   margin-bottom: 12px;
   padding-right: 12px;
 
@@ -42,7 +43,7 @@ const TypeSelector = styled.span`
     background-color: unset;
     padding: unset;
     border: unset;
-    font-size: 1.1em;
+    font-size: 1.2em;
     font-weight: 500;
     cursor: pointer;
   }
@@ -57,11 +58,7 @@ const TypeSelector = styled.span`
 
   .unselected {
     color: rgba(0, 0, 0, .25);
-  }
 
-  @media only screen and (min-width: 768px) {
-    align-self: flex-end;
-  }
 `
 
 const TeeTimeContainer = ({ title }) => {
