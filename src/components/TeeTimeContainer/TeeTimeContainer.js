@@ -33,6 +33,21 @@ const ContainerTitle = styled.h2`
 
 const TypeSelector = styled.span`
   display: flex;
+  margin-bottom: 12px;
+
+  h3 {
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+
+  h3:nth-child(1) {
+    margin-right: 6px;
+  }
+
+  h3:nth-child(2) {
+    margin-left: 6px;
+    color: rgba(0, 0, 0, .25)
+  }
 `
 
 const TeeTimeContainer = ({ title }) => {
