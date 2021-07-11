@@ -3,7 +3,7 @@ import './TeeTime.css'
 const TeeTime = ({ type }) => {
   return (
     <div className='tee-time'>
-      <span className='course-name'>@ <h3>Augusta National Golf Club</h3></span>
+      <h3 className='course-name'>Augusta National Golf Club</h3>
       <div className='tt-details'>
         <div className='host-name'>
           <h3>Host</h3>
