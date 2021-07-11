@@ -1,13 +1,19 @@
 .dashboard {
+  width: 100%;
   padding: 16px;
 }
 
 @media only screen and (min-width: 768px) {
   .dashboard {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 24px;
   }
   
   .tt-containers {
+    width: 100%;
     max-width: 1024px;
     display: grid;
     grid-template-columns: 1fr 1fr;
