@@ -35,16 +35,19 @@ const TypeSelector = styled.span`
   display: flex;
   margin-bottom: 12px;
 
-  h3 {
+  button {
+    background-color: unset;
+    padding: unset;
+    border: unset;
     font-size: 1.1em;
     font-weight: 500;
   }
 
-  h3:nth-child(1) {
+  button:nth-child(1) {
     margin-right: 6px;
   }
 
-  h3:nth-child(2) {
+  button:nth-child(2) {
     margin-left: 6px;
     color: rgba(0, 0, 0, .25)
   }
@@ -64,7 +67,7 @@ const TeeTimeContainer = ({ title }) => {
       <ContainerTitle>{title}</ContainerTitle>
       {title === 'Available Tee Times' &&
         <TypeSelector>
-          <h3>Friends</h3> | <h3>All</h3>
+          <button>Friends</button> | <button>All</button>
         </TypeSelector>
       }
       <TeeTime type={getEventType()}/>
