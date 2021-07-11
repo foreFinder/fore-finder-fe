@@ -30,19 +30,11 @@
 
 .course-name {
   background-color: rgb(233, 234, 235);
-  display: flex;
-  padding: 12px 12px 12px 8px;
+  padding: 12px 12px 12px 12px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   text-align: center;
-  font-weight: 500;
-  color: rgba(0, 0, 0, .3)
-}
-
-.course-name > h3 {
-  padding-left: 6px;
   font-weight: 600;
-  color: black;
 }
 
 .date {
@@ -88,7 +80,7 @@
   border: solid 2px;
   border-radius: 32px;
   font-size: .9em;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .accept {
@@ -110,9 +102,5 @@
   padding: unset;
   border: unset;
   font-size: .9em;
-  font-weight: 700;
-}
-
-.decline {
-  color: rgb(212,74,68);
+  font-weight: 600;
 }
