@@ -12,7 +12,6 @@ const StyleWrapper = styled.div`
   margin-bottom: 24px;
 
   @media only screen and (min-width: 768px) {
-    justify-content: center;
     align-items: center;
     padding: 16px 16px 32px 16px;
     border-radius: 16px;
@@ -34,8 +33,10 @@ const ContainerTitle = styled.h2`
 `
 
 const TypeSelector = styled.span`
+  align-self: flex-end;
   display: flex;
   margin-bottom: 12px;
+  padding-right: 12px;
 
   .type-select-btn {
     background-color: unset;
@@ -56,6 +57,10 @@ const TypeSelector = styled.span`
 
   .unselected {
     color: rgba(0, 0, 0, .25);
+  }
+
+  @media only screen and (min-width: 768px) {
+    align-self: flex-end;
   }
 `
 
