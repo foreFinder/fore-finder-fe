@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import TeeTime from '../TeeTime/TeeTime'
 
 import styled from 'styled-components';
@@ -35,25 +37,31 @@ const TypeSelector = styled.span`
   display: flex;
   margin-bottom: 12px;
 
-  button {
+  .type-select-btn {
     background-color: unset;
     padding: unset;
     border: unset;
     font-size: 1.1em;
     font-weight: 500;
+    cursor: pointer;
   }
 
-  button:nth-child(1) {
+  .type-select-btn:nth-child(1) {
     margin-right: 6px;
   }
 
-  button:nth-child(2) {
+  .type-select-btn:nth-child(2) {
     margin-left: 6px;
-    color: rgba(0, 0, 0, .25)
+  }
+
+  .unselected {
+    color: rgba(0, 0, 0, .25);
   }
 `
 
 const TeeTimeContainer = ({ title }) => {
+  const [allSelected, setAllSelected] = useState(false)
+
   const getEventType = () => {
     if (title === 'Committed Tee Times') {
       return 'committed'
@@ -67,7 +75,23 @@ const TeeTimeContainer = ({ title }) => {
       <ContainerTitle>{title}</ContainerTitle>
       {title === 'Available Tee Times' &&
         <TypeSelector>
-          <button>Friends</button> | <button>All</button>
+          <button 
+            className={allSelected ? 'type-select-btn unselected' : 'type-select-btn'}
+            onClick={() => {
+              if (allSelected) setAllSelected(!allSelected)
+            }}
+          >
+            Friends
+          </button> 
+          | 
+          <button
+            className={allSelected ? 'type-select-btn' : 'type-select-btn unselected'}
+            onClick={() => {
+              if (!allSelected) setAllSelected(!allSelected)
+            }}
+          >
+            All
+          </button>
         </TypeSelector>
       }
       <TeeTime type={getEventType()}/>
