@@ -43,6 +43,11 @@ const TeeTimeContainer = ({ title }) => {
   return (
     <Wrapper>
       <EventTitle>{title}</EventTitle>
+      {title === 'Available Tee Times' &&
+        <span>
+          <h3>Friends</h3> | <h3>All</h3>
+        </span>
+      }
       <TeeTime type={getEventType()}/>
     </Wrapper>
   )
