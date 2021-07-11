@@ -7,7 +7,7 @@ const TeeTime = ({ type }) => {
       <div className='tt-details'>
         <div className='host-name'>
           <h3>Host</h3>
-          <p>Eric Rabun</p>
+          <p>Tyson McNutt</p>
         </div>
         <div className='date'>
           <h3>Date</h3>
@@ -21,17 +21,17 @@ const TeeTime = ({ type }) => {
           <h3>Holes</h3>
           <p>18</p>
         </div>
-        <div className='invitation-actions'>
-          {type === 'committed' && 
-            <button>Cancel</button>
-          }
-          {type === 'available' &&
-            <>
-              <button>Accept</button>
-              <button>Decline</button>
-            </> 
-          }
-        </div>
+      </div>
+      <div className='invitation-actions'>
+        {type === 'committed' && 
+          <button className='primary-btn cancel'>Cancel</button>
+        }
+        {type === 'available' &&
+          <>
+            <button className='secondary-btn decline'>Decline</button>
+            <button className='primary-btn accept'>Accept</button>
+          </> 
+        }
       </div>
     </div>
   )
