@@ -1,6 +1,6 @@
 import './TeeTime.css'
 
-const TeeTime = () => {
+const TeeTime = ({ type }) => {
   return (
     <div className='tee-time'>
       <span className='course-name'>@ <h3>Augusta National Golf Club</h3></span>
@@ -22,7 +22,15 @@ const TeeTime = () => {
           <p>18</p>
         </div>
         <div className='invitation-actions'>
-          <button>Cancel</button>
+          {type === 'committed' && 
+            <button>Cancel</button>
+          }
+          {type === 'available' &&
+            <>
+              <button>Accept</button>
+              <button>Decline</button>
+            </> 
+          }
         </div>
       </div>
     </div>
