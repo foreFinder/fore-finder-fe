@@ -7,7 +7,7 @@ const TeeTime = ({ type }) => {
       <div className='tt-details'>
         <div className='host-name'>
           <h3>Host</h3>
-          <p>Tyson McNutt</p>
+          <p>Elon Musk</p>
         </div>
         <div className='date'>
           <h3>Date</h3>
@@ -20,6 +20,10 @@ const TeeTime = ({ type }) => {
         <div className='hole-count'>
           <h3>Holes</h3>
           <p>18</p>
+        </div>
+        <div className='spot-counter'>
+          <h3>Open spots</h3>
+          <p>1 of 4</p>
         </div>
       </div>
       <div className='invitation-actions'>
