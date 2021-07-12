@@ -11,7 +11,8 @@ function EventForm() {
   const [numHoles, setNumHoles] = useState('')
   const [golfCourse, setGolfCourse] = useState('')
 
-  const currentUser = players.find(player => player.id === 1)
+  // need to useEffect call api for current user's friends and golf courses to load on page render
+  const currentUser = players.find(player => player.id === 2)  // need to make this dynamic to match what user is logged in
   const userFriends = currentUser.friends.map(friendId => {
     return players.find(player => player.id === friendId).name
   })
@@ -80,19 +81,20 @@ function EventForm() {
             onClick={(event) => setNumHoles(event.target.value)}
           />
         </div>
-        <div>
+        <div>   
           <p>Invite other players:</p>
-          <div>
+          <div>             
             {userFriends.map(friend => { 
               return (
                 <div>
-                  <input type='checkbox' value={friend} key={friend} />
+                  <input type='checkbox' value={friend} key={friend} />  
                   <label for={friend}>{friend}</label>
                 </div>
               )
             })}
-
           </div>
+          <input type='checkbox' value='All Users' id='allUsers' /* need to set state with checked values *//> 
+          <label for='allUsers'>All Users</label>
         </div>
         <button /* onClick needs to send post with info*/>Create Tee Time</button>
       </form>
