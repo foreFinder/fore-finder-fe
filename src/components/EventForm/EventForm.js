@@ -1,6 +1,6 @@
 import './EventForm.css'
 import { useState, useEffect } from 'react'
-import { courses } from '../../APICalls/sampleData'
+import { courses, players } from '../../APICalls/sampleData'
 
 
 function EventForm() {
@@ -10,6 +10,11 @@ function EventForm() {
   const [friendList, setFriendList] = useState([])
   const [numHoles, setNumHoles] = useState('')
   const [golfCourse, setGolfCourse] = useState('')
+
+  const currentUser = players.find(player => player.id === 1)
+  const userFriends = currentUser.friends.map(friendId => {
+    return players.find(player => player.id === friendId).name
+  })
 
   return(
     <>
@@ -32,6 +37,7 @@ function EventForm() {
           id='Date'
           value={date}
           onChange={(event) => setDate(event.target.value)}
+          required
         />
         <label for='teeTime'>Tee Time:</label>
         <input
@@ -74,7 +80,20 @@ function EventForm() {
             onClick={(event) => setNumHoles(event.target.value)}
           />
         </div>
-        
+        <div>
+          <p>Invite other players:</p>
+          <div>
+            {userFriends.map(friend => { 
+              return (
+                <div>
+                  <input type='checkbox' value={friend} key={friend} />
+                  <label for={friend}>{friend}</label>
+                </div>
+              )
+            })}
+
+          </div>
+        </div>
         <button /* onClick needs to send post with info*/>Create Tee Time</button>
       </form>
     </>
