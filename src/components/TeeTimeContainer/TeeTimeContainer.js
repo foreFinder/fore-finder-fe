@@ -9,27 +9,27 @@ const StyleWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
 
   @media only screen and (min-width: 768px) {
     height: 480px;
     align-items: center;
     margin-bottom: unset;
-    padding: 16px 16px 32px 16px;
     border-radius: 16px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
   }
 `
 
 const ContainerTitle = styled.h2`
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   font-size: 1.25em;
   font-weight: 600;
 
   @media only screen and (min-width: 768px) {
+    background-color: rgb(241, 243, 244);
     width: 100%;
-    padding-bottom: 16px;
-    border-bottom: solid 1px rgba(0, 0, 0, .2);
+    padding: 16px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
     text-align: center;
   }
 `
@@ -61,6 +61,16 @@ const TypeSelector = styled.span`
   .unselected {
     color: rgba(0, 0, 0, .25);
 
+`
+
+const TeeTimeGrid = styled.span`
+  width: 100%;
+  display: grid;
+  grid-auto-rows: auto;
+
+  @media only screen and (min-width: 768px) {
+    padding: 16px;
+  }
 `
 
 const TeeTimeContainer = ({ title }) => {
@@ -98,7 +108,9 @@ const TeeTimeContainer = ({ title }) => {
           </button>
         </TypeSelector>
       }
-      <TeeTime type={getEventType()}/>
+      <TeeTimeGrid>
+        <TeeTime type={getEventType()}/>
+      </TeeTimeGrid>
     </StyleWrapper>
   )
 }

@@ -6,7 +6,6 @@ import { VscAccount } from 'react-icons/vsc'
 export const HeaderContainer = styled.header`
   background: #59A371;
   height: 80px;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
