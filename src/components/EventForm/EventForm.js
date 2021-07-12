@@ -1,5 +1,6 @@
 import './EventForm.css'
 import { useState, useEffect } from 'react'
+import { courses } from '../../APICalls/sampleData'
 
 
 function EventForm() {
@@ -8,11 +9,22 @@ function EventForm() {
   const [openSpots, setOpenSpots] = useState('')
   const [friendList, setFriendList] = useState([])
   const [numHoles, setNumHoles] = useState('')
+  const [golfCourse, setGolfCourse] = useState('')
 
   return(
     <>
       <form>
         <h2>Add a Tee Time</h2>
+        <label for='golfCourse'>Which golf course?</label>
+        <select
+          name='golfCourse'
+          id='golfCourse'
+          value={golfCourse}
+          onChange={(event) => setGolfCourse(event.target.value)}
+        >
+          <option>-* Please Select a Course *-</option>
+          {courses.map(course => {return <option value={course.name}>{course.name}</option>})}
+        </select>
         <label for='Date'>Date of tee time:</label>
         <input
           type='date'
@@ -63,7 +75,7 @@ function EventForm() {
           />
         </div>
         
-
+        <button /* onClick needs to send post with info*/>Create Tee Time</button>
       </form>
     </>
   )
