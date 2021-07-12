@@ -11,35 +11,43 @@ const StyleWrapper = styled.div`
   flex-direction: column;
 
   @media only screen and (min-width: 768px) {
-    height: 480px;
-    align-items: center;
+    height: 560px;
+    display: grid;
+    grid-template-rows: 4.5rem auto;
+    grid-auto-rows: 3.75rem;
     margin-bottom: unset;
     border-radius: 16px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
   }
 `
 
-const ContainerTitle = styled.h2`
+const ContainerTitle = styled.div`
   margin-bottom: 24px;
-  font-size: 1.25em;
-  font-weight: 600;
+
+  h2 {
+    font-size: 1.25em;
+    font-weight: 500;
+  }
 
   @media only screen and (min-width: 768px) {
     background-color: rgb(241, 243, 244);
-    width: 100%;
-    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: unset;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
-    text-align: center;
   }
 `
 
 const TypeSelector = styled.span`
-  align-self: flex-end;
+  background-color: rgb(241, 243, 244);
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 12px;
-  padding-right: 12px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  // border-top: solid 1px rgb(213, 214, 215);
 
   .type-select-btn {
     background-color: unset;
@@ -63,14 +71,9 @@ const TypeSelector = styled.span`
 
 `
 
-const TeeTimeGrid = styled.span`
-  width: 100%;
-  display: grid;
-  grid-auto-rows: auto;
-
-  @media only screen and (min-width: 768px) {
-    padding: 16px;
-  }
+const TeeTimes = styled.div`
+  padding: 20px 20px 0 20px;
+  overflow: auto;
 `
 
 const TeeTimeContainer = ({ title }) => {
@@ -86,31 +89,35 @@ const TeeTimeContainer = ({ title }) => {
 
   return (
     <StyleWrapper>
-      <ContainerTitle>{title}</ContainerTitle>
-      {title === 'Available Tee Times' &&
-        <TypeSelector>
-          <button 
-            className={allSelected ? 'type-select-btn unselected' : 'type-select-btn'}
-            onClick={() => {
-              if (allSelected) setAllSelected(!allSelected)
-            }}
-          >
-            Friends
-          </button> 
-          | 
-          <button
-            className={allSelected ? 'type-select-btn' : 'type-select-btn unselected'}
-            onClick={() => {
-              if (!allSelected) setAllSelected(!allSelected)
-            }}
-          >
-            All
-          </button>
-        </TypeSelector>
-      }
-      <TeeTimeGrid>
+      <ContainerTitle>
+        <h2>{title}</h2>
+      </ContainerTitle>
+      <TeeTimes>
         <TeeTime type={getEventType()}/>
-      </TeeTimeGrid>
+      </TeeTimes>
+      <TypeSelector>
+        {title === 'Available Tee Times' &&
+          <>
+            <button 
+              className={allSelected ? 'type-select-btn unselected' : 'type-select-btn'}
+              onClick={() => {
+                if (allSelected) setAllSelected(!allSelected)
+              }}
+            >
+              Friends
+            </button> 
+            | 
+            <button
+              className={allSelected ? 'type-select-btn' : 'type-select-btn unselected'}
+              onClick={() => {
+                if (!allSelected) setAllSelected(!allSelected)
+              }}
+            >
+              All
+            </button>
+          </>
+        }
+      </TypeSelector>
     </StyleWrapper>
   )
 }
