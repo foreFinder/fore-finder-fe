@@ -71,6 +71,7 @@ export const MobileIcon = styled.span`
 
 export const NavMenu = styled.ul`
   display: flex;
+  padding: 0;
   align-items: center;
   list-style: none;
   text-align: center;
@@ -141,7 +142,7 @@ export const UserIcon = styled(VscAccount)`
 `;
 
 export const UserOptions = styled.ul`
-  /* display: flex; really want this to work and not the line below */
+  /* display: flex; */
   display: ${({userDropdown}) => (userDropdown ? 'flex' : 'none')};
   align-items: center;
   list-style: none;
@@ -158,6 +159,8 @@ export const UserOptions = styled.ul`
   background: #59A371;
   z-index: 0;
   color: #fff;
+  padding: 0;
+  padding-top: 12px;
 
   @media screen and (max-width: 960px) {
     font-size: 1.1rem;
