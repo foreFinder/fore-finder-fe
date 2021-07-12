@@ -1,6 +1,12 @@
 .dashboard {
   width: 100%;
-  padding: 16px;
+  padding: 24px 16px;
+}
+
+.tt-containers {
+  display: grid;
+  grid-template-rows: auto auto;
+  row-gap: 32px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -9,15 +15,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 24px;
+    padding: 20px;
   }
   
   .tt-containers {
     width: 100%;
     max-width: 1024px;
-    display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 24px;
+    grid-template-rows: unset;
+    column-gap: 20px;
     margin: 0 auto;
   }
 }
