@@ -15,7 +15,7 @@ import {
 } from './Header.elements'
 
 
-const Header = () => {
+const Header = ({screenWidth}) => {
   const [mobileNav, setMobileNav] = useState(false)
   const handleMobileNav = () => {
     setUserDropdown(false) 
@@ -67,12 +67,13 @@ const Header = () => {
                   My Friends
                 </NavLinks>
               </NavItem> */}
-
+          {screenWidth <= 480 && 
               <NavItem data-cy='community-link'>
                 <NavLinks to='/community'>
                   My Community
                 </NavLinks>
               </NavItem>
+              }
             </NavMenu>
             <UserIcon 
               onClick={handleUserDropdown} data-cy='user-dropdown'/>
