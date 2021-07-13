@@ -1,8 +1,9 @@
 import React from 'react'
+import './PlayerCard.css'
 
 const PlayerCard = ({playerInfo}) => {
   return (
-    <div>
+    <div className='player-card'>
       <p>{playerInfo.name}</p>
     </div>
   )
