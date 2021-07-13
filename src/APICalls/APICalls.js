@@ -8,3 +8,14 @@ export const getAllPlayers = () => {
       } 
     })
 }
+
+export const getAllCourses = () => {
+  return fetch('https://fore-finder-be.herokuapp.com/api/v1/courses')
+    .then(resp => {
+      if (!resp.ok) {
+        throw new Error("Can't fetch any courses, please try again!")
+      } else {
+        return resp.json()
+      } 
+    })
+}
