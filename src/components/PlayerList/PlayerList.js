@@ -24,7 +24,7 @@ const PlayerList = () => {
 
   return (
     <aside className='player-list'>
-      <span className='event-type-select'>
+      <span className='player-type-select'>
         <button
           className={click ? 'friend-type-btn' : 'friend-type-btn unselected'}
           onClick={handleClick}

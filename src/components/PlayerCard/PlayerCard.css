@@ -2,7 +2,7 @@
   border: 1px solid black;
 }
 
-.friend-type-btn {
+.player-type-btn {
   background-color: unset;
   padding: unset;
   border: unset;
@@ -11,12 +11,12 @@
   cursor: pointer;
 }
 
-.friend-type-btn:nth-child(1) {
+.player-type-btn:nth-child(1) {
   padding-right: 8px;
   border-right: solid 1px rgba(0, 0, 0, .2);
 }
 
-.friend-type-btn:nth-child(2) {
+.player-type-btn:nth-child(2) {
   padding-left: 8px;
 }
 
