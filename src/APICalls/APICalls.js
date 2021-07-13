@@ -19,3 +19,5 @@ export const getAllCourses = () => {
       } 
     })
 }
+
+// for post request, use ngrok while still in development
