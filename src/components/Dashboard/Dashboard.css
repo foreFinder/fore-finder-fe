@@ -3,6 +3,37 @@
   padding: 24px 16px;
 }
 
+.dashboard-title {
+  margin-bottom: 16px;
+  font-size: 1.50em;
+  text-align: center;
+  font-weight: 600;
+}
+
+.dashboard-title > h1 {
+  font-size: inherit;
+}
+
+.event-type-select {
+  display: flex;
+  align-items: center;
+  font-size: 1.25em;
+  font-weight: 500;
+}
+
+.event-type-select > h2 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.event-type-select > h2:nth-child(1) {
+  margin-right: 8px;
+}
+
+.event-type-select > h2:nth-child(2) {
+  margin-left: 8px;
+}
+
 .tt-containers {
   display: grid;
   grid-template-rows: auto auto;
