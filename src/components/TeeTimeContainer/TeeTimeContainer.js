@@ -1,8 +1,5 @@
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-
 import TeeTime from '../TeeTime/TeeTime'
-import TypeSelector from './TypeSelector/TypeSelector'
+import InviteTypeSelect from './InviteTypeSelect/InviteTypeSelect'
 
 import './TeeTimeContainer.css'
 
@@ -17,17 +14,15 @@ const TeeTimeContainer = ({ title, windowWidth }) => {
 
   return (
     <div className='tee-time-container'>
-      {windowWidth >= 768 &&
-        <div className='container-title'>
-          <h2>{title}</h2>
-        </div>
-      }
-      {(title === 'Available Tee Times' && windowWidth < 768) && <TypeSelector mobile={true} />}
+      <div className='container-title'>
+        <h2>{title}</h2>
+      </div>
+      {(title === 'Available Tee Times' && windowWidth < 768) && <InviteTypeSelect />}
       <div className='tee-times'>
         <TeeTime type={getEventType()}/>
       </div>
       <div className='type-select-con'>
-        {(title === 'Available Tee Times' && windowWidth >= 768) && <TypeSelector mobile={false} />}
+        {(title === 'Available Tee Times' && windowWidth >= 768) && <InviteTypeSelect />}
       </div>
     </div>
   )
