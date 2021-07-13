@@ -1,8 +1,13 @@
-.player-list {
+.player-list-desktop {
   height: 100vh;
   width: 20%;
   background-color: #368552;
-  display: grid;
-  
+  display: grid; 
 }
 
+.player-list-mobile {
+  height: 100vh;
+  width: 100%;
+  background-color: #F8F8F8;
+  display: grid;
+}
