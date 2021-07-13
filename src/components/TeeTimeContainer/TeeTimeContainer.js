@@ -6,9 +6,7 @@ import TypeSelector from './TypeSelector/TypeSelector'
 
 import './TeeTimeContainer.css'
 
-const TeeTimeContainer = ({ title }) => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-
+const TeeTimeContainer = ({ title, windowWidth }) => {
   const getEventType = () => {
     if (title === 'Committed Tee Times') {
       return 'committed'
@@ -16,12 +14,6 @@ const TeeTimeContainer = ({ title }) => {
       return 'available'
     }
   }
-
-  useEffect(() => {
-    window.addEventListener('resize', () => {
-      setWindowWidth(window.innerWidth)
-    })
-  }, [])
 
   return (
     <div className='tee-time-container'>
