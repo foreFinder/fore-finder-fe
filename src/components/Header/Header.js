@@ -57,7 +57,7 @@ const Header = ({screenWidth}) => {
             </NavItem> */}
 
             <NavItem data-cy='form-link'>
-              <NavLinks to='/form'>
+              <NavLinks to='/event-form'>
                 Add Tee Time
               </NavLinks>
             </NavItem>

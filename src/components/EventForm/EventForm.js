@@ -1,22 +1,18 @@
 import './EventForm.css';
 import { useState, useEffect } from 'react';
-import { courses, players } from '../../APICalls/sampleData';
 
-function EventForm() {
-  const currentUser = players.find((player) => player.id === 2); // need to make this dynamic to match what user is logged in
-  const userFriends = currentUser.friends.map((friendId) => {
-    return players.find((player) => player.id === friendId).name;
-  });
-  const [date, setDate] = useState('');
+function EventForm({courses, friends}) {
+  const today = new Date().toISOString().slice(0, 10);
+  const tomorrow = new Date(new Date(today).getTime() + 86400000).toISOString().slice(0, 10);
+ 
+  const [date, setDate] = useState(tomorrow);
   const [teeTime, setTeeTime] = useState('');
-  const [openSpots, setOpenSpots] = useState('');
+  const [openSpots, setOpenSpots] = useState('2');
   const [selectedFriends, setSelectedFriends] = useState([]);
-  const [numHoles, setNumHoles] = useState('');
+  const [numHoles, setNumHoles] = useState('18');
   const [golfCourse, setGolfCourse] = useState('');
   const [isPrivate, setIsPrivate] = useState(false);
-  const [allFriends, setAllFriends] = useState(false);
-
-  // need to useEffect call api for current user's friends and golf courses to load on page render
+  const [allFriends, setAllFriends] = useState(false);  
 
   const addFriendToInvite = (e) => {
     if (e.target.checked) {
@@ -27,8 +23,9 @@ function EventForm() {
   };
 
   const inviteAllFriends = (e) => {
+    const friendIds = friends.map(f => f.id)
     if (e.target.checked) {
-      setSelectedFriends([...userFriends]);
+      setSelectedFriends([...friendIds]);
       setAllFriends(true);
     } else if (!e.target.checked) {
       setSelectedFriends(filterCheckedFriends);
@@ -42,49 +39,58 @@ function EventForm() {
     return checked.map((f) => f.value);
   };
 
+  const submitForm = () => {
+    const event = {
+      golfCourse, date, teeTime, openSpots, numHoles, selectedFriends
+    }
+    console.log(event);
+  }
+
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <h2>Add a Tee Time</h2>
       <div className='form-components'>
-        <label for='golfCourse'>
+        <label htmlFor='golfCourse'>
           Golf Course:
           <select
             name='golfCourse'
             id='golfCourse'
             value={golfCourse}
+            required
             onChange={(event) => setGolfCourse(event.target.value)}
           >
             <option>-* Please Select a Course *-</option>
-            {courses.map((course) => {
-              return <option value={course.name}>{course.name}</option>;
+            {courses.map((course, i) => {
+              return <option key={i} value={course.attributes.name}>{course.attributes.name}</option>;
             })}
           </select>
         </label>
-        <label for='Date'>
+        <label htmlFor='Date'>
           Date:
           <input
             type='date'
             name='Date'
             id='Date'
             value={date}
+            min={tomorrow}
             onChange={(event) => setDate(event.target.value)}
             required
           />
         </label>
-        <label for='teeTime'>
+        <label htmlFor='teeTime'>
           Tee Time:
           <input
             type='time'
             name='Tee Time'
             id='teeTime'
-            min='07:00'
-            max='17:00'
+            min='07:00:00'
+            max='17:00:00'
             value={teeTime}
             onChange={(event) => setTeeTime(event.target.value)}
             required
           />
         </label>
-        <label for='numPlayers'>
+        <label htmlFor='numPlayers'>
           Total Players (including you):
           <select
             name='num players'
@@ -97,19 +103,20 @@ function EventForm() {
             <option value='4'>4</option>
           </select>
         </label>
-        <label for='numHoles'>
+        <label htmlFor='numHoles'>
           Number of Holes:
-          <label for='18'>
+          <label htmlFor='18'>
             18
             <input
               type='radio'
               id='18'
               name='numHoles'
               value='18'
+              defaultChecked
               onClick={(event) => setNumHoles(event.target.value)}
             />
           </label>
-          <label for='9'>
+          <label htmlFor='9'>
             9
             <input
               type='radio'
@@ -120,9 +127,9 @@ function EventForm() {
             />
           </label>
         </label>
-        <label for='publicStatus'>
+        <label htmlFor='publicStatus'>
           Public or Private:
-          <label for='public'>
+          <label htmlFor='public'>
             Public
             <input
               type='radio'
@@ -133,7 +140,7 @@ function EventForm() {
               onClick={() => setIsPrivate(false)}
             />
           </label>
-          <label for='private'>
+          <label htmlFor='private'>
             Private
             <input
               type='radio'
@@ -148,18 +155,17 @@ function EventForm() {
           <>
             <p>Friends:</p>
             <div className='friend-list-container'>
-              {userFriends.map((friend) => {
+              {friends.map((friend, i) => {
                 return (
-                  <div className='friend-list'>
+                  <div key={i} className='friend-list'>
                     <input
                       className='friends'
                       type='checkbox'
-                      value={friend}
-                      key={friend}
+                      value={friend.id}
                       onClick={addFriendToInvite}
                       disabled={allFriends ? true : false}
                     />
-                    <label for={friend}>{friend}</label>
+                    <label htmlFor={friend}>{friend.name}</label>
                   </div>
                 );
               })}
@@ -168,15 +174,14 @@ function EventForm() {
               <input
                 type='checkbox'
                 id='allFriends'
-                value={[...userFriends]}
                 onClick={inviteAllFriends}
               />
-              <label for='allFriends'>Invite All Friends</label>
+              <label htmlFor='allFriends'>Invite All Friends</label>
             </div>
           </>
         )}
       </div>
-      <button /* onClick needs to send post with info*/>Create Tee Time</button>
+      <button onClick={submitForm}>Create Tee Time</button>
     </form>
   );
 }
