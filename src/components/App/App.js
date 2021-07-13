@@ -21,12 +21,12 @@ function App() {
         exact path='/dashboard'
           render={() => (
             <Dashboard
-              // passing state
+              screenWidth={screenWidth}
             />
           )}
         />
         <Route exact path='/'>
-          <Redirect to='/dashboard' />
+          <Redirect to='/dashboard' /> // This is a quick fix, might want to default web server to http://localhost:3000/dashboard if possible
         </Route>
       </Switch>
     </Router>
