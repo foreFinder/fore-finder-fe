@@ -1,10 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import TeeTimeContainer from '../TeeTimeContainer/TeeTimeContainer'
 import './Dashboard.css'
 
 const Dashboard = () => {
   const [teeTimeType, setTeeTimeType] = useState('committed')
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      setWindowWidth(window.innerWidth)
+    })
+  }, [])
 
   return (
     <div className='dashboard'>
@@ -24,10 +31,16 @@ const Dashboard = () => {
           Available
         </button>
       </span>
-      <div className='tt-containers'>
-        <TeeTimeContainer title='Committed Tee Times' />
-        <TeeTimeContainer title='Available Tee Times' />
-      </div>
+      {windowWidth >= 768 && 
+        <div className='tt-containers'>
+          <TeeTimeContainer title='Committed Tee Times' windowWidth={windowWidth} />
+          <TeeTimeContainer title='Available Tee Times' windowWidth={windowWidth}/>
+        </div>
+      }
+      {teeTimeType === 'committed'
+        ? (windowWidth < 768) && <TeeTimeContainer title='Committed Tee Times' windowWidth={windowWidth} />
+        : (windowWidth < 768) && <TeeTimeContainer title='Available Tee Times' windowWidth={windowWidth}/>
+      }
     </div>
   )
 }
