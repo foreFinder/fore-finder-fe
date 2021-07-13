@@ -4,15 +4,22 @@ import Dashboard from '../Dashboard/Dashboard'
 import React, { useState, useEffect } from 'react' 
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import EventForm from '../EventForm/EventForm'
+import { getAllCourses, getAllPlayers } from '../../APICalls/APICalls'
 
 function App() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [allPlayers, setAllPlayers] = useState([])
 
   const handleResize = () => setScreenWidth(window.innerWidth);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    getAllPlayers()
+      .then(players => setAllPlayers(players.data))
+  }, [])
 
   return (
     <Router>
