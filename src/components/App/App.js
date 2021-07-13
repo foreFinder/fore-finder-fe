@@ -9,6 +9,8 @@ import { getAllCourses, getAllPlayers } from '../../APICalls/APICalls'
 function App() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [allPlayers, setAllPlayers] = useState([])
+  const [hostPlayer, setHostPlayer] = useState('')
+  const [courses, setCourses] = useState([])
 
   const handleResize = () => setScreenWidth(window.innerWidth);
 
@@ -18,7 +20,12 @@ function App() {
 
   useEffect(() => {
     getAllPlayers()
-      .then(players => setAllPlayers(players.data))
+      .then(players => {
+        setAllPlayers(players.data)
+        setHostPlayer(players.data[0])
+      })
+    getAllCourses()
+      .then(courses => setCourses(courses.data))
   }, [])
 
   return (
@@ -39,7 +46,9 @@ function App() {
         <Route 
           exact path='/event-form'
           render={() => (
-            <EventForm />
+            <EventForm 
+              courses={courses}
+            />
           )}
         />
       </Switch>
