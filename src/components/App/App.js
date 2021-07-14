@@ -13,7 +13,7 @@ import { getAllCourses, getAllPlayers } from '../../APICalls/APICalls';
 import {teeTimes } from '../../APICalls/sampleData'
 
 function App() {
-  const [events, setEvents] = useState(teeTimes.data)
+  const [events, setEvents] = useState([])
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [allPlayers, setAllPlayers] = useState([]);
   const [hostPlayer, setHostPlayer] = useState('');
@@ -30,6 +30,7 @@ function App() {
   const handleResize = () => setScreenWidth(window.innerWidth);
 
   useEffect(() => {
+    setEvents(teeTimes.data)
     window.addEventListener('resize', handleResize);
   }, []);
 

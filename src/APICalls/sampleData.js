@@ -134,6 +134,21 @@ export const teeTimes = {
         "invitees": [1, 2, 3],
         "players": [3]
       }
+    },
+    {
+      "id": 4,
+      "type": "event",
+      "attributes": {
+        "course_id": 103,
+        "date": "08/06/2021",
+        "tee_time": "16:30",
+        "open_spots": 3,
+        "number_of_holes": "18",
+        "private": false,
+        "host_id": 4,
+        "invitees": [],
+        "players": [4, 2]
+      }
     }
   ]
 }

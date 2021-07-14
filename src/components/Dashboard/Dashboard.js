@@ -21,9 +21,7 @@ const Dashboard = ({ events, screenWidth }) => {
   useEffect(() => {
     setAvailableTeeTimes(getAvailable())
     setCommittedTeeTimes(getCommitted())
-  }, [])
-
-  console.log(committedTeeTimes)
+  }, [events])
 
   return (
     <div className='dashboard'>
