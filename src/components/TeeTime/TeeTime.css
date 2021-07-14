@@ -10,6 +10,10 @@
   font-size: 1em;
 }
 
+.tee-time button {
+  margin-top: unset;
+}
+
 .tt-details {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
