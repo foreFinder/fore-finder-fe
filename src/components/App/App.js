@@ -29,6 +29,18 @@ function App() {
 
   const handleResize = () => setScreenWidth(window.innerWidth);
 
+  const updateInvite = (eventId, userId, accepted) => {
+    const event = events.find(event => event.id === eventId)
+    const inviteeIndex = event.attributes.invitees.indexOf(userId)
+
+    if (accepted) {
+      event.attributes.players.push(userId)
+    }
+
+    event.attributes.invitees.splice(inviteeIndex)
+    setEvents(...events.filter(e => e.id !== event.id), event)
+  }
+
   useEffect(() => {
     setEvents(teeTimes.data)
     window.addEventListener('resize', handleResize);
