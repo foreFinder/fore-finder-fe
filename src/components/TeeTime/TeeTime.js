@@ -1,6 +1,19 @@
+import dayjs from 'dayjs'
 import './TeeTime.css'
 
 const TeeTime = ({ type, event }) => {
+  const formatTime = (time) => {
+    let hours = time.split(':')[0]
+    const minutes = time.split(':')[1]
+    const period = (parseInt(hours) > 11) ? 'PM' : 'AM'
+
+    if (hours < 10) {
+      hours = hours.slice(1, 2)
+    }
+
+    return `${hours}:${minutes} ${period}`
+  }
+
   return (
     <div className='tee-time'>
       <h3 className='course-name'>Augusta National Golf Club</h3>
@@ -11,11 +24,11 @@ const TeeTime = ({ type, event }) => {
         </div>
         <div className='date'>
           <h3>Date</h3>
-          <p>{event.date}</p>
+          <p>{dayjs(event.date).format('MMM D')}</p>
         </div>
         <div className='time-slot'>
           <h3>Time slot</h3>
-          <p>{event.tee_time}</p>
+          <p>{formatTime(event.tee_time)}</p>
         </div>
         <div className='hole-count'>
           <h3>Holes</h3>
