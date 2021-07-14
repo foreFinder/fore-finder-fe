@@ -5,7 +5,7 @@ import InviteTypeSelect from './InviteTypeSelect/InviteTypeSelect'
 
 import './TeeTimeContainer.css'
 
-const TeeTimeContainer = ({ title, events, windowWidth }) => {
+const TeeTimeContainer = ({ title, events, windowWidth, handleInviteAction }) => {
   const [privateInvites, setPrivateInvites] = useState([])
   const [invitesToDisplay, setInvitesToDisplay] = useState('private')
 
@@ -28,7 +28,9 @@ const TeeTimeContainer = ({ title, events, windowWidth }) => {
       return (
         <TeeTime 
           type={getEventType()} 
-          event={teeTime.attributes} />
+          event={teeTime}
+          handleInviteAction={handleInviteAction} 
+        />
       )
     })
   }

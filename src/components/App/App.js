@@ -37,8 +37,10 @@ function App() {
       event.attributes.players.push(userId)
     }
 
-    event.attributes.invitees.splice(inviteeIndex)
-    setEvents(...events.filter(e => e.id !== event.id), event)
+    event.attributes.invitees.splice(inviteeIndex, 1)
+    event.attributes.open_spots--
+
+    setEvents([...events.filter(e => e.id !== event.id), event])
   }
 
   useEffect(() => {
@@ -69,6 +71,7 @@ function App() {
             <Dashboard
               events={events}
               screenWidth={screenWidth}
+              handleInviteAction={updateInvite}
             />
           )}
         />
