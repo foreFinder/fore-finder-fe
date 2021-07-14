@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './InviteTypeSelect.css'
 
-const TypeSelector = () => {
+const TypeSelector = ( { handleClick }) => {
   const [allSelected, setAllSelected] = useState(false)
 
   return (
@@ -9,7 +9,10 @@ const TypeSelector = () => {
       <button 
         className={allSelected ? 'type-select-btn unselected' : 'type-select-btn'}
         onClick={() => {
-          if (allSelected) setAllSelected(!allSelected)
+          if (allSelected) {
+            setAllSelected(!allSelected)
+            handleClick('private')
+          }
         }}
       >
         Friends
@@ -17,7 +20,10 @@ const TypeSelector = () => {
       <button
         className={allSelected ? 'type-select-btn' : 'type-select-btn unselected'}
         onClick={() => {
-          if (!allSelected) setAllSelected(!allSelected)
+          if (!allSelected) {
+            setAllSelected(!allSelected)
+            handleClick('all')
+          }
         }}
       >
         All
