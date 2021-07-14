@@ -3,12 +3,13 @@ import { useEffect, useState } from 'react'
 import TeeTimeContainer from '../TeeTimeContainer/TeeTimeContainer'
 import './Dashboard.css'
 
-const Dashboard = ({ events, screenWidth }) => {
+const Dashboard = ({ events, screenWidth, handleInviteAction }) => {
   const [availableTeeTimes, setAvailableTeeTimes] = useState([])
   const [committedTeeTimes, setCommittedTeeTimes] = useState([])
   const [teeTimeType, setTeeTimeType] = useState('committed')
 
   const getAvailable = () => {
+    console.log(events)
     return events.filter(event => {
       return (event.attributes.invitees.includes(1) || !event.attributes.private)
     })
@@ -44,15 +45,23 @@ const Dashboard = ({ events, screenWidth }) => {
       </span>
       {screenWidth >= 768 && 
         <div className='tt-containers'>
-          <TeeTimeContainer title='Committed Tee Times' events={committedTeeTimes} windowWidth={screenWidth} />
-          <TeeTimeContainer title='Available Tee Times' events={availableTeeTimes} windowWidth={screenWidth}/>
+          <TeeTimeContainer 
+            title='Committed Tee Times' events={committedTeeTimes} windowWidth={screenWidth} handleInviteAction={handleInviteAction}
+          />
+          <TeeTimeContainer 
+            title='Available Tee Times' events={availableTeeTimes} windowWidth={screenWidth} handleInviteAction={handleInviteAction}
+          />
         </div>
       }
       {teeTimeType === 'committed'
         ? (screenWidth < 768) && 
-          <TeeTimeContainer title='Committed Tee Times' events={committedTeeTimes} windowWidth={screenWidth} />
+          <TeeTimeContainer 
+            title='Committed Tee Times' events={committedTeeTimes} windowWidth={screenWidth} handleInviteAction={handleInviteAction}
+          />
         : (screenWidth < 768) && 
-          <TeeTimeContainer title='Available Tee Times' events={availableTeeTimes} windowWidth={screenWidth}/>
+          <TeeTimeContainer 
+            title='Available Tee Times' events={availableTeeTimes} windowWidth={screenWidth} handleInviteAction={handleInviteAction}
+          />
       }
     </div>
   )
