@@ -123,7 +123,6 @@ export const teeTimes = {
         "pending": [1],
         "remaining_spots": 1
       }
-     
     },
     {
       "id": 3,

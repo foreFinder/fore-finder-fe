@@ -9,6 +9,8 @@ const TeeTime = ({ type, event, handleInviteAction }) => {
 
     if (hours < 10) {
       hours = hours.slice(1, 2)
+    } else if (hours > 12) {
+      hours = hours - 12
     }
 
     return `${hours}:${minutes} ${period}`
