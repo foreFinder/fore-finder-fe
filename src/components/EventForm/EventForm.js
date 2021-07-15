@@ -142,6 +142,7 @@ function EventForm({courses, friends, hostId }) {
               name='publicStatus'
               value='public'
               onClick={() => setIsPrivate(false)}
+              defaultChecked
               required
             />
           </label>
