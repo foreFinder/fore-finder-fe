@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom';
 import EventForm from '../EventForm/EventForm';
 import { getAllCourses, getAllPlayers } from '../../APICalls/APICalls';
-import {teeTimes } from '../../APICalls/sampleData'
+import {players, teeTimes } from '../../APICalls/sampleData'
 
 function App() {
   const [events, setEvents] = useState([])
@@ -27,16 +27,14 @@ function App() {
     return friends.map((f) => ({ name: f.attributes.name, id: f.id }));
   };
 
-  const handleResize = () => setScreenWidth(window.innerWidth);
-
-  const updateInvite = (eventId, userId, accepted) => {
+  const updateInvite = (eventId, accepted) => {
     const event = events.find(event => event.id === eventId)
-    const inviteeIndex = event.attributes.pending.indexOf(userId)
+    const inviteeIndex = event.attributes.pending.indexOf(parseInt(hostPlayer.id))
 
     if (accepted) {
-      event.attributes.accepted.push(userId)
+      event.attributes.accepted.push(parseInt(hostPlayer.id))
     } else if (!accepted) {
-      event.attributes.declined.push(userId)
+      event.attributes.declined.push(parseInt(hostPlayer.id))
     }
 
     event.attributes.pending.splice(inviteeIndex, 1)
@@ -45,21 +43,18 @@ function App() {
     setEvents([...events.filter(e => e.id !== event.id), event])
   }
 
-  const cancelCommitment = (eventId, userId) => {
+  const cancelCommitment = (eventId) => {
     const event = events.find(event => event.id === eventId)
-    const inviteeIndex = event.attributes.accepted.indexOf(userId)
+    const inviteeIndex = event.attributes.accepted.indexOf(parseInt(hostPlayer.id))
 
     event.attributes.accepted.splice(inviteeIndex, 1)
-    event.attributes.declined.push(userId)
+    event.attributes.declined.push(parseInt(hostPlayer.id))
 
     event.attributes.open_spots++
     setEvents([...events.filter(e => e.id !== event.id), event])
   }
 
-  useEffect(() => {
-    setEvents(teeTimes.data)
-    window.addEventListener('resize', handleResize);
-  }, []);
+  const handleResize = () => setScreenWidth(window.innerWidth);
 
   useEffect(() => {
     getAllPlayers().then((players) => {
@@ -67,12 +62,17 @@ function App() {
       setHostPlayer(players.data[0]);
     });
     getAllCourses().then((courses) => setCourses(courses.data));
-    setEvents(teeTimes)
+    setEvents(teeTimes.data)
   }, []);
+  
 
   useEffect(() => {
     setFriends(makeFriendList());
   }, [allPlayers, hostPlayer]);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+  }, []);
 
   return (
     <Router>
@@ -83,6 +83,7 @@ function App() {
           render={() => (
             <Dashboard
               events={events}
+              currentUserId={parseInt(hostPlayer.id)}
               screenWidth={screenWidth}
               handleInviteAction={{ update: updateInvite, cancel: cancelCommitment }}
             />

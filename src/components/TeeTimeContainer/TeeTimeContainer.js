@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 import TeeTime from '../TeeTime/TeeTime'
 import InviteTypeSelect from './InviteTypeSelect/InviteTypeSelect'
@@ -9,13 +9,13 @@ const TeeTimeContainer = ({ title, events, windowWidth, handleInviteAction }) =>
   const [privateInvites, setPrivateInvites] = useState([])
   const [invitesToDisplay, setInvitesToDisplay] = useState('private')
 
-  const getEventType = () => {
+  const getEventType = useCallback(() => {
     if (title === 'Committed Tee Times') {
       return 'committed'
     } else if (title === 'Available Tee Times') {
       return 'available'
     }
-  }
+  }, [title])
 
   const getTeeTimes = () => {
     let teeTimes = events
@@ -40,7 +40,7 @@ const TeeTimeContainer = ({ title, events, windowWidth, handleInviteAction }) =>
     if (getEventType() === 'available') {
       setPrivateInvites(events.filter(event => event.attributes.pending.includes(1)))
     }
-  }, [events])
+  }, [events, getEventType])
 
   return (
     <div className='tee-time-container'>

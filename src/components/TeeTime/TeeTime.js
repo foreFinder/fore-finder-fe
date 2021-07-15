@@ -16,7 +16,7 @@ const TeeTime = ({ type, event, handleInviteAction }) => {
 
   return (
     <div className='tee-time'>
-      <h3 className='course-name'>Augusta National Golf Club</h3>
+      <h3 className='course-name'>{event.attributes.course_name}</h3>
       <div className='tt-details'>
         <div className='host-name'>
           <h3>Host</h3>
@@ -43,7 +43,7 @@ const TeeTime = ({ type, event, handleInviteAction }) => {
         {type === 'committed' && 
           <button 
             className='primary-btn cancel'
-            onClick={() => handleInviteAction.cancel(event.id, 1)}
+            onClick={() => handleInviteAction.cancel(event.id)}
           >
             Cancel
           </button>
@@ -52,13 +52,13 @@ const TeeTime = ({ type, event, handleInviteAction }) => {
           <>
             <button 
               className='secondary-btn decline'
-              onClick={() => handleInviteAction.update(event.id, 1, false)}
+              onClick={() => handleInviteAction.update(event.id, false)}
             >
               Decline
             </button>
             <button 
               className='primary-btn accept' 
-              onClick={() => handleInviteAction.update(event.id, 1, true)}
+              onClick={() => handleInviteAction.update(event.id, true)}
             >
               Accept
             </button>

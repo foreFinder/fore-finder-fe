@@ -94,7 +94,7 @@ export const teeTimes = {
       "id": 1,
       "type": "event",
       "attributes": {
-        "course_id": 100,
+        "course_name": 'Green Valley Ranch Golf Club',
         "date": "08-04-2021",
         "tee_time": "09:30",
         "open_spots": 3,
@@ -111,7 +111,7 @@ export const teeTimes = {
       "id": 2,
       "type": "event",
       "attributes": {
-        "course_id": 100,
+        "course_name": 'Green Valley Ranch Golf Club',
         "date": "08-05-2021",
         "tee_time": "10:30",
         "open_spots": 3,
@@ -129,7 +129,7 @@ export const teeTimes = {
       "id": 3,
       "type": "event",
       "attributes": {
-        "course_id": 100,
+        "course_name": 'City Park Golf Course',
         "date": "08-06-2021",
         "tee_time": "14:30",
         "open_spots": 2,
