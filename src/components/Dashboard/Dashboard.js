@@ -9,14 +9,13 @@ const Dashboard = ({ events, screenWidth, handleInviteAction }) => {
   const [teeTimeType, setTeeTimeType] = useState('committed')
 
   const getAvailable = () => {
-    console.log(events)
     return events.filter(event => {
-      return (event.attributes.invitees.includes(1) || !event.attributes.private)
+      return (event.attributes.pending.includes(1) || !event.attributes.private)
     })
   }
 
   const getCommitted = () => {
-    return events.filter(event => event.attributes.players.includes(1))
+    return events.filter(event => event.attributes.accepted.includes(1))
   }
   
   useEffect(() => {

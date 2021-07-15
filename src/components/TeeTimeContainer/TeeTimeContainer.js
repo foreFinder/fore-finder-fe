@@ -26,7 +26,8 @@ const TeeTimeContainer = ({ title, events, windowWidth, handleInviteAction }) =>
 
     return teeTimes.map(teeTime => {
       return (
-        <TeeTime 
+        <TeeTime
+          key={teeTime.id} 
           type={getEventType()} 
           event={teeTime}
           handleInviteAction={handleInviteAction} 
@@ -37,7 +38,7 @@ const TeeTimeContainer = ({ title, events, windowWidth, handleInviteAction }) =>
 
   useEffect(() => {
     if (getEventType() === 'available') {
-      setPrivateInvites(events.filter(event => event.attributes.invitees.includes(1)))
+      setPrivateInvites(events.filter(event => event.attributes.pending.includes(1)))
     }
   }, [events])
 
