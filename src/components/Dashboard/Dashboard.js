@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import TeeTimeContainer from '../TeeTimeContainer/TeeTimeContainer'
 import './Dashboard.css'
 
-const Dashboard = ({ events, screenWidth, handleInviteAction }) => {
+const Dashboard = ({ events, currentUserId, screenWidth, handleInviteAction }) => {
   const [availableTeeTimes, setAvailableTeeTimes] = useState([])
   const [committedTeeTimes, setCommittedTeeTimes] = useState([])
   const [teeTimeType, setTeeTimeType] = useState('committed')
 
-  const getAvailable = () => {
+  const getAvailable = useCallback(() => {
     return events.filter(event => {
       if (event.attributes.accepted.includes(1) || event.attributes.declined.includes(1)) {
         return false
@@ -16,16 +16,16 @@ const Dashboard = ({ events, screenWidth, handleInviteAction }) => {
 
       return true
     })
-  }
+  }, [events])
 
-  const getCommitted = () => {
-    return events.filter(event => event.attributes.accepted.includes(1))
-  }
+  const getCommitted = useCallback(() => {
+    return events.filter(event => event.attributes.accepted.includes(currentUserId))
+  }, [events, currentUserId])
   
   useEffect(() => {
     setAvailableTeeTimes(getAvailable())
     setCommittedTeeTimes(getCommitted())
-  }, [events])
+  }, [events, getAvailable, getCommitted])
 
   return (
     <div className='dashboard'>
