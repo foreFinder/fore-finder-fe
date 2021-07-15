@@ -20,4 +20,10 @@ export const getAllCourses = () => {
     })
 }
 
+export const postEvent = (courseId, date, teeTime, openSpots, numHoles, selectedFriends) => {
+  return fetch('https://63cb5fde788d.ngrok.io/api/v1/event', {
+    method:
+  })
+}
+
 // for post request, use ngrok while still in development
