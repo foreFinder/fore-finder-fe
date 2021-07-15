@@ -20,19 +20,21 @@ const PlayerList = ({screenWidth}) => {
 
   return (
     <aside className={screenWidth > 480 ? 'player-list-desktop' : 'player-list-mobile'}>
-      <span className='player-type-select'>
+      <span className={screenWidth > 480 ? 'player-type-select-desktop' : 'player-type-select-mobile'}>
         <button
-          className={playerType === 'friends' ? 'friend-type-btn' : 'friend-type-btn unselected'}
-          onClick={() => { if (playerType === 'community') setPlayerType('friends')}}        >
+          className={playerType === 'friends' ? 'player-type-btn' : 'player-type-btn unselected'}
+          onClick={() => { if (playerType === 'community') setPlayerType('friends')}}>
           Friends
         </button>
         <button
-          className={playerType === 'community' ? 'friend-type-btn' : 'friend-type-btn unselected'}
-          onClick={() => { if (playerType === 'friends') setPlayerType('community')}}        >
+          className={playerType === 'community' ? 'player-type-btn' : 'player-type-btn unselected'}
+          onClick={() => { if (playerType === 'friends') setPlayerType('community')}}>
           Community
         </button>
       </span>
-      {playerType === 'friends' ? mapPlayers(userFriends) : mapPlayers(players)}
+      <ul className='player-list-wrapper'>
+        {playerType === 'friends' ? mapPlayers(userFriends) : mapPlayers(players)}
+      </ul>
     </aside>
   )
 }

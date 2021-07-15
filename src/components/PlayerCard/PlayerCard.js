@@ -3,9 +3,9 @@ import './PlayerCard.css'
 
 const PlayerCard = ({playerInfo}) => {
   return (
-    <div className='player-card'>
+    <li className='player-card'>
       <p>{playerInfo.name}</p>
-    </div>
+    </li>
   )
 }
 
