@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './InviteTypeSelect.css'
 
-const TypeSelector = ({ mobile }) => {
+const TypeSelector = () => {
   const [allSelected, setAllSelected] = useState(false)
 
   return (

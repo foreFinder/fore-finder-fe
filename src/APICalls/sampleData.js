@@ -102,7 +102,7 @@ export const teeTimes = {
         "private": true,
         "host_id": 1,
         "invitees": [2],
-        "players": []
+        "players": [1]
       }
     },
     {
@@ -117,7 +117,7 @@ export const teeTimes = {
         "private": true,
         "host_id": 2,
         "invitees": [1, 3],
-        "players": [3]
+        "players": [2]
       }
     },
     {

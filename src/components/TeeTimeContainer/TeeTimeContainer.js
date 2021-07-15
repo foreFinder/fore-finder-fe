@@ -3,7 +3,7 @@ import InviteTypeSelect from './InviteTypeSelect/InviteTypeSelect'
 
 import './TeeTimeContainer.css'
 
-const TeeTimeContainer = ({ title, windowWidth }) => {
+const TeeTimeContainer = ({ title, events, windowWidth }) => {
   const getEventType = () => {
     if (title === 'Committed Tee Times') {
       return 'committed'

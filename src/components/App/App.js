@@ -10,19 +10,22 @@ import {
 } from 'react-router-dom';
 import EventForm from '../EventForm/EventForm';
 import { getAllCourses, getAllPlayers } from '../../APICalls/APICalls';
+import {teeTimes } from '../../APICalls/sampleData'
 
 function App() {
+  const [events, setEvents] = useState(teeTimes.data)
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [allPlayers, setAllPlayers] = useState([]);
+  const [hostPlayer, setHostPlayer] = useState('');
+  const [friends, setFriends] = useState('');
+  const [courses, setCourses] = useState([]);
+
   const makeFriendList = () => {
     const friends = allPlayers.filter((p) =>
       hostPlayer?.attributes?.friends?.includes(parseInt(p.id))
     );
     return friends.map((f) => ({ name: f.attributes.name, id: f.id }));
   };
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [allPlayers, setAllPlayers] = useState([]);
-  const [hostPlayer, setHostPlayer] = useState('');
-  const [friends, setFriends] = useState('');
-  const [courses, setCourses] = useState([]);
 
   const handleResize = () => setScreenWidth(window.innerWidth);
 
@@ -36,6 +39,7 @@ function App() {
       setHostPlayer(players.data[0]);
     });
     getAllCourses().then((courses) => setCourses(courses.data));
+    setEvents(teeTimes)
   }, []);
 
   useEffect(() => {
@@ -46,10 +50,14 @@ function App() {
     <Router>
       <Header screenWidth={screenWidth} />
       <Switch>
-        <Route
-          exact
-          path='/dashboard'
-          render={() => <Dashboard screenWidth={screenWidth} />}
+        <Route 
+          exact path='/dashboard'
+          render={() => (
+            <Dashboard
+              events={events}
+              screenWidth={screenWidth}
+            />
+          )}
         />
         <Route exact path='/'>
           <Redirect to='/dashboard' /> // This is a quick fix, might want to
