@@ -44,7 +44,7 @@ function EventForm({courses, friends}) {
     const event = {
       golfCourse, date, teeTime, openSpots, numHoles, selectedFriends
     }
-    console.log(event);
+    postEvent(golfCourse, date, teeTime, openSpots, numHoles, isPrivate, )
   }
 
   return (
