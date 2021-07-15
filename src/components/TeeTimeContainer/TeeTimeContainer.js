@@ -12,6 +12,10 @@ const TeeTimeContainer = ({ title, events, windowWidth }) => {
     }
   }
 
+  const teeTimes = events.map(event => {
+    return <TeeTime type={getEventType()} event={event.attributes} />
+  })
+
   return (
     <div className='tee-time-container'>
       <div className='container-title'>
@@ -19,7 +23,7 @@ const TeeTimeContainer = ({ title, events, windowWidth }) => {
       </div>
       {(title === 'Available Tee Times' && windowWidth < 768) && <InviteTypeSelect />}
       <div className='tee-times'>
-        <TeeTime type={getEventType()}/>
+        {teeTimes}
       </div>
       <div className='type-select-con'>
         {(title === 'Available Tee Times' && windowWidth >= 768) && <InviteTypeSelect />}
