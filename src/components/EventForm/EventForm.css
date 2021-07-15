@@ -6,13 +6,17 @@ form {
 }
 
 .form-title {
-  margin-top: 2em;
-  margin-bottom: 1em;
+  padding-top: 1.5em;
+  padding-bottom: 1em;
   font-weight: 600;
+  width: inherit; 
+  text-align: center;
+  background-color: rgb(241, 243, 244);
 }
 
 button {
   margin-top: 2em;
+  margin-bottom: 2em;
   padding: 6px 16px; 
   border: unset; 
   border-radius: 32px;
@@ -27,10 +31,9 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  align-self: center;
-  padding-bottom: 2em;  
+  align-self: center;  
   height: 100%;
-  width: 45%;
+  width: 100%;
   z-index: 1; 
 }
 
