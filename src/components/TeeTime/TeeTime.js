@@ -14,15 +14,13 @@ const TeeTime = ({ type, event, handleInviteAction }) => {
     return `${hours}:${minutes} ${period}`
   }
 
-  console.log(event)
-
   return (
     <div className='tee-time'>
       <h3 className='course-name'>Augusta National Golf Club</h3>
       <div className='tt-details'>
         <div className='host-name'>
           <h3>Host</h3>
-          <p>{event.attributes.host_id}</p>
+          <p>{event.attributes.host_name}</p>
         </div>
         <div className='date'>
           <h3>Date</h3>
@@ -38,7 +36,7 @@ const TeeTime = ({ type, event, handleInviteAction }) => {
         </div>
         <div className='spot-counter'>
           <h3>Open spots</h3>
-          <p>{event.attributes.open_spots} of {event.attributes.invitees.length + event.attributes.players.length}</p>
+          <p>{event.attributes.remaining_spots} of {event.attributes.open_spots}</p>
         </div>
       </div>
       <div className='invitation-actions'>

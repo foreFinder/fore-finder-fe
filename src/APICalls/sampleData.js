@@ -95,14 +95,16 @@ export const teeTimes = {
       "type": "event",
       "attributes": {
         "course_id": 100,
-        "date": "08/04/2021",
+        "date": "08-04-2021",
         "tee_time": "09:30",
-        "open_spots": 1,
+        "open_spots": 3,
         "number_of_holes": "9",
         "private": true,
-        "host_id": 1,
-        "invitees": [2],
-        "players": [1]
+        "host_name": "Bob",
+        "accepted": [2, 3],
+        "declined": [], 
+        "pending": [1],
+        "remaining_spots": 1
       }
     },
     {
@@ -110,45 +112,17 @@ export const teeTimes = {
       "type": "event",
       "attributes": {
         "course_id": 100,
-        "date": "08/05/2021",
+        "date": "08-05-2021",
         "tee_time": "10:30",
-        "open_spots": 2,
+        "open_spots": 3,
         "number_of_holes": "9",
         "private": true,
-        "host_id": 2,
-        "invitees": [1, 3],
-        "players": [2]
-      }
-    },
-    {
-      "id": 3,
-      "type": "event",
-      "attributes": {
-        "course_id": 102,
-        "date": "08/04/2021",
-        "tee_time": "09:30",
-        "open_spots": 3,
-        "number_of_holes": "18",
-        "private": true,
-        "host_id": 3,
-        "invitees": [1, 2, 3],
-        "players": [3]
-      }
-    },
-    {
-      "id": 4,
-      "type": "event",
-      "attributes": {
-        "course_id": 103,
-        "date": "08/06/2021",
-        "tee_time": "16:30",
-        "open_spots": 3,
-        "number_of_holes": "18",
-        "private": false,
-        "host_id": 4,
-        "invitees": [],
-        "players": [4, 2]
-      }
-    }
+        "host_name": "Amy Jones",
+        "accepted": [2, 3],
+        "declined": [], 
+        "pending": [1],
+        "remaining_spots": 1
+     }
+   }
   ]
 }
