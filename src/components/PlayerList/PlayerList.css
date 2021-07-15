@@ -1,5 +1,4 @@
 .player-list-desktop {
-  /* margin-top: 80px; */
   padding: 30px;
   height: 92vh;
   width: 15%;
@@ -12,10 +11,14 @@
 }
 
 .player-list-mobile {
+  padding-top: 30px;
   height: 100vh;
   width: 100%;
-  background-color: #F8F8F8;
-  display: grid;
+  background-color: #368552;
+  display: flex; 
+  flex-direction: column;
+  color: #fff;
+  text-align: center;
 }
 
 /* .player-list-desktop,
@@ -62,4 +65,5 @@
 
 .player-type-select-mobile {
   color: black;
+  padding-bottom: 50px;
 }

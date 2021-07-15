@@ -1,4 +1,6 @@
 .player-card {
   height: 40px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
