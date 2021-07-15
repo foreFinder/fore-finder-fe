@@ -61,7 +61,7 @@ function EventForm({courses, friends}) {
           >
             <option>-* Please Select a Course *-</option>
             {courses.map((course, i) => {
-              return <option key={i} value={course.attributes.name}>{course.attributes.name}</option>;
+              return <option key={i} value={course.id}>{course.attributes.name}</option>;
             })}
           </select>
         </label>
@@ -136,8 +136,8 @@ function EventForm({courses, friends}) {
               id='public'
               name='publicStatus'
               value='public'
-              defaultChecked
               onClick={() => setIsPrivate(false)}
+              required
             />
           </label>
           <label htmlFor='private'>
