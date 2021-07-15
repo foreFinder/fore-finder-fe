@@ -94,6 +94,7 @@ function EventForm({courses, friends, hostId }) {
             onChange={(event) => setTeeTime(event.target.value)}
             required
           />
+          <small>Tee times are 7am to 5pm</small>
         </label>
         <label htmlFor='numPlayers'>
           Total Players (including you):

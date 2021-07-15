@@ -24,7 +24,9 @@ label > * {
   margin-left: 1em;
 }
 
-
+small {
+  font-size: small; 
+}
 
 .friend-list > input {
   margin-right: 1em;
