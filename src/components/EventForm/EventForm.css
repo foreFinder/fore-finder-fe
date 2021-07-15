@@ -1,0 +1,44 @@
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+
+.form-components {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-components > * {
+  margin-top: 1em;
+}
+
+label > * {
+  margin-left: 1em;
+}
+
+.friend-list > input {
+  margin-right: 1em;
+}
+
+.friend-list {
+  width: fit-content;
+  margin-top: 0.5em;
+}
+
+.friend-list-container {
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 1em;
+}
+
+button {
+  margin-top: 2em;
+}

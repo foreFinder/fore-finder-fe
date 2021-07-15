@@ -1,0 +1,133 @@
+.tee-time {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+}
+
+.tee-time h3 {
+  font-size: 1em;
+}
+
+.tt-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 2;
+  row-gap: 12px;
+  margin: 12px 12px 20px 12px;
+}
+
+.tt-details h3 {
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.tt-details p {
+  font-size: .9em;
+  color: rgba(0, 0, 0, .8)
+}
+
+.course-name {
+  background-color: rgb(241, 243, 244);
+  padding: 12px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.date {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.time-slot {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.hole-count {
+  grid-column: 3;
+  grid-row: 1;
+  text-align: right;
+}
+
+.host-name {
+  grid-column: 1 / span 2;
+  grid-row: 2;
+}
+
+.spot-counter {
+  grid-column: 3;
+  grid-row: 2;
+  text-align: right;
+}
+
+.invitation-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0 12px;
+  padding: 12px 0;
+  border-top: solid 1px rgb(233, 234, 235);
+}
+
+.primary-btn {
+  width: fit-content;
+  height: fit-content;
+  padding: 6px 16px;
+  border: unset;
+  border-radius: 32px;
+  font-size: .9em;
+  font-weight: 600;
+}
+
+.accept {
+  background-color: rgb(42, 222, 147);
+  margin-left: 12px;
+  color: white;
+}
+
+.cancel {
+  background-color: rgb(212, 74, 68);
+  margin-left: 8px;
+  color: white;
+}
+
+.secondary-btn {
+  background-color: unset;
+  width: fit-content;
+  height: fit-content;
+  padding: unset;
+  border: unset;
+  font-size: .9em;
+  font-weight: 600;
+}
+
+@media only screen and (min-width: 768px) {
+  .tee-time {
+    margin-bottom: 20px;
+    border: solid 1px rgb(0, 0, 0, .3);
+    border-radius: 16px;
+    box-shadow: unset;
+  }
+
+  .course-name {
+    background-color: unset;
+    padding: 16px;
+  }
+
+  .tt-details {
+    margin: 0 16px;
+    padding: 16px 0;
+    border-top: solid 1px rgb(223, 224, 225);
+    border-bottom: solid 1px rgb(223, 224, 225);
+  }
+
+  .invitation-actions {
+    border-top: unset;
+    margin-right: unset;
+    padding: 16px;
+  }
+}
