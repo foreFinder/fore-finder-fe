@@ -14,7 +14,6 @@ const PlayerList = ({screenWidth}) => {
       <PlayerCard
         key={p.id}
         playerInfo={p}
-        playerType={playerType}
         friends={userFriends}
       />
     ))

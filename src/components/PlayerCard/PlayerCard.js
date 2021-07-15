@@ -1,17 +1,16 @@
 import React from 'react'
 import './PlayerCard.css'
 
-const PlayerCard = ({playerInfo, playerType, friends}) => {
+const PlayerCard = ({playerInfo, friends}) => {
   return (
     <li className='player-card'>
-      <p>{playerInfo.name}</p>
-      {playerType === 'friends' && friends.includes(playerInfo) ?
-      <span>
-        <button>Remove Friend</button> 
+      <p className='player-name'>{playerInfo.name}</p>
+      {friends.includes(playerInfo) ?
+      <span className='friend-option'>
+        <button className='btn'>Remove Friend</button> 
       </span> :
-      <span>
-        <button>Add Friend</button>
-        <button>Remove Friend</button>
+      <span className='friend-option'>
+        <button className='btn'>Add Friend</button>
       </span>
     }
     </li>

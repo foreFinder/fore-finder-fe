@@ -1,13 +1,14 @@
 .player-list-desktop {
   padding: 30px;
   height: 92vh;
-  width: 15%;
+  width: 20%;
   background-color: #368552;
   display: flex; 
   flex-direction: column;
   border: none;
   color: #fff;
   overflow-y:none;
+  text-align: center;
 }
 
 .player-list-mobile {
@@ -15,6 +16,7 @@
   height: 100vh;
   width: 100%;
   background-color: #368552;
+  padding: 40px;
   display: flex; 
   flex-direction: column;
   color: #fff;

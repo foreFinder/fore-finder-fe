@@ -2,5 +2,32 @@
   height: 40px;
   width: 100%;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 1.1em;
+  position: relative
 }
 
+.player-name {
+  position: absolute;
+  left: 0;
+}
+
+.friend-option {
+  position: absolute;
+  right: 0;
+}
+
+.btn {
+  background-color: unset;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 7px;
+  font-size: .7em;
+  font-weight: inherit;
+  cursor: pointer;
+  color: #F8F8F8;
+  text-align: center;
+  align-self: center;
+}
