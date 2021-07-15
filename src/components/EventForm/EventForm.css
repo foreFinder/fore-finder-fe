@@ -1,20 +1,14 @@
 form {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  display: flex; 
   justify-content: center;
-  align-items: center;
-  padding-bottom: 2em;  
-  
+  align-items: center; 
 }
 
-h2 {
+.form-title {
   margin-top: 2em;
   margin-bottom: 1em;
   font-weight: 600;
-}
-
-small {
-  font-size: small; 
 }
 
 button {
@@ -28,13 +22,29 @@ button {
   color: white; 
 }
 
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  padding-bottom: 2em;  
+  height: 100%;
+  width: 45%;
+  z-index: 1; 
+}
+
 .form-components {
   display: flex;
   flex-direction: column;
+  height: 100%; 
+
 }
 
 .form-components > * {
-  margin-top: 1em;
+  /* margin-top: 1em; */
+  font-size: .8em;
+  padding: 1em; 
 }
 
 label > * {
@@ -43,7 +53,7 @@ label > * {
 
 span {
   font-size: small;
-  margin-left: 0;
+  /* margin-left: 0; */
 }
 
 .friend-list > input {
@@ -64,4 +74,8 @@ span {
 
 #numPlayers {
   width: 4em; 
+}
+
+@media only screen and (min-width: 768px) {
+  
 }
