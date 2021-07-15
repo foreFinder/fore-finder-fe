@@ -20,10 +20,22 @@ export const getAllCourses = () => {
     })
 }
 
-export const postEvent = (courseId, date, teeTime, openSpots, numHoles, selectedFriends) => {
+export const postEvent = (courseId, date, teeTime, openSpots, numHoles, isPrivate, hostId, selectedFriends) => {
   return fetch('https://63cb5fde788d.ngrok.io/api/v1/event', {
-    method:
+    method: 'POST', 
+    body: JSON.stringify({
+      course_id: courseId,
+      date: date, 
+      tee_time: teeTime,
+      open_spots: openSpots, 
+      number_of_holes: numHoles,
+      private: isPrivate,
+      host_id: hostId, 
+      invitees: selectedFriends
+    }),
+    headers: { 'Content-Type' : 'application/json' } 
   })
+  .then(resp => resp.json())
 }
 
 // for post request, use ngrok while still in development
