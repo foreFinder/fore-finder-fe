@@ -1,5 +1,6 @@
 import './EventForm.css';
 import { useState, useEffect } from 'react';
+import { postEvent } from '../../APICalls/APICalls'
 
 function EventForm({courses, friends}) {
   const today = new Date().toISOString().slice(0, 10);
