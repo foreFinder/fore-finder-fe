@@ -1,5 +1,5 @@
 import './EventForm.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { postEvent } from '../../APICalls/APICalls'
 
 function EventForm({courses, friends, hostId }) {
@@ -52,7 +52,7 @@ function EventForm({courses, friends, hostId }) {
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
-      <h2>Add a Tee Time</h2>
+      <h2>Create a New Tee Time</h2>
       <div className='form-components'>
         <label htmlFor='golfCourse'>
           Golf Course:
@@ -97,7 +97,7 @@ function EventForm({courses, friends, hostId }) {
           <small>Tee times are 7am to 5pm</small>
         </label>
         <label htmlFor='numPlayers'>
-          Total Players (including you):
+          Total Players <span>(including you)</span>:
           <select
             name='num players'
             id='numPlayers'
