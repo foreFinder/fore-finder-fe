@@ -140,7 +140,7 @@ export const teeTimes = {
         "declined": [], 
         "pending": [],
         "remaining_spots": 1
-      }  
+      }
     }
   ]
 }
