@@ -31,21 +31,17 @@ function App() {
 
   const updateInvite = (eventId, userId, accepted) => {
     const event = events.find(event => event.id === eventId)
-    let inviteeIndex
+    const inviteeIndex = event.attributes.pending.indexOf(userId)
 
     if (accepted) {
-      inviteeIndex = event.attributes.pending.indexOf(userId)
-
-      event.attributes.pending.splice(inviteeIndex, 1)
       event.attributes.accepted.push(userId)
     } else if (!accepted) {
-      inviteeIndex = event.attributes.pending.indexOf(userId)
-
-      event.attributes.pending.splice(inviteeIndex, 1)
       event.attributes.declined.push(userId)
     }
 
+    event.attributes.pending.splice(inviteeIndex, 1)
     event.attributes.remaining_spots--
+
     setEvents([...events.filter(e => e.id !== event.id), event])
   }
 
