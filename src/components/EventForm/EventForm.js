@@ -2,7 +2,7 @@ import './EventForm.css';
 import { useState, useEffect } from 'react';
 import { postEvent } from '../../APICalls/APICalls'
 
-function EventForm({courses, friends}) {
+function EventForm({courses, friends, hostId }) {
   const today = new Date().toISOString().slice(0, 10);
   const tomorrow = new Date(new Date(today).getTime() + 86400000).toISOString().slice(0, 10);
  
@@ -40,11 +40,14 @@ function EventForm({courses, friends}) {
     return checked.map((f) => f.value);
   };
 
-  const submitForm = () => {
+  const submitForm = (e) => {
+    e.preventDefault()
     const event = {
       golfCourse, date, teeTime, openSpots, numHoles, selectedFriends
     }
-    postEvent(golfCourse, date, teeTime, openSpots, numHoles, isPrivate, )
+    postEvent(golfCourse, date, teeTime, openSpots, numHoles, isPrivate, hostId, selectedFriends)
+      .then(json => console.log(json))
+      .catch(e => console.log(e))
   }
 
   return (
