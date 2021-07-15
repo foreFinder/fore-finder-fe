@@ -10,7 +10,11 @@ const Dashboard = ({ events, screenWidth, handleInviteAction }) => {
 
   const getAvailable = () => {
     return events.filter(event => {
-      return (event.attributes.pending.includes(1) || !event.attributes.private)
+      if (event.attributes.accepted.includes(1) || event.attributes.declined.includes(1)) {
+        return false
+      } 
+
+      return true
     })
   }
 

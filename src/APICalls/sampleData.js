@@ -122,7 +122,25 @@ export const teeTimes = {
         "declined": [], 
         "pending": [1],
         "remaining_spots": 1
-     }
-   }
+      }
+     
+    },
+    {
+      "id": 3,
+      "type": "event",
+      "attributes": {
+        "course_id": 100,
+        "date": "08-06-2021",
+        "tee_time": "14:30",
+        "open_spots": 2,
+        "number_of_holes": "9",
+        "private": false,
+        "host_name": "Jim Bob",
+        "accepted": [2],
+        "declined": [], 
+        "pending": [],
+        "remaining_spots": 1
+      }  
+    }
   ]
 }

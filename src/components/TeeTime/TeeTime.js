@@ -35,14 +35,15 @@ const TeeTime = ({ type, event, handleInviteAction }) => {
           <p>{event.attributes.number_of_holes}</p>
         </div>
         <div className='spot-counter'>
-          <h3>Open spots</h3>
-          <p>{event.attributes.remaining_spots} of {event.attributes.open_spots}</p>
+          <h3>Spots filled</h3>
+          <p>{event.attributes.open_spots - event.attributes.remaining_spots} of {event.attributes.open_spots}</p>
         </div>
       </div>
       <div className='invitation-actions'>
         {type === 'committed' && 
           <button 
             className='primary-btn cancel'
+            onClick={() => handleInviteAction.cancel(event.id, 1)}
           >
             Cancel
           </button>
@@ -51,13 +52,13 @@ const TeeTime = ({ type, event, handleInviteAction }) => {
           <>
             <button 
               className='secondary-btn decline'
-              onClick={() => handleInviteAction(event.id, 1, false)}
+              onClick={() => handleInviteAction.update(event.id, 1, false)}
             >
               Decline
             </button>
             <button 
               className='primary-btn accept' 
-              onClick={() => handleInviteAction(event.id, 1, true)}
+              onClick={() => handleInviteAction.update(event.id, 1, true)}
             >
               Accept
             </button>

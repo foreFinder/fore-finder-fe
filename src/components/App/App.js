@@ -39,13 +39,24 @@ function App() {
       event.attributes.pending.splice(inviteeIndex, 1)
       event.attributes.accepted.push(userId)
     } else if (!accepted) {
-      inviteeIndex = event.attributes.accepted.indexOf(userId)
+      inviteeIndex = event.attributes.pending.indexOf(userId)
 
       event.attributes.pending.splice(inviteeIndex, 1)
       event.attributes.declined.push(userId)
     }
 
     event.attributes.remaining_spots--
+    setEvents([...events.filter(e => e.id !== event.id), event])
+  }
+
+  const cancelCommitment = (eventId, userId) => {
+    const event = events.find(event => event.id === eventId)
+    const inviteeIndex = event.attributes.accepted.indexOf(userId)
+
+    event.attributes.accepted.splice(inviteeIndex, 1)
+    event.attributes.declined.push(userId)
+
+    event.attributes.open_spots++
     setEvents([...events.filter(e => e.id !== event.id), event])
   }
 
@@ -77,7 +88,7 @@ function App() {
             <Dashboard
               events={events}
               screenWidth={screenWidth}
-              handleInviteAction={updateInvite}
+              handleInviteAction={{ update: updateInvite, cancel: cancelCommitment }}
             />
           )}
         />
