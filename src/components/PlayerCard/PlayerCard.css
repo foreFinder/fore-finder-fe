@@ -1,10 +1,11 @@
 .player-card {
   height: 40px;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   font-size: 1.1em;
   position: relative
 }
@@ -20,14 +21,20 @@
 }
 
 .btn {
-  background-color: unset;
+  background-color: #F8F8F8;
   padding: 5px;
   border: 1px solid black;
   border-radius: 7px;
   font-size: .7em;
   font-weight: inherit;
   cursor: pointer;
-  color: #F8F8F8;
+  color: black;
   text-align: center;
   align-self: center;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transition-duration: 0.2s;
+    transform: scale(1.0001);
 }

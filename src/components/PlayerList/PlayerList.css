@@ -47,6 +47,12 @@
   align-self: center;
 }
 
+.player-type-btn:hover {
+  opacity: 0.9;
+  transition-duration: 0.2s;
+  transform: scale(1.0001);
+}
+
 .player-type-btn:nth-child(1) {
   padding-right: 8px;
   border-right: solid 1px rgba(0, 0, 0, .2);

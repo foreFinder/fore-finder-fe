@@ -1,6 +1,7 @@
 import './App.css';
 import Header from '../Header/Header';
 import Dashboard from '../Dashboard/Dashboard';
+import PlayerList from '../PlayerList/PlayerList'
 import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
@@ -46,15 +47,22 @@ function App() {
     <Router>
       <Header screenWidth={screenWidth} />
       <Switch>
-        <Route
-          exact
-          path='/dashboard'
-          render={() => <Dashboard screenWidth={screenWidth} />}
+        <Route 
+          exact path='/dashboard'
+          render={() => (
+            <Dashboard
+              screenWidth={screenWidth}
+            />
+          )}
         />
-        <Route exact path='/'>
-          <Redirect to='/dashboard' /> // This is a quick fix, might want to
-          default web server to http://localhost:3000/dashboard if possible
-        </Route>
+        {screenWidth > 480 && <Redirect from='/community' to='/dashboard'/>}
+        <Route 
+          exact path='/community'
+          render={() => (
+            <PlayerList screenWidth={screenWidth}
+            />
+          )}
+        />
         <Route
           exact
           path='/event-form'

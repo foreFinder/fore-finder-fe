@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import PlayerList from '../PlayerList/PlayerList'
 import TeeTimeContainer from '../TeeTimeContainer/TeeTimeContainer'
 import './Dashboard.css'
 
@@ -34,6 +34,11 @@ const Dashboard = ({ screenWidth }) => {
       {teeTimeType === 'committed'
         ? (screenWidth < 768) && <TeeTimeContainer title='Committed Tee Times' windowWidth={screenWidth} />
         : (screenWidth < 768) && <TeeTimeContainer title='Available Tee Times' windowWidth={screenWidth}/>
+      }
+
+      {screenWidth > 480 && 
+        <PlayerList screenWidth={screenWidth}
+        />
       }
     </div>
   )
