@@ -62,6 +62,7 @@ function EventForm({courses, friends, hostId }) {
             value={golfCourse}
             required
             onChange={(event) => setGolfCourse(event.target.value)}
+            required
           >
             <option>-* Please Select a Course *-</option>
             {courses.map((course, i) => {
