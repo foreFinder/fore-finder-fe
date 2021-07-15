@@ -185,7 +185,9 @@ function EventForm({courses, friends, hostId }) {
             </>
           )}
         </div>
-        <button onClick={submitForm}>Create Tee Time</button>
+        <div className='btn-container'>
+          <button onClick={submitForm} className='form-submit'>Create Tee Time</button>
+        </div>
       </div>
     </form>
   );
