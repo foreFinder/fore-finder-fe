@@ -128,7 +128,7 @@ export const teeTimes = {
         "date": "08/04/2021",
         "tee_time": "09:30",
         "open_spots": 3,
-        "number_of_holes": "9",
+        "number_of_holes": "18",
         "private": true,
         "host_id": 3,
         "invitees": [1, 2, 3],
