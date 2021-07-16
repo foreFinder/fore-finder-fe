@@ -106,7 +106,7 @@ function App() {
         <Route
           exact
           path='/event-form'
-          render={() => <EventForm courses={courses} friends={friends} />}
+          render={() => <EventForm courses={courses} friends={friends} hostId={hostPlayer.id} />}
         />
       </Switch>
     </Router>
