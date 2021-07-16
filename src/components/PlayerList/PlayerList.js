@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
 import './PlayerList.css'
 import PlayerCard from '../PlayerCard/PlayerCard'
-import { getCurrentUser, getUserFriends } from '../../utilities'
-import { players } from '../../APICalls/sampleData' // gonna fetch through app and pass into here
+// import { getCurrentUser, getUserFriends } from '../../utilities'
+// import { players } from '../../APICalls/sampleData' // gonna fetch through app and pass into here
 
-const PlayerList = ({screenWidth}) => {
+const PlayerList = ({screenWidth, players, friends}) => {
   const [playerType, setPlayerType] = useState('friends')
 
-  const userFriends = getUserFriends()
+  console.log(friends)
   
   const mapPlayers = (type) => {
+    console.log("type",type)
     return type.map(p => (
       <PlayerCard
         key={p.id}
         playerInfo={p}
-        friends={userFriends}
+        friends={friends}
       />
     ))
   }
@@ -34,7 +35,7 @@ const PlayerList = ({screenWidth}) => {
         </button>
       </span>
       <ul className='player-list-wrapper'>
-        {playerType === 'friends' ? mapPlayers(userFriends) : mapPlayers(players)}
+        {playerType === 'friends' ? mapPlayers(friends) : mapPlayers(players)}
       </ul>
     </aside>
   )

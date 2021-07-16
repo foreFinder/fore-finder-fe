@@ -2,12 +2,17 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
 }
 
 .tee-time h3 {
   font-size: 1em;
+}
+
+.tee-time button {
+  margin-top: unset;
 }
 
 .tt-details {
@@ -81,6 +86,7 @@
   border-radius: 32px;
   font-size: .9em;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .accept {
@@ -103,11 +109,11 @@
   border: unset;
   font-size: .9em;
   font-weight: 600;
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {
   .tee-time {
-    margin-bottom: 20px;
     border: solid 1px rgb(0, 0, 0, .3);
     border-radius: 16px;
     box-shadow: unset;

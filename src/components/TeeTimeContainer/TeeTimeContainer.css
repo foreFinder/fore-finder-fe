@@ -10,6 +10,7 @@
 }
 
 .container-title > h2 {
+  margin: unset;
   font-size: 1.25em;
   font-weight: 600;
 }
@@ -43,6 +44,10 @@
     margin-bottom: unset;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
+  }
+
+  .container-title > h2 {
+    margin-bottom: unset;
   }
 
   .tee-times {

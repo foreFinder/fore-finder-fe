@@ -88,27 +88,58 @@ export const players = [
 
 // EVENTS DATA
 
-export const teeTimes = [
-  {
-    id: 1000,
-    location: 102,    // id of the course that is booked
-    date: '08/01/2021',   // format the same as whatever date selector we use
-    time: '13:20',       // format the same as however we want to display the time
-    numOpenSpots: 3,
-    host: 3,     // id of player who booked
-    players: [],   // list of players who have committed with a max length of numOpenSpots
-    invites: [],   /*list of player id's who were notified*/
-    private: true
-  },
-  {
-    id: 1001,
-    location: 100,
-    date: '08/04/2021',
-    time: '09:30',
-    numOpenSpots: 2,
-    host: 1,
-    players: [],
-    invites: [],
-    private: false
-  }
-]
+export const teeTimes = {
+  "data": [
+    {
+      "id": 1,
+      "type": "event",
+      "attributes": {
+        "course_name": 'Green Valley Ranch Golf Club',
+        "date": "08-04-2021",
+        "tee_time": "09:30",
+        "open_spots": 3,
+        "number_of_holes": "9",
+        "private": true,
+        "host_name": "Bob",
+        "accepted": [2, 3],
+        "declined": [], 
+        "pending": [1],
+        "remaining_spots": 1
+      }
+    },
+    {
+      "id": 2,
+      "type": "event",
+      "attributes": {
+        "course_name": 'Green Valley Ranch Golf Club',
+        "date": "08-05-2021",
+        "tee_time": "10:30",
+        "open_spots": 3,
+        "number_of_holes": "9",
+        "private": true,
+        "host_name": "Amy Jones",
+        "accepted": [2, 3],
+        "declined": [], 
+        "pending": [1],
+        "remaining_spots": 1
+      }
+    },
+    {
+      "id": 3,
+      "type": "event",
+      "attributes": {
+        "course_name": 'City Park Golf Course',
+        "date": "08-06-2021",
+        "tee_time": "14:30",
+        "open_spots": 2,
+        "number_of_holes": "9",
+        "private": false,
+        "host_name": "Jim Bob",
+        "accepted": [2],
+        "declined": [], 
+        "pending": [],
+        "remaining_spots": 1
+      }
+    }
+  ]
+}
