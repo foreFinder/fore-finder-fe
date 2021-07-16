@@ -59,4 +59,16 @@ describe('EventForm', () => {
     cy.get('#teeTime').type('12:30')
       .should('have.value', '12:30')
   })
+
+  it('User should be able to select how many open positions there are available', () => {
+
+    cy.get('#numPlayers').select(['3'])
+      .should('have.value', '3')
+  })
+
+  it('User should be able to select either 9 or 18 holes to be played', () => {
+
+    cy.get('[type="radio"]').check('9')
+      .should('have.value', '9')
+  })
 })
