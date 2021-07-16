@@ -125,4 +125,8 @@ span {
   .form-container {
     max-width: 650px;
   }
+
+  label > * {
+    font-size: 1em;
+  }
 }
