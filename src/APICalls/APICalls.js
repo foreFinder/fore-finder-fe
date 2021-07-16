@@ -1,5 +1,14 @@
+const endpoints = {
+  playersProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
+  playersDev: 'http://8f05812ea9bf.ngrok.io/api/v1/players',
+  coursesProd: 'https://fore-finder-be.herokuapp.com/api/v1/courses',
+  coursesDev: 'http://8f05812ea9bf.ngrok.io/api/v1/courses',
+  eventsProd: 'https://fore-finder-be.herokuapp.com/api/v1/events',
+  eventsDev: 'http://8f05812ea9bf.ngrok.io/api/v1/events'
+}
+
 export const getAllPlayers = () => {
-  return fetch('https://fore-finder-be.herokuapp.com/api/v1/players')
+  return fetch(endpoints.playersDev)
     .then(resp => {
       if (!resp.ok) {
         throw new Error("Can't fetch any players, please try again!")
@@ -10,13 +19,24 @@ export const getAllPlayers = () => {
 }
 
 export const getAllCourses = () => {
-  return fetch('https://fore-finder-be.herokuapp.com/api/v1/courses')
+  return fetch(endpoints.coursesDev)
     .then(resp => {
       if (!resp.ok) {
         throw new Error("Can't fetch any courses, please try again!")
       } else {
         return resp.json()
       } 
+    })
+}
+
+export const getAllEvents = () => {
+  return fetch(endpoints.eventsDev)
+    .then(resp => {
+      if (!resp.ok) {
+        throw new Error('Can\'t fetch any events, please try again!')
+      } else {
+        return resp.json()
+      }
     })
 }
 

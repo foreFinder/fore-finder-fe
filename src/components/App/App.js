@@ -10,8 +10,8 @@ import {
   Redirect,
 } from 'react-router-dom';
 import EventForm from '../EventForm/EventForm';
-import { getAllCourses, getAllPlayers } from '../../APICalls/APICalls';
-import {players, teeTimes } from '../../APICalls/sampleData'
+import { getAllCourses, getAllPlayers, getAllEvents } from '../../APICalls/APICalls';
+import { players } from '../../APICalls/sampleData'
 
 function App() {
   const [events, setEvents] = useState([])
@@ -60,13 +60,12 @@ function App() {
   useEffect(() => {
     getAllPlayers().then((players) => {
       setAllPlayers(players.data);
-      setHostPlayer(players.data[0]);
+      setHostPlayer(players.data[1]);
     });
     getAllCourses().then((courses) => setCourses(courses.data));
-    setEvents(teeTimes.data)
+    getAllEvents().then(events => setEvents(events.data));
   }, []);
   
-
   useEffect(() => {
     setFriends(makeFriendList());
   }, [allPlayers, hostPlayer]);
@@ -92,7 +91,7 @@ function App() {
             />
           )}
         />
-        {screenWidth > 480 && <Redirect from='/community' to='/dashboard'/>}
+        {screenWidth > 1024 && <Redirect from='/community' to='/dashboard'/>}
         <Route 
           exact path='/community'
           render={() => (

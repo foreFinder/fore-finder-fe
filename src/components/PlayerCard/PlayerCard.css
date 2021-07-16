@@ -11,13 +11,14 @@
 }
 
 .player-name {
-  position: absolute;
-  left: 0;
+  /* position: absolute;
+  left: 0; */
+  margin-bottom: 8px;
 }
 
 .friend-option {
-  position: absolute;
-  right: 0;
+  /* position: absolute;
+  right: 0; */
 }
 
 .btn {

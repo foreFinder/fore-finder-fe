@@ -31,7 +31,7 @@ const Dashboard = ({ events, currentUserId, screenWidth, handleInviteAction, fri
   return (
     <div className='dashboard'>
 
-      {screenWidth > 480 && 
+      {screenWidth >= 1024 && 
           <PlayerList 
             screenWidth={screenWidth}
             friends={friends}
