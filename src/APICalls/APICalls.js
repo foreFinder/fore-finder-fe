@@ -21,7 +21,7 @@ export const getAllCourses = () => {
 }
 
 export const postEvent = (courseId, date, teeTime, openSpots, numHoles, isPrivate, hostId, selectedFriends) => {
-  return fetch('http://1a102d437dbb.ngrok.io/api/v1/event', {
+  return fetch('http://d48fc90c7809.ngrok.io/api/v1/events', {
     method: 'POST', 
     body: JSON.stringify({
       course_id: courseId,
