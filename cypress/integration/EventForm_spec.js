@@ -47,4 +47,16 @@ describe('EventForm', () => {
     cy.get('#golfCourse').select(['Green Valley Ranch Golf Club'])
       .should('have.value', '1')
   })
+
+  it('User should be able to pick a date in the future for tee time', () => {
+
+    cy.get('#Date').type('2021-11-13')
+      .should('have.value', '2021-11-13')
+  })
+
+  it('User should be able to input a time between 7a - 5p', () => {
+
+    cy.get('#teeTime').type('12:30')
+      .should('have.value', '12:30')
+  })
 })
