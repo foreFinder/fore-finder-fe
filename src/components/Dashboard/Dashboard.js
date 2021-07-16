@@ -30,51 +30,54 @@ const Dashboard = ({ events, currentUserId, screenWidth, handleInviteAction, fri
 
   return (
     <div className='dashboard'>
-      <span className='dashboard-title'>
-        <h1>My Tee Times</h1>
-      </span>
-      <span className='event-type-select'>
-        <button
-          className={teeTimeType === 'committed' ? 'event-type-btn' : 'event-type-btn unselected'}
-          onClick={() => { if (teeTimeType === 'available') setTeeTimeType('committed')}}
-        >
-          Committed
-        </button>
-        <button
-          className={teeTimeType === 'available' ? 'event-type-btn' : 'event-type-btn unselected'}
-          onClick={() => { if (teeTimeType === 'committed') setTeeTimeType('available')}}
-        >
-          Available
-        </button>
-      </span>
-      {screenWidth >= 768 && 
-        <div className='tt-containers'>
-          <TeeTimeContainer 
-            title='Committed Tee Times' events={committedTeeTimes} windowWidth={screenWidth} handleInviteAction={handleInviteAction}
-          />
-          <TeeTimeContainer 
-            title='Available Tee Times' events={availableTeeTimes} windowWidth={screenWidth} handleInviteAction={handleInviteAction}
-          />
-        </div>
-      }
-      {teeTimeType === 'committed'
-        ? (screenWidth < 768) && 
-          <TeeTimeContainer 
-            title='Committed Tee Times' events={committedTeeTimes} windowWidth={screenWidth} handleInviteAction={handleInviteAction}
-          />
-        : (screenWidth < 768) && 
-          <TeeTimeContainer 
-            title='Available Tee Times' events={availableTeeTimes} windowWidth={screenWidth} handleInviteAction={handleInviteAction}
-          />
-      }
 
       {screenWidth > 480 && 
-        <PlayerList 
-          screenWidth={screenWidth}
-          friends={friends}
-          players={players}
-        />
+          <PlayerList 
+            screenWidth={screenWidth}
+            friends={friends}
+            players={players}
+          />
       }
+      <div className='tt-wrapper'>
+
+        <span className='dashboard-title'>
+          <h1>My Tee Times</h1>
+        </span>
+        <span className='event-type-select'>
+          <button
+            className={teeTimeType === 'committed' ? 'event-type-btn' : 'event-type-btn unselected'}
+            onClick={() => { if (teeTimeType === 'available') setTeeTimeType('committed')}}
+          >
+            Committed
+          </button>
+          <button
+            className={teeTimeType === 'available' ? 'event-type-btn' : 'event-type-btn unselected'}
+            onClick={() => { if (teeTimeType === 'committed') setTeeTimeType('available')}}
+          >
+            Available
+          </button>
+        </span>
+        {screenWidth >= 768 && 
+          <div className='tt-containers'>
+            <TeeTimeContainer 
+              title='Committed Tee Times' events={committedTeeTimes} windowWidth={screenWidth} handleInviteAction={handleInviteAction}
+            />
+            <TeeTimeContainer 
+              title='Available Tee Times' events={availableTeeTimes} windowWidth={screenWidth} handleInviteAction={handleInviteAction}
+            />
+          </div>
+        }
+        {teeTimeType === 'committed'
+          ? (screenWidth < 768) && 
+            <TeeTimeContainer 
+              title='Committed Tee Times' events={committedTeeTimes} windowWidth={screenWidth} handleInviteAction={handleInviteAction}
+            />
+          : (screenWidth < 768) && 
+            <TeeTimeContainer 
+              title='Available Tee Times' events={availableTeeTimes} windowWidth={screenWidth} handleInviteAction={handleInviteAction}
+            />
+        }
+      </div>
     </div>
   )
 }

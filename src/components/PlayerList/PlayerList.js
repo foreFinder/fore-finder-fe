@@ -5,12 +5,8 @@ import PlayerCard from '../PlayerCard/PlayerCard'
 // import { players } from '../../APICalls/sampleData' // gonna fetch through app and pass into here
 
 const PlayerList = ({screenWidth, players, friends}) => {
-  const [playerType, setPlayerType] = useState('friends')
-
-  console.log(friends)
-  
+  const [playerType, setPlayerType] = useState('friends')  
   const mapPlayers = (type) => {
-    console.log("type",type)
     return type.map(p => (
       <PlayerCard
         key={p.id}
