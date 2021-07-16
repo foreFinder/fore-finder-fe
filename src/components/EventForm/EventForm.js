@@ -1,11 +1,13 @@
 import './EventForm.css';
-import { useState } from 'react';
-import { postEvent } from '../../APICalls/APICalls'
+import { useState, useEffect } from 'react';
+import { postEvent } from '../../APICalls/APICalls';
 
-function EventForm({courses, friends, hostId }) {
+function EventForm({ courses, friends, hostId }) {
   const today = new Date().toISOString().slice(0, 10);
-  const tomorrow = new Date(new Date(today).getTime() + 86400000).toISOString().slice(0, 10);
- 
+  const tomorrow = new Date(new Date(today).getTime() + 86400000)
+    .toISOString()
+    .slice(0, 10);
+
   const [date, setDate] = useState(tomorrow);
   const [teeTime, setTeeTime] = useState('');
   const [openSpots, setOpenSpots] = useState('2');
@@ -13,7 +15,7 @@ function EventForm({courses, friends, hostId }) {
   const [numHoles, setNumHoles] = useState('18');
   const [golfCourse, setGolfCourse] = useState('');
   const [isPrivate, setIsPrivate] = useState(false);
-  const [allFriends, setAllFriends] = useState(false);  
+  const [allFriends, setAllFriends] = useState(false);
 
   const addFriendToInvite = (e) => {
     if (e.target.checked) {
@@ -23,8 +25,20 @@ function EventForm({courses, friends, hostId }) {
     }
   };
 
+  const animateLabels = (rate) => {
+    const allLabels = Array.from(document.querySelectorAll('label'));
+    const labels = allLabels.filter(l => !l.classList.contains('sub-label'));
+    labels.forEach((l, i) => {
+      setTimeout(() => l.classList.add('fade-in'), i * rate)
+    })
+  }
+
+  useEffect(() => {
+    animateLabels(80)
+  }, [])
+
   const inviteAllFriends = (e) => {
-    const friendIds = friends.map(f => f.id)
+    const friendIds = friends.map((f) => f.id);
     if (e.target.checked) {
       setSelectedFriends([...friendIds]);
       setAllFriends(true);
@@ -41,13 +55,25 @@ function EventForm({courses, friends, hostId }) {
   };
 
   const submitForm = (e) => {
-    postEvent(golfCourse, date, teeTime, openSpots, numHoles, isPrivate, hostId, selectedFriends)
-      .then(json => console.log(json))
-      .catch(e => console.log(e))
-  }
+    postEvent(
+      golfCourse,
+      date,
+      teeTime,
+      openSpots,
+      numHoles,
+      isPrivate,
+      hostId,
+      selectedFriends
+    )
+      .then((json) => console.log(json))
+      .catch((e) => console.log(e));
+  };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form
+      // className='animate__animated animate__fadeInRight'
+      onSubmit={(e) => e.preventDefault()}
+    >
       <div className='form-container'>
         <h2 className='form-title'>Create a New Tee Time</h2>
         <div className='form-components'>
@@ -61,9 +87,13 @@ function EventForm({courses, friends, hostId }) {
               onChange={(event) => setGolfCourse(event.target.value)}
               required
             >
-              <option>-* Please Select a Course *-</option>
+              <option>Please Select a Course</option>
               {courses.map((course, i) => {
-                return <option key={i} value={course.id}>{course.attributes.name}</option>;
+                return (
+                  <option key={i} value={course.id}>
+                    {course.attributes.name}
+                  </option>
+                );
               })}
             </select>
           </label>
@@ -80,7 +110,7 @@ function EventForm({courses, friends, hostId }) {
             />
           </label>
           <label htmlFor='teeTime'>
-            Tee Time:
+            Tee Time (7am to 5pm):
             <input
               type='time'
               name='Tee Time'
@@ -91,10 +121,9 @@ function EventForm({courses, friends, hostId }) {
               onChange={(event) => setTeeTime(event.target.value)}
               required
             />
-            <span>7am to 5pm</span>
           </label>
           <label htmlFor='numPlayers'>
-            Total Players <span>(including you)</span>:
+            Total Players (including you):
             <select
               name='num players'
               id='numPlayers'
@@ -108,7 +137,7 @@ function EventForm({courses, friends, hostId }) {
           </label>
           <label htmlFor='numHoles'>
             Number of Holes:
-            <label htmlFor='18'>
+            <label className='sub-label' htmlFor='18'>
               18
               <input
                 type='radio'
@@ -119,7 +148,7 @@ function EventForm({courses, friends, hostId }) {
                 onClick={(event) => setNumHoles(event.target.value)}
               />
             </label>
-            <label htmlFor='9'>
+            <label className='sub-label' htmlFor='9'>
               9
               <input
                 type='radio'
@@ -132,7 +161,7 @@ function EventForm({courses, friends, hostId }) {
           </label>
           <label htmlFor='publicStatus'>
             Public or Private:
-            <label htmlFor='public'>
+            <label className='sub-label' htmlFor='public'>
               Public
               <input
                 type='radio'
@@ -144,7 +173,7 @@ function EventForm({courses, friends, hostId }) {
                 required
               />
             </label>
-            <label htmlFor='private'>
+            <label className='sub-label' htmlFor='private'>
               Private
               <input
                 type='radio'
@@ -161,7 +190,7 @@ function EventForm({courses, friends, hostId }) {
               <div className='friend-list-container'>
                 {friends.map((friend, i) => {
                   return (
-                    <div key={i} className='friend-list'>
+                    <div key={i} className='friend-list sub-label'>
                       <input
                         className='friends'
                         type='checkbox'
@@ -169,24 +198,28 @@ function EventForm({courses, friends, hostId }) {
                         onClick={addFriendToInvite}
                         disabled={allFriends ? true : false}
                       />
-                      <label htmlFor={friend}>{friend.name}</label>
+                      <label className='sub-label' htmlFor={friend}>
+                        {friend.name}
+                      </label>
                     </div>
                   );
                 })}
               </div>
-              <div className='friend-list'>
+              <div className='friend-list sub-label'>
                 <input
                   type='checkbox'
                   id='allFriends'
                   onClick={inviteAllFriends}
                 />
-                <label htmlFor='allFriends'>Invite All Friends</label>
+                <label className='sub-label' htmlFor='allFriends'>Invite All Friends</label>
               </div>
             </>
           )}
         </div>
         <div className='btn-container'>
-          <button onClick={submitForm} className='form-submit'>Create Tee Time</button>
+          <button onClick={submitForm} className='form-submit'>
+            Create Tee Time
+          </button>
         </div>
       </div>
     </form>
