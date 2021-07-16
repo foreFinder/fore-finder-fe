@@ -29,9 +29,9 @@ const Dashboard = ({ events, currentUserId, screenWidth, handleInviteAction }) =
 
   return (
     <div className='dashboard'>
-      <span className='dashboard-title'>
+      {/* <span className='dashboard-title'>
         <h1>My Tee Times</h1>
-      </span>
+      </span> */}
       <span className='event-type-select'>
         <button
           className={teeTimeType === 'committed' ? 'event-type-btn' : 'event-type-btn unselected'}

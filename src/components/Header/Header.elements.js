@@ -14,6 +14,7 @@ export const HeaderContainer = styled.header`
   position: sticky;
   top: 0;
   z-index: 999;
+  margin-bottom: 1em;
 `;
 
 export const HeaderWrapper = styled.nav`

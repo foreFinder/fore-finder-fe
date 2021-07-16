@@ -46,7 +46,7 @@ form {
   align-self: center;  
   width: 100%;
   z-index: 1; 
-  margin-top: 0.5em;
+  /* margin-top: 0.5em; */
   border-radius: 16px;
 }
 
@@ -114,13 +114,13 @@ span {
 @media only screen and (min-width: 768px) {
   .form-container {
     width: 65%; 
-    margin-top: 1em;
+    /* margin-top: 1em; */
     box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
 
   }
 
   .form-components > * {
-    /* margin-top: 1em; */
+    margin-top: 1em;
     font-size: 1.1em;
     padding: 1.2em; 
     width: 100%;
