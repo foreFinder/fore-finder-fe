@@ -21,6 +21,9 @@ function App() {
   const [friends, setFriends] = useState([]);
   const [courses, setCourses] = useState([]);
 
+  const addFriend = friend => setFriends([...friends, friend])
+  const removeFriend = friend => setFriends([...friends.filter(f => f.id !== friend.id)])
+
   const makeFriendList = () => {
     const friends = allPlayers.filter((p) =>
       hostPlayer?.attributes?.friends?.includes(parseInt(p.id))
@@ -88,6 +91,7 @@ function App() {
               handleInviteAction={{ update: updateInvite, cancel: cancelCommitment }}
               players={players}
               friends={friends}
+              handleFriends={{add: addFriend, remove: removeFriend}}
             />
           )}
         />
@@ -99,6 +103,7 @@ function App() {
               screenWidth={screenWidth}
               players={players}
               friends={friends}
+              handleFriends={{add: addFriend, remove: removeFriend}}
             />
           )}
         />

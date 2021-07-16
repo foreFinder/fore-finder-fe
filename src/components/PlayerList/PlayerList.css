@@ -1,7 +1,7 @@
 .player-list-desktop {
   padding: 30px;
   height: 100%;
-  width: 280px;
+  width: 320px;
   background-color: #368552;
   display: flex; 
   flex-direction: column;

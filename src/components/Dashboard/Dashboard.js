@@ -4,7 +4,7 @@ import PlayerList from '../PlayerList/PlayerList'
 import TeeTimeContainer from '../TeeTimeContainer/TeeTimeContainer'
 import './Dashboard.css'
 
-const Dashboard = ({ events, currentUserId, screenWidth, handleInviteAction, friends, players }) => {
+const Dashboard = ({ events, currentUserId, screenWidth, handleInviteAction, friends, players, handleFriends }) => {
   const [availableTeeTimes, setAvailableTeeTimes] = useState([])
   const [committedTeeTimes, setCommittedTeeTimes] = useState([])
   const [teeTimeType, setTeeTimeType] = useState('committed')
@@ -36,6 +36,7 @@ const Dashboard = ({ events, currentUserId, screenWidth, handleInviteAction, fri
             screenWidth={screenWidth}
             friends={friends}
             players={players}
+            handleFriends={handleFriends}
           />
       }
       <div className='tt-wrapper'>
