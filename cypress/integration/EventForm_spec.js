@@ -66,9 +66,21 @@ describe('EventForm', () => {
       .should('have.value', '3')
   })
 
-  it('User should be able to select either 9 or 18 holes to be played', () => {
+  it('User should be able to select either 9 holes to be played', () => {
 
     cy.get('[type="radio"]').check('9')
       .should('have.value', '9')
+  })
+
+  it('User should be able to select either 18 holes to be played', () => {
+
+    cy.get('[type="radio"]').check('18')
+      .should('have.value', '18')
+  })
+
+  it('User should be able to select a private event and invite all friends', () => {
+
+    cy.get('[type="radio"]').check('private')
+      .get('[type="checkbox"]').check('#allFriends')
   })
 })
