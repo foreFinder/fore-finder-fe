@@ -2,7 +2,6 @@ import React from 'react'
 import './PlayerCard.css'
 
 const PlayerCard = ({playerInfo, friends, handleFriends}) => {
-  console.log("pcard", friends)
   return (
     <li className='player-card'>
       <p className='player-name'>{playerInfo.name}</p>
