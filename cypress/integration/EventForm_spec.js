@@ -2,8 +2,8 @@ describe('EventForm', () => {
 
   beforeEach(() => {
 
-    cy.visit('http://localhost:3000')
-      .intercept('https://8f05812ea9bf.ngrok.io/api/v1/courses', {
+    cy.visit('http://localhost:3000/dashboard')
+      .intercept('http://3d8bf4156a8c.ngrok.io/api/v1/courses', {
         data: [
           {
             id: '1', 
@@ -20,7 +20,7 @@ describe('EventForm', () => {
           }
         ]
       })
-      .intercept('https://8f05812ea9bf.ngrok.io/api/v1/players', {
+      .intercept('http://3d8bf4156a8c.ngrok.io/api/v1/players', {
         data: [
           {
             id: '1', 
@@ -33,6 +33,18 @@ describe('EventForm', () => {
           }
         ]
       })
-      
+      .get('[data-cy = form-link]').click()
+  })
+
+  it('Should display a form with a header', () => {
+
+    cy.get('.form-title').should('be.visible')
+      .and('have.text', 'Create a New Tee Time')
+  })
+
+  it('User should be able to select a golf course from list', () => {
+
+    cy.get('#golfCourse').select(['Green Valley Ranch Golf Club'])
+      .should('have.value', '1')
   })
 })
