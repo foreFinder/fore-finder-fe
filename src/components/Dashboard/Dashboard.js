@@ -18,17 +18,16 @@ const Dashboard = ({
   const [teeTimeType, setTeeTimeType] = useState('committed');
 
   const getAvailable = useCallback(() => {
-    return events.filter((event) => {
-      if (
-        event.attributes.accepted.includes(1) ||
-        event.attributes.declined.includes(1)
-      ) {
-        return false;
+    return events.filter(event => {
+      if (event.attributes.declined.includes(currentUserId) || event.attributes.accepted.includes(currentUserId)) {
+        return false
+      } else if (event.attributes.pending.includes(currentUserId) || !event.attributes.private) {
+        return true
       }
 
-      return true;
-    });
-  }, [events]);
+      return false
+    })
+  }, [events])
 
   const getCommitted = useCallback(() => {
     return events.filter((event) =>

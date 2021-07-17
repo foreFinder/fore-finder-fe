@@ -1,10 +1,14 @@
+const devEnv = 'http://3d8bf4156a8c.ngrok.io/'
+
 const endpoints = {
   playersProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
-  playersDev: 'http://3d8bf4156a8c.ngrok.io/api/v1/players',
+  playersDev: `${devEnv}api/v1/players`,
   coursesProd: 'https://fore-finder-be.herokuapp.com/api/v1/courses',
-  coursesDev: 'http://3d8bf4156a8c.ngrok.io/api/v1/courses',
+  coursesDev: `${devEnv}api/v1/courses`,
   eventsProd: 'https://fore-finder-be.herokuapp.com/api/v1/events',
-  eventsDev: 'http://3d8bf4156a8c.ngrok.io/api/v1/events'
+  eventsDev: `${devEnv}api/v1/events`,
+  playerEventProd: 'https://fore-finder-be.herokuapp.com/api/v1/player-event',
+  playerEventDev: `${devEnv}api/v1/player-event`
 }
 
 export const getAllPlayers = () => {
@@ -56,6 +60,19 @@ export const postEvent = (courseId, date, teeTime, openSpots, numHoles, isPrivat
     headers: { 'Content-Type' : 'application/json' } 
   })
   .then(resp => resp.json())
+}
+
+export const postInviteAction = (hostId, eventId, inviteStatus) => {
+  return fetch(endpoints.playerEventDev, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      player_id: hostId,
+      event_id: eventId,
+      invite_status: inviteStatus
+    }),
+    headers: { 'Content-Type': 'application/json'}
+  })
+  .then(() => getAllEvents())
 }
 
 // for post request, use ngrok while still in development
