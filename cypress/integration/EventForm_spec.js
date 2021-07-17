@@ -132,11 +132,11 @@ describe('Sad Path Tests', () => {
 
   it('Should notify user if they did not select a golf course and tried to submit form', () => {
 
-    cy.get('#Date').type('2021-11-13')
-      .get('#teeTime').type('12:30')
-      .get('#numPlayers').select(['3'])
-      .get('[type="radio"]').check('9')
-      .get('.form-submit').click()
+    cy.get('.form-submit').click()
+      .get('input:invalid').should('have.length', 1)
+      .get('#golfCourse').then(($input) => {
+        expect($input[0].validationMessage).to.eq('Please select an item in the list.')
+      })
 
       /* Need to come back to this test after add logic to tell user to select course*/
   })
