@@ -38,7 +38,7 @@ const TeeTimeContainer = ({ title, events, windowWidth, handleInviteAction }) =>
 
   useEffect(() => {
     if (getEventType() === 'available') {
-      setPrivateInvites(events.filter(event => event.attributes.pending.includes(1)))
+      setPrivateInvites(events.filter(event => event.attributes.private))
     }
   }, [events, getEventType])
 
