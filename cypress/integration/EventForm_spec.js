@@ -33,7 +33,7 @@ describe('EventForm', () => {
           }
         ]
       })
-      cy.wait(1000)
+      cy.wait(2000)
   }) 
 
   it('Should display a form with a header', () => {
@@ -93,7 +93,7 @@ describe('EventForm', () => {
 })
 
 
-describe.only('Sad Path Tests', () => {
+describe('Sad Path Tests', () => {
 
   beforeEach(() => {
 
