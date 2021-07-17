@@ -81,6 +81,52 @@ describe('EventForm', () => {
   it('User should be able to select a private event and invite all friends', () => {
 
     cy.get('[type="radio"]').check('private')
-      .get('[type="checkbox"]').check('#allFriends')
+      .get('#allFriends').check().should('be.checked')
+  })
+
+  it('User should be able to select a private event and invite Andrew only', () => {
+
+    cy.get('[type="radio"]').check('private')
+      .get('#2').check().should('be.checked')
+  })
+})
+
+
+describe('Sad Path Tests', () => {
+
+  beforeEach(() => {
+
+    cy.visit('http://localhost:3000/dashboard')
+      .intercept('http://3d8bf4156a8c.ngrok.io/api/v1/courses', {
+        data: [
+          {
+            id: '1', 
+            type: 'course', 
+            attributes: {
+              city: 'Denver', 
+              cost: '80', 
+              name: 'Green Valley Ranch Golf Club', 
+              phone: '303.371.3131',
+              state: 'Colorado',
+              street: '4900 Himalaya Road', 
+              zip_code: '80249'
+            }
+          }
+        ]
+      })
+      .intercept('http://3d8bf4156a8c.ngrok.io/api/v1/players', {
+        data: [
+          {
+            id: '1', 
+            type: 'players', 
+            attributes: {
+              name: 'Amy', 
+              friends: [2, 3], 
+              events: [2]
+            }
+          }
+        ]
+      })
+      .get('[data-cy = form-link]').click()
   })
 })
