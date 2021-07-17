@@ -14,7 +14,7 @@ export const HeaderContainer = styled.header`
   position: sticky;
   top: 0;
   z-index: 999;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 `;
 
 export const HeaderWrapper = styled.nav`
@@ -58,7 +58,7 @@ export const LogoIcon = styled(GiGolfTee)`
 export const MobileIcon = styled.span`
   display: none;
 
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1024px) {
     display: block;
     position: absolute;
     top: 0;
@@ -79,7 +79,7 @@ export const NavMenu = styled.ul`
   font-size: 1.5rem;
   margin-right: 1.5rem;
 
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1024px) {
     display: flex;
     flex-direction: column;
     width: 100%;
