@@ -12,7 +12,7 @@ describe('Header Navigation', () => {
     cy.viewport(960, 540)
     cy.get('[data-cy=ham-menu]')
       .should('be.visible')
-    // check the menu opens as expected and has navlinks
+    // check the menu opens as expected
     cy.get('[data-cy=ham-menu]').click()
     cy.get('[data-cy=nav-menu]').should('be.visible')
   })
