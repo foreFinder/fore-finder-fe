@@ -13,6 +13,7 @@ import {
   UserOptions,
   UserIcon,
 } from './Header.elements';
+import './Header.css'
 
 const Header = ({ screenWidth }) => {
   const [mobileNav, setMobileNav] = useState(false);
