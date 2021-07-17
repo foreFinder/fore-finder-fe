@@ -4,7 +4,7 @@
   flex-direction: column;
   margin-bottom: 20px;
   border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 .tee-time h3 {
@@ -29,8 +29,8 @@
 }
 
 .tt-details p {
-  font-size: .9em;
-  color: rgba(0, 0, 0, .8)
+  font-size: 0.9em;
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .course-name {
@@ -84,7 +84,7 @@
   padding: 6px 16px;
   border: unset;
   border-radius: 32px;
-  font-size: .9em;
+  font-size: 0.9em;
   font-weight: 600;
   cursor: pointer;
 }
@@ -101,20 +101,38 @@
   color: white;
 }
 
+.cancel:hover {
+  filter: hue-rotate(20deg);
+}
+
 .secondary-btn {
-  background-color: unset;
+  /* background-color: unset; */
   width: fit-content;
   height: fit-content;
   padding: unset;
   border: unset;
-  font-size: .9em;
+  font-size: 0.9em;
   font-weight: 600;
   cursor: pointer;
 }
 
+.decline {
+  width: fit-content;
+  height: fit-content;
+  padding: 6px 16px;
+  border-radius: 32px;
+  font-size: 0.9em;
+  background-color: rgb(212, 74, 68);
+  color: white
+}
+
+.decline:hover {
+  filter: hue-rotate(20deg)
+}
+
 @media only screen and (min-width: 768px) {
   .tee-time {
-    border: solid 1px rgb(0, 0, 0, .3);
+    border: solid 1px rgb(0, 0, 0, 0.3);
     border-radius: 16px;
     box-shadow: unset;
   }

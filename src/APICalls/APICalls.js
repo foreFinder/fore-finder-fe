@@ -1,5 +1,14 @@
+const endpoints = {
+  playersProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
+  playersDev: 'http://3d8bf4156a8c.ngrok.io/api/v1/players',
+  coursesProd: 'https://fore-finder-be.herokuapp.com/api/v1/courses',
+  coursesDev: 'http://3d8bf4156a8c.ngrok.io/api/v1/courses',
+  eventsProd: 'https://fore-finder-be.herokuapp.com/api/v1/events',
+  eventsDev: 'http://3d8bf4156a8c.ngrok.io/api/v1/events'
+}
+
 export const getAllPlayers = () => {
-  return fetch('https://fore-finder-be.herokuapp.com/api/v1/players')
+  return fetch(endpoints.playersDev)
     .then(resp => {
       if (!resp.ok) {
         throw new Error("Can't fetch any players, please try again!")
@@ -10,7 +19,7 @@ export const getAllPlayers = () => {
 }
 
 export const getAllCourses = () => {
-  return fetch('https://fore-finder-be.herokuapp.com/api/v1/courses')
+  return fetch(endpoints.coursesDev)
     .then(resp => {
       if (!resp.ok) {
         throw new Error("Can't fetch any courses, please try again!")
@@ -20,8 +29,19 @@ export const getAllCourses = () => {
     })
 }
 
+export const getAllEvents = () => {
+  return fetch(endpoints.eventsDev)
+    .then(resp => {
+      if (!resp.ok) {
+        throw new Error('Can\'t fetch any events, please try again!')
+      } else {
+        return resp.json()
+      }
+    })
+}
+
 export const postEvent = (courseId, date, teeTime, openSpots, numHoles, isPrivate, hostId, selectedFriends) => {
-  return fetch('http://d48fc90c7809.ngrok.io/api/v1/events', {
+  return fetch('http://3d8bf4156a8c.ngrok.io/api/v1/events', {
     method: 'POST', 
     body: JSON.stringify({
       course_id: courseId,
