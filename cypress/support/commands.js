@@ -26,13 +26,13 @@
 
 const devEnv = 'http://3d8bf4156a8c.ngrok.io/'
 
-Cypress.Command.add('setDataStubs', () => {
+Cypress.Commands.add('setDataStubs', () => {
   cy.fixture('../fixtures/players.json')
     .then(players => cy.intercept(`${devEnv}api/v1/players`, players))
   
   cy.fixture('../fixtures/courses.json')
     .then(courses => cy.intercept(`${devEnv}api/v1/courses`, courses))
-    
+
   cy.fixture('../fixtures/events.json')
     .then(events => cy.intercept(`${devEnv}api/v1/events`, events))
 })
