@@ -1,10 +1,10 @@
 const endpoints = {
   playersProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
-  playersDev: 'http://8f05812ea9bf.ngrok.io/api/v1/players',
+  playersDev: 'http://3d8bf4156a8c.ngrok.io/api/v1/players',
   coursesProd: 'https://fore-finder-be.herokuapp.com/api/v1/courses',
-  coursesDev: 'http://8f05812ea9bf.ngrok.io/api/v1/courses',
+  coursesDev: 'http://3d8bf4156a8c.ngrok.io/api/v1/courses',
   eventsProd: 'https://fore-finder-be.herokuapp.com/api/v1/events',
-  eventsDev: 'http://8f05812ea9bf.ngrok.io/api/v1/events'
+  eventsDev: 'http://3d8bf4156a8c.ngrok.io/api/v1/events'
 }
 
 export const getAllPlayers = () => {
