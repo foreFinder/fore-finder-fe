@@ -44,7 +44,7 @@ function App() {
   useEffect(() => {
     getAllPlayers().then((players) => {
       setAllPlayers(players.data);
-      setHostPlayer(players.data[1]);
+      setHostPlayer(players.data[0]);
     });
     getAllCourses().then((courses) => setCourses(courses.data));
     getAllEvents().then(events => setEvents(events.data));
