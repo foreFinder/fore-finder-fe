@@ -137,8 +137,6 @@ describe('Sad Path Tests', () => {
       .get('#golfCourse').then(($input) => {
         expect($input[0].validationMessage).to.eq('Please select an item in the list.')
       })
-
-      /* Need to come back to this test after add logic to tell user to select course*/
   })
 
   it('Should notify user if they did not input a tee time', () => {
