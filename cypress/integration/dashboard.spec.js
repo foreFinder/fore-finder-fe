@@ -25,4 +25,27 @@ describe('When a user first accesses the Dashboard', () => {
       .find('.tee-time').eq(0)
       .find('button').contains('Cancel')
   })
+
+  it('should display available tee times hosted by friends', () => {
+    cy.get('.tt-containers').should('be.visible')
+      .find('.tee-time-container').eq(1)
+      .find('.container-title').contains('Available Tee Times')
+
+    cy.get('.tee-times').eq(1).should('be.visible')
+      .find('.tee-time').should('have.length', 1)
+      .eq(0).find('h3').contains('City Park Golf Course')
+
+    cy.get('.tee-times').eq(1)
+      .find('.tee-time').eq(0)
+      .find('.date').contains('Aug 18')
+      .parent().parent().find('.time-slot').contains('12:30 PM')
+      .parent().parent().find('.hole-count').contains('18')
+      .parent().parent().find('.host-name').contains('Andrew')
+      .parent().parent().find('.spot-counter').contains('2 of 3')
+
+    cy.get('.tee-times').eq(1)
+      .find('.tee-time').eq(0)
+      .find('button').eq(0).contains('Decline')
+      .next('button').contains('Accept')
+  })
 })
