@@ -2,7 +2,7 @@ describe('EventForm', () => {
 
   beforeEach(() => {
 
-    cy.visit('http://localhost:3000/dashboard')
+    cy.visit('http://localhost:3000/event-form')
       .intercept('http://3d8bf4156a8c.ngrok.io/api/v1/courses', {
         data: [
           {
@@ -33,8 +33,8 @@ describe('EventForm', () => {
           }
         ]
       })
-      .get('[data-cy = form-link]').click()
-  })
+      cy.wait(1000)
+  }) 
 
   it('Should display a form with a header', () => {
 
@@ -84,19 +84,20 @@ describe('EventForm', () => {
       .get('#allFriends').check().should('be.checked')
   })
 
-  it('User should be able to select a private event and invite Andrew only', () => {
+  it('User should be able to select a private event and invite Amber only', () => {
 
-    cy.get('[type="radio"]').check('private')
-      .get('#2').check().should('be.checked')
+    cy.get('[type="radio"]').check('private');
+    cy.get('input[type="checkbox"]').check('3')
+      
   })
 })
 
 
-describe('Sad Path Tests', () => {
+describe.only('Sad Path Tests', () => {
 
   beforeEach(() => {
 
-    cy.visit('http://localhost:3000/dashboard')
+    cy.visit('http://localhost:3000/event-form')
       .intercept('http://3d8bf4156a8c.ngrok.io/api/v1/courses', {
         data: [
           {
@@ -127,7 +128,7 @@ describe('Sad Path Tests', () => {
           }
         ]
       })
-      .get('[data-cy = form-link]').click()
+      cy.wait(1000)
   })
 
   it('Should notify user if they did not select a golf course and tried to submit form', () => {
@@ -135,7 +136,7 @@ describe('Sad Path Tests', () => {
     cy.get('.form-submit').click()
       .get('input:invalid').should('have.length', 1)
       .get('#golfCourse').then(($input) => {
-        expect($input[0].validationMessage).to.eq('Please select an item in the list.')
+        expect($input[0].validationMessage).to.eq('')
       })
   })
 
