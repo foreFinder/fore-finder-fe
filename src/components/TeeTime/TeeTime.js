@@ -45,7 +45,7 @@ const TeeTime = ({ type, event, handleInviteAction }) => {
         {type === 'committed' && 
           <button 
             className='primary-btn cancel'
-            onClick={() => handleInviteAction.cancel(event.id)}
+            onClick={() => handleInviteAction.cancel(event)}
           >
             Cancel
           </button>
@@ -54,13 +54,13 @@ const TeeTime = ({ type, event, handleInviteAction }) => {
           <>
             <button 
               className='secondary-btn decline'
-              onClick={() => handleInviteAction.update(event.id, false)}
+              onClick={() => handleInviteAction.update(event.id, 'declined')}
             >
               Decline
             </button>
             <button 
               className='primary-btn accept' 
-              onClick={() => handleInviteAction.update(event.id, true)}
+              onClick={() => handleInviteAction.update(event.id, 'accepted')}
             >
               Accept
             </button>

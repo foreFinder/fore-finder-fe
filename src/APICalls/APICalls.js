@@ -1,10 +1,14 @@
+const devEnv = 'http://861341e035fa.ngrok.io/'
+
 const endpoints = {
   playersProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
-  playersDev: 'http://3d8bf4156a8c.ngrok.io/api/v1/players',
+  playersDev: `${devEnv}api/v1/players`,
   coursesProd: 'https://fore-finder-be.herokuapp.com/api/v1/courses',
-  coursesDev: 'http://3d8bf4156a8c.ngrok.io/api/v1/courses',
-  eventsProd: 'https://fore-finder-be.herokuapp.com/api/v1/events',
-  eventsDev: 'http://3d8bf4156a8c.ngrok.io/api/v1/events'
+  coursesDev: `${devEnv}api/v1/courses`,
+  playerEventProd: 'https://fore-finder-be.herokuapp.com/api/v1/player-event',
+  playerEventDev: `${devEnv}api/v1/player-event`,
+  singleEventProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
+  singleEventDev: `${devEnv}api/v1/event`
 }
 
 export const getAllPlayers = () => {
@@ -29,8 +33,8 @@ export const getAllCourses = () => {
     })
 }
 
-export const getAllEvents = () => {
-  return fetch(endpoints.eventsDev)
+export const getAllEvents = (playerId) => {
+  return fetch(`${endpoints.playersDev}/${playerId}/events`)
     .then(resp => {
       if (!resp.ok) {
         throw new Error('Can\'t fetch any events, please try again!')
@@ -56,6 +60,26 @@ export const postEvent = (courseId, date, teeTime, openSpots, numHoles, isPrivat
     headers: { 'Content-Type' : 'application/json' } 
   })
   .then(resp => resp.json())
+}
+
+export const postInviteAction = (playerId, eventId, inviteStatus) => {
+  return fetch(endpoints.playerEventDev, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      player_id: playerId,
+      event_id: eventId,
+      invite_status: inviteStatus
+    }),
+    headers: { 'Content-Type': 'application/json'}
+  })
+  .then(() => getAllEvents(playerId))
+}
+
+export const deleteEvent = (eventId, playerId) => {
+  return fetch(`${endpoints.singleEventDev}/${eventId}`, {
+    method: 'DELETE'
+  })
+  .then(() => getAllEvents(playerId))
 }
 
 // for post request, use ngrok while still in development

@@ -10,7 +10,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import EventForm from '../EventForm/EventForm';
-import { getAllCourses, getAllPlayers, getAllEvents } from '../../APICalls/APICalls';
+import { getAllCourses, getAllPlayers, getAllEvents, postInviteAction, deleteEvent } from '../../APICalls/APICalls';
 import { players } from '../../APICalls/sampleData'
 
 function App() {
@@ -31,31 +31,16 @@ function App() {
     return friends.map((f) => ({ name: f.attributes.name, id: f.id }));
   };
 
-  const updateInvite = (eventId, accepted) => {
-    const event = events.find(event => event.id === eventId)
-    const inviteeIndex = event.attributes.pending.indexOf(parseInt(hostPlayer.id))
-
-    if (accepted) {
-      event.attributes.accepted.push(parseInt(hostPlayer.id))
-    } else if (!accepted) {
-      event.attributes.declined.push(parseInt(hostPlayer.id))
-    }
-
-    event.attributes.pending.splice(inviteeIndex, 1)
-    event.attributes.remaining_spots--
-
-    setEvents([...events.filter(e => e.id !== event.id), event])
+  const updateInvite = (eventId, status) => {
+    postInviteAction(hostPlayer.id, eventId, status).then(events => setEvents(events.data))
   }
 
-  const cancelCommitment = (eventId) => {
-    const event = events.find(event => event.id === eventId)
-    const inviteeIndex = event.attributes.accepted.indexOf(parseInt(hostPlayer.id))
-
-    event.attributes.accepted.splice(inviteeIndex, 1)
-    event.attributes.declined.push(parseInt(hostPlayer.id))
-
-    event.attributes.open_spots++
-    setEvents([...events.filter(e => e.id !== event.id), event])
+  const cancelCommitment = (event) => {
+    if (event.attributes.host_id === parseInt(hostPlayer.id)) {
+      deleteEvent(event.id, hostPlayer.id).then(events => setEvents(events.data))
+    } else {
+      postInviteAction(hostPlayer.id, event.id, 'declined').then(events => setEvents(events.data))
+    }
   }
 
   const handleResize = () => setScreenWidth(window.innerWidth);
@@ -63,14 +48,17 @@ function App() {
   useEffect(() => {
     getAllPlayers().then((players) => {
       setAllPlayers(players.data);
-      setHostPlayer(players.data[1]);
+      setHostPlayer(players.data[0]);
     });
     getAllCourses().then((courses) => setCourses(courses.data));
-    getAllEvents().then(events => setEvents(events.data));
   }, []);
   
   useEffect(() => {
     setFriends(makeFriendList());
+    
+    if (hostPlayer) {
+      getAllEvents(hostPlayer.id).then(events => setEvents(events.data));
+    }
   }, [allPlayers, hostPlayer]);
 
   useEffect(() => {
@@ -95,6 +83,9 @@ function App() {
             />
           )}
         />
+        <Route exact path='/'>
+          <Redirect to='/dashboard' /> // This is a quick fix, might want to default web server to http://localhost:3000/dashboard if possible
+        </Route>
         {screenWidth > 1024 && <Redirect from='/community' to='/dashboard'/>}
         <Route 
           exact path='/community'
