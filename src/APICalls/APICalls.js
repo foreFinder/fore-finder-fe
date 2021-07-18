@@ -63,7 +63,7 @@ export const postEvent = (courseId, date, teeTime, openSpots, numHoles, isPrivat
 }
 
 export const postInviteAction = (playerId, eventId, inviteStatus) => {
-  fetch(endpoints.playerEventDev, {
+  return fetch(endpoints.playerEventDev, {
     method: 'PATCH',
     body: JSON.stringify({
       player_id: playerId,
