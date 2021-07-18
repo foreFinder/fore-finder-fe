@@ -27,24 +27,31 @@
 const devEnv = 'http://861341e035fa.ngrok.io/'
 
 Cypress.Commands.add('setReadStubs', () => {
-  cy.fixture('../fixtures/players.json')
-    .then(players => cy.intercept(`${devEnv}api/v1/players`, players))
-  
-  cy.fixture('../fixtures/courses.json')
-    .then(courses => cy.intercept(`${devEnv}api/v1/courses`, courses))
+  cy.intercept(
+    { method: 'GET', url: `${devEnv}api/v1/players`},
+    { fixture: '../fixtures/players.json' }
+  )
 
-  cy.fixture('../fixtures/Events/initial_events.json')
-    .then(events => cy.intercept(`${devEnv}api/v1/players/1/events`, events))
+  cy.intercept(
+    { method: 'GET', url: `${devEnv}api/v1/courses`},
+    { fixture: '../fixtures/courses.json'}
+  )
+
+  cy.intercept(
+    { method: 'GET', url: `${devEnv}api/v1/players/1/events`},
+    { fixture: '../fixtures/Events/initial_events.json'}
+  ).as('getInitialEvents')
 })
 
-Cypress.Commands.add('setUpdateStubs', () => {
-  cy.intercept('PATCH', `${devEnv}api/v1/player-event`, (req) => {
-    if (req.body.invite_status === 'accepted') {
-      cy.fixture('../fixtures/Events/events_after_accept.json')
-        .then(events => cy.intercept(`${devEnv}api/v1/players/1/events`, events))
-    } else if (req.body.invite_status === 'declined') {
-      cy.fixture('../fixtures/Events/events_after_decline.json')
-        .then(events => cy.intercept(`${devEnv}api/v1/players/1/events`, events))
-    }
-  })
+Cypress.Commands.add('setActionStub', (action) => {
+  cy.wait('@getInitialEvents')
+
+  cy.intercept(
+    { method: 'GET', url: `${devEnv}api/v1/players/1/events`},
+    { fixture: `../fixtures/Events/events_after_${action}.json`}
+  )
+})
+
+Cypress.Commands.add('setUpdateStub', () => {
+  cy.intercept('PATCH', `${devEnv}api/v1/player-event`)
 })
