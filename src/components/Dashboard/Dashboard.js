@@ -132,6 +132,7 @@ const Dashboard = ({
             screenWidth={screenWidth}
             friends={friends}
             players={players}
+            handleFriends={handleFriends}
           />
       }
       <div className='tt-wrapper'>

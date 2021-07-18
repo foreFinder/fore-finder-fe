@@ -73,7 +73,6 @@ function App() {
           exact path='/dashboard'
           render={() => (
             <Dashboard
-<<<<<<< HEAD
               events={events}
               currentUserId={parseInt(hostPlayer.id)}
               screenWidth={screenWidth}
@@ -96,7 +95,6 @@ function App() {
               players={players}
               friends={friends}
               handleFriends={{add: addFriend, remove: removeFriend}}
-=======
               screenWidth={screenWidth}
             />
           )}
@@ -106,7 +104,7 @@ function App() {
           exact path='/community'
           render={() => (
             <PlayerList screenWidth={screenWidth}
->>>>>>> b2bdb33 (Fix merge conflict)
+
             />
           )}
         />
