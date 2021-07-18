@@ -6,7 +6,9 @@ const endpoints = {
   coursesProd: 'https://fore-finder-be.herokuapp.com/api/v1/courses',
   coursesDev: `${devEnv}api/v1/courses`,
   playerEventProd: 'https://fore-finder-be.herokuapp.com/api/v1/player-event',
-  playerEventDev: `${devEnv}api/v1/player-event`
+  playerEventDev: `${devEnv}api/v1/player-event`,
+  singleEventProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
+  singleEventDev: `${devEnv}api/v1/event`
 }
 
 export const getAllPlayers = () => {
@@ -60,17 +62,24 @@ export const postEvent = (courseId, date, teeTime, openSpots, numHoles, isPrivat
   .then(resp => resp.json())
 }
 
-export const postInviteAction = (hostId, eventId, inviteStatus) => {
-  return fetch(endpoints.playerEventDev, {
+export const postInviteAction = (playerId, eventId, inviteStatus) => {
+  fetch(endpoints.playerEventDev, {
     method: 'PATCH',
     body: JSON.stringify({
-      player_id: hostId,
+      player_id: playerId,
       event_id: eventId,
       invite_status: inviteStatus
     }),
     headers: { 'Content-Type': 'application/json'}
   })
-  .then(() => getAllEvents())
+  .then(() => getAllEvents(playerId))
+}
+
+export const deleteEvent = (eventId, playerId) => {
+  return fetch(`${endpoints.singleEventDev}/${eventId}`, {
+    method: 'DELETE'
+  })
+  .then(() => getAllEvents(playerId))
 }
 
 // for post request, use ngrok while still in development

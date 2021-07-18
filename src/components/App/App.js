@@ -10,7 +10,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import EventForm from '../EventForm/EventForm';
-import { getAllCourses, getAllPlayers, getAllEvents, postInviteAction } from '../../APICalls/APICalls';
+import { getAllCourses, getAllPlayers, getAllEvents, postInviteAction, deleteEvent } from '../../APICalls/APICalls';
 import { players } from '../../APICalls/sampleData'
 
 function App() {
@@ -35,11 +35,9 @@ function App() {
     postInviteAction(hostPlayer.id, eventId, status).then(events => setEvents(events.data))
   }
 
-  console.log(hostPlayer)
-
   const cancelCommitment = (event) => {
-    if (event.attributes.host_id === hostPlayer.id) {
-
+    if (event.attributes.host_id === parseInt(hostPlayer.id)) {
+      deleteEvent(event.id, hostPlayer.id).then(events => setEvents(events.data))
     } else {
       postInviteAction(hostPlayer.id, event.id, 'declined').then(events => setEvents(events.data))
     }
