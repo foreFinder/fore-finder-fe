@@ -39,15 +39,16 @@ const Header = ({ screenWidth }) => {
     <IconContext.Provider value={{ color: '#fff' }}>
       <HeaderContainer>
         <HeaderWrapper userDropdown={userDropdown}>
-          <MobileIcon onClick={handleMobileNav} data-cy='mobile-menu'>
-            {mobileNav ? <FaTimes /> : <FaBars />}
-          </MobileIcon>
+          <MobileIcon onClick={handleMobileNav} data-cy='ham-menu'>
+            {mobileNav ? <FaTimes/> : <FaBars/>}
+          </MobileIcon> 
           <Logo to='/dashboard' onClick={handleMenus}>
             <LogoIcon data-cy='logo' />
             ForeFinder
-          </Logo>
+          </Logo> 
           <NavMenu
-            onClick={handleMenus}
+            data-cy='nav-menu' 
+            onClick={handleMenus} 
             mobileNav={mobileNav}
             userDropdown={userDropdown}
           >
