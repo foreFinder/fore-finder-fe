@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const devEnv = 'http://861341e035fa.ngrok.io/'
 
 const endpoints = {
@@ -9,6 +10,15 @@ const endpoints = {
   playerEventDev: `${devEnv}api/v1/player-event`,
   singleEventProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
   singleEventDev: `${devEnv}api/v1/event`
+=======
+const endpoints = {
+  playersProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
+  playersDev: 'http://8f05812ea9bf.ngrok.io/api/v1/players',
+  coursesProd: 'https://fore-finder-be.herokuapp.com/api/v1/courses',
+  coursesDev: 'http://8f05812ea9bf.ngrok.io/api/v1/courses',
+  eventsProd: 'https://fore-finder-be.herokuapp.com/api/v1/events',
+  eventsDev: 'http://8f05812ea9bf.ngrok.io/api/v1/events'
+>>>>>>> e86dd9d (Get event data via backend, fix playerList responsiveness)
 }
 
 export const getAllPlayers = () => {
@@ -33,8 +43,13 @@ export const getAllCourses = () => {
     })
 }
 
+<<<<<<< HEAD
 export const getAllEvents = (playerId) => {
   return fetch(`${endpoints.playersDev}/${playerId}/events`)
+=======
+export const getAllEvents = () => {
+  return fetch(endpoints.eventsDev)
+>>>>>>> e86dd9d (Get event data via backend, fix playerList responsiveness)
     .then(resp => {
       if (!resp.ok) {
         throw new Error('Can\'t fetch any events, please try again!')
