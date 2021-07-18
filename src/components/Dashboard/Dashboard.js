@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 import { useCallback, useEffect, useState } from 'react';
 import PlayerList from '../PlayerList/PlayerList';
 
 import TeeTimeContainer from '../TeeTimeContainer/TeeTimeContainer';
 import './Dashboard.css';
+=======
+import { useState } from 'react'
+import PlayerList from '../PlayerList/PlayerList'
+import TeeTimeContainer from '../TeeTimeContainer/TeeTimeContainer'
+import './Dashboard.css'
+>>>>>>> b2bdb33 (Fix merge conflict)
 
 const Dashboard = ({
   events,
@@ -102,6 +109,7 @@ const Dashboard = ({
         </div>
       )}
       {teeTimeType === 'committed'
+<<<<<<< HEAD
         ? screenWidth < 768 && (
             <TeeTimeContainer
               title='Committed Tee Times'
@@ -118,6 +126,16 @@ const Dashboard = ({
               handleInviteAction={handleInviteAction}
             />
           )}
+=======
+        ? (screenWidth < 768) && <TeeTimeContainer title='Committed Tee Times' windowWidth={screenWidth} />
+        : (screenWidth < 768) && <TeeTimeContainer title='Available Tee Times' windowWidth={screenWidth}/>
+      }
+
+      {screenWidth > 480 && 
+        <PlayerList screenWidth={screenWidth}
+        />
+      }
+>>>>>>> b2bdb33 (Fix merge conflict)
     </div>
   );
 };
