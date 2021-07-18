@@ -5,7 +5,7 @@
   padding: 0 20px;
   position: relative;
   max-height: 80vh;
-  min-height: 80vh
+  min-height: 80vh;
 }
 
 .container-title {
@@ -34,7 +34,26 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 4em
+  height: 4em;
+}
+
+.no-invites-card {
+  margin: 3em 0;
+  transition: opacity 500ms ease-in-out
+}
+
+.no-invites-link {
+  color: #368552;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.no-invites-link:hover {
+  text-decoration: underline;
+}
+
+.hidden {
+  opacity: 0;
 }
 
 @media only screen and (min-width: 768px) {
@@ -46,7 +65,7 @@
     margin-bottom: unset;
     padding: unset;
     border-radius: 16px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   }
 
   .container-title {
