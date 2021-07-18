@@ -43,7 +43,7 @@ Cypress.Commands.add('setReadStubs', () => {
   ).as('getInitialEvents')
 })
 
-Cypress.Commands.add('setActionStub', (action) => {
+Cypress.Commands.add('setInviteActionStub', (action) => {
   cy.wait('@getInitialEvents')
 
   cy.intercept(
