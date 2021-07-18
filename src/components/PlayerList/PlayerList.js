@@ -33,24 +33,6 @@ const PlayerList = ({screenWidth, players, friends, handleFriends}) => {
       <ul className='player-list-wrapper'>
         {playerType === 'friends' ? mapPlayers(friends) : mapPlayers(players)}
       </ul>
-      <span className='player-type-select'>
-      <span className={screenWidth > 480 ? 'player-type-select-desktop' : 'player-type-select-mobile'}>
-        <button
-          className={playerType === 'friends' ? 'player-type-btn' : 'player-type-btn unselected'}
-          onClick={() => { if (playerType === 'community') setPlayerType('friends')}}>
-          Friends
-        </button>
-        <button
-          className={playerType === 'community' ? 'player-type-btn' : 'player-type-btn unselected'}
-          onClick={() => { if (playerType === 'friends') setPlayerType('community')}}>
-          Community
-        </button>
-      </span>
-      {playerType === 'friends' ? mapPlayers(userFriends) : mapPlayers(players)}
-      <ul className='player-list-wrapper'>
-        {playerType === 'friends' ? mapPlayers(userFriends) : mapPlayers(players)}
-      </ul>
-      </span>
     </aside>
   )
 }
