@@ -22,8 +22,11 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
   height: inherit;
   width: 100%;
+=======
+>>>>>>> 09621c2 (Style event form)
 }
 
 .form-title {
@@ -85,6 +88,22 @@ label {
   opacity: 1;
 }
 
+<<<<<<< HEAD
+=======
+label {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  animation-duration: 2s;
+  opacity: 0;
+  transition: opacity 500ms ease-in-out
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+>>>>>>> 09621c2 (Style event form)
 .sub-label {
   display: flex;
   justify-content: flex-start;
