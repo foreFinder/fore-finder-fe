@@ -45,7 +45,7 @@ const TeeTime = ({ type, event, handleInviteAction }) => {
         {type === 'committed' && 
           <button 
             className='primary-btn cancel'
-            onClick={() => handleInviteAction.cancel(event.id)}
+            onClick={() => handleInviteAction.cancel(event)}
           >
             Cancel
           </button>

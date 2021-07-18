@@ -35,8 +35,14 @@ function App() {
     postInviteAction(hostPlayer.id, eventId, status).then(events => setEvents(events.data))
   }
 
-  const cancelCommitment = (eventId) => {
-    postInviteAction(hostPlayer.id, eventId, 'declined').then(events => setEvents(events.data))
+  console.log(hostPlayer)
+
+  const cancelCommitment = (event) => {
+    if (event.attributes.host_id === hostPlayer.id) {
+
+    } else {
+      postInviteAction(hostPlayer.id, event.id, 'declined').then(events => setEvents(events.data))
+    }
   }
 
   const handleResize = () => setScreenWidth(window.innerWidth);

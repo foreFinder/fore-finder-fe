@@ -1,4 +1,4 @@
-const devEnv = 'http://3d8bf4156a8c.ngrok.io/'
+const devEnv = 'http://861341e035fa.ngrok.io/'
 
 const endpoints = {
   playersProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',

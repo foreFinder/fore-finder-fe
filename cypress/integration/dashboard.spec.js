@@ -49,3 +49,40 @@ describe('When a user first accesses the Dashboard', () => {
       .next('button').contains('Accept')
   })
 })
+
+describe('Invite type selector', () => {
+  beforeEach('setup stubs and visit Dashboard', () => {
+    cy.setDataStubs()
+    cy.visit('http://localhost:3000')
+  })
+
+  it('should render both public and private events when All is selected', () => {
+    cy.get('.invite-type-select')
+      .find('button').eq(1)
+      .contains('All').click()
+    
+    cy.get('.tee-times').eq(1).should('be.visible')
+      .find('.tee-time').should('have.length', 2)
+
+    cy.get('.tee-times').eq(1)
+      .find('.tee-time').eq(1)
+      .find('h3').contains('Riverdale Golf Club')
+  })
+
+  it('should render private events when Friends is selected after selecting All', () => {
+    cy.get('.invite-type-select')
+      .find('button').eq(1)
+      .contains('All').click()
+
+    cy.get('.invite-type-select')
+      .find('button').eq(0)
+      .contains('Friends').click()
+
+    cy.get('.tee-times').eq(1).should('be.visible')
+      .find('.tee-time').should('have.length', 1)
+
+    cy.get('.tee-times').eq(1)
+      .find('.tee-time').eq(0)
+      .find('h3').contains('City Park Golf Course')
+  })
+})
