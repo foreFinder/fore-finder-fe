@@ -19,9 +19,15 @@ const Dashboard = ({
 
   const getAvailable = useCallback(() => {
     return events.filter(event => {
-      if (event.attributes.declined.includes(currentUserId) || event.attributes.accepted.includes(currentUserId)) {
+      if (
+        event.attributes.declined.includes(currentUserId) || 
+        event.attributes.accepted.includes(currentUserId)
+      ) {
         return false
-      } else if (event.attributes.pending.includes(currentUserId) || !event.attributes.private) {
+      } else if (
+        event.attributes.pending.includes(currentUserId) || 
+        !event.attributes.private
+      ) {
         return true
       }
 
