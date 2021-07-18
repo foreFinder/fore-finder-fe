@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-const devEnv = 'http://3d8bf4156a8c.ngrok.io/'
+const devEnv = 'http://861341e035fa.ngrok.io/'
 
 Cypress.Commands.add('setDataStubs', () => {
   cy.fixture('../fixtures/players.json')
