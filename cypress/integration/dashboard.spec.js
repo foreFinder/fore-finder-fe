@@ -1,6 +1,6 @@
 describe('When a user first accesses the Dashboard', () => {
   beforeEach('setup stubs and visit Dashboard', () => {
-    cy.setDataStubs()
+    cy.setReadStubs()
     cy.visit('http://localhost:3000')
   })
 
@@ -52,7 +52,7 @@ describe('When a user first accesses the Dashboard', () => {
 
 describe('Invite type selector', () => {
   beforeEach('setup stubs and visit Dashboard', () => {
-    cy.setDataStubs()
+    cy.setReadStubs()
     cy.visit('http://localhost:3000')
   })
 
@@ -84,5 +84,18 @@ describe('Invite type selector', () => {
     cy.get('.tee-times').eq(1)
       .find('.tee-time').eq(0)
       .find('h3').contains('City Park Golf Course')
+  })
+})
+
+describe('Invite actions', () => {
+  beforeEach('setup read stubs and visit Dashboard', () => {
+    cy.setReadStubs()
+    cy.visit('http://localhost:3000')
+  })
+
+  describe('Accept button', () => {
+    before('setup update stub', () => {
+
+    })
   })
 })
