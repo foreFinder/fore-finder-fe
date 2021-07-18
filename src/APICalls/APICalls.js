@@ -5,8 +5,6 @@ const endpoints = {
   playersDev: `${devEnv}api/v1/players`,
   coursesProd: 'https://fore-finder-be.herokuapp.com/api/v1/courses',
   coursesDev: `${devEnv}api/v1/courses`,
-  eventsProd: 'https://fore-finder-be.herokuapp.com/api/v1/events',
-  eventsDev: `${devEnv}api/v1/events`,
   playerEventProd: 'https://fore-finder-be.herokuapp.com/api/v1/player-event',
   playerEventDev: `${devEnv}api/v1/player-event`
 }
@@ -33,8 +31,8 @@ export const getAllCourses = () => {
     })
 }
 
-export const getAllEvents = () => {
-  return fetch(endpoints.eventsDev)
+export const getAllEvents = (playerId) => {
+  return fetch(`${endpoints.playersDev}/${playerId}/events`)
     .then(resp => {
       if (!resp.ok) {
         throw new Error('Can\'t fetch any events, please try again!')
