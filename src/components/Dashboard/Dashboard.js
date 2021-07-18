@@ -127,7 +127,7 @@ const Dashboard = ({
         />
       }
 
-      {screenWidth > 480 && 
+      {screenWidth >= 1024 && 
           <PlayerList 
             screenWidth={screenWidth}
             friends={friends}
