@@ -88,14 +88,24 @@ describe('Invite type selector', () => {
 })
 
 describe('Invite actions', () => {
-  beforeEach('setup read stubs and visit Dashboard', () => {
+  beforeEach('setup initial stubs and visit Dashboard', () => {
     cy.setReadStubs()
+    cy.setUpdateStub()
     cy.visit('http://localhost:3000')
   })
 
   describe('Accept button', () => {
-    before('setup update stub', () => {
+    beforeEach('setup stub for accept action', () => {
+      cy.setActionStub('accept')
+    })
 
+    it('should add an event to a player\'s commited tee times', () => {
+      cy.get('.tee-times').eq(1).should('be.visible')
+        .find('.tee-time').eq(0)
+        .find('.invitation-actions')
+        .find('button').eq(1).contains('Accept').click() 
+
+      
     })
   })
 })
