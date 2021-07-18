@@ -91,21 +91,27 @@ describe('Invite actions', () => {
   beforeEach('setup initial stubs and visit Dashboard', () => {
     cy.setReadStubs()
     cy.setUpdateStub()
+    
     cy.visit('http://localhost:3000')
   })
 
   describe('Accept button', () => {
     beforeEach('setup stub for accept action', () => {
-      cy.setActionStub('accept')
+      cy.setInviteActionStub('accept')
     })
 
     it('should add an event to a player\'s commited tee times', () => {
-      cy.get('.tee-times').eq(1).should('be.visible')
+      cy.get('.tee-times').eq(0)
+        .find('.tee-time').should('have.length', 1)
+
+      cy.get('.tee-times').eq(1)
         .find('.tee-time').eq(0)
         .find('.invitation-actions')
-        .find('button').eq(1).contains('Accept').click() 
+        .find('button').eq(1).contains('Accept').click()
 
-      
+      cy.get('.tee-times').eq(0)
+        .find('.tee-time').should('have.length', 2)
+        .eq(1).find('h3').contains('City Park Golf Course')
     })
   })
 })
