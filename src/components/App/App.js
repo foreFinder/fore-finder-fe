@@ -53,11 +53,14 @@ function App() {
       setHostPlayer(players.data[0]);
     });
     getAllCourses().then((courses) => setCourses(courses.data));
-    getAllEvents().then(events => setEvents(events.data));
   }, []);
   
   useEffect(() => {
     setFriends(makeFriendList());
+    
+    if (hostPlayer) {
+      getAllEvents(hostPlayer.id).then(events => setEvents(events.data));
+    }
   }, [allPlayers, hostPlayer]);
 
   useEffect(() => {

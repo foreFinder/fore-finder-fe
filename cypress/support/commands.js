@@ -34,5 +34,5 @@ Cypress.Commands.add('setDataStubs', () => {
     .then(courses => cy.intercept(`${devEnv}api/v1/courses`, courses))
 
   cy.fixture('../fixtures/events.json')
-    .then(events => cy.intercept(`${devEnv}api/v1/events`, events))
+    .then(events => cy.intercept(`${devEnv}api/v1/players/1/events`, events))
 })
