@@ -82,9 +82,6 @@ function App() {
             />
           )}
         />
-        <Route exact path='/'>
-          <Redirect to='/dashboard' /> // This is a quick fix, might want to default web server to http://localhost:3000/dashboard if possible
-        </Route>
         {screenWidth > 1024 && <Redirect from='/community' to='/dashboard'/>}
         <Route 
           exact path='/community'
@@ -94,16 +91,17 @@ function App() {
               players={allPlayers}
               friends={friends}
               handleFriends={{add: addFriend, remove: removeFriend}}
-              screenWidth={screenWidth}
             />
           )}
         />
-        {screenWidth > 480 && <Redirect from='/community' to='/dashboard'/>}
         <Route
           exact
           path='/event-form'
           render={() => <EventForm courses={courses} friends={friends} hostId={hostPlayer.id} />}
         />
+        <Route exact path='/'>
+          <Redirect to='/dashboard' /> // This is a quick fix, might want to default web server to http://localhost:3000/dashboard if possible
+        </Route>
       </Switch>
     </Router>
   );
