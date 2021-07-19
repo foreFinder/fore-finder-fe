@@ -135,7 +135,7 @@ describe('Invite actions', () => {
 
   describe('Cancel button', () => {
     it('should remove an event from a player\'s committed tee times', () => {
-      cy.setInviteActionStub('decline')
+      cy.setInviteActionStub('player_cancel')
 
       cy.get('.tee-times').eq(0)
         .find('.tee-time').should('have.length', 2)
@@ -144,10 +144,23 @@ describe('Invite actions', () => {
         .find('.tee-time').eq(1)
         .find('.invitation-actions')
         .find('button').eq(0).contains('Cancel').click()
+
+      cy.get('.tee-times').eq(0)
+        .find('.tee-time').should('have.length', 1)
+        .find('h3').contains('Green Valley Ranch Golf Club')
     })
 
     it('should delete an event if used by the host', () => {
-      cy.setInviteActionStub('cancel')
+      cy.setInviteActionStub('host_cancel')
+
+      cy.get('.tee-times').eq(0)
+        .find('.tee-time').eq(0)
+        .find('.invitation-actions')
+        .find('button').eq(0).contains('Cancel').click()
+
+      cy.get('.tee-times').eq(0)
+        .find('.tee-time').should('have.length', 1)
+        .find('h3').contains('City Park Golf Course')
     })
   })
 })

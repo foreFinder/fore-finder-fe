@@ -39,7 +39,7 @@ Cypress.Commands.add('setReadStubs', () => {
 
   cy.intercept(
     { method: 'GET', url: `${devEnv}/api/v1/players/1/events`},
-    { fixture: '../fixtures/Events/initial_events.json'}
+    { fixture: '../fixtures/Events/initial.json'}
   ).as('getInitialEvents')
 })
 
@@ -48,7 +48,7 @@ Cypress.Commands.add('setInviteActionStub', (action) => {
 
   cy.intercept(
     { method: 'GET', url: `${devEnv}/api/v1/players/1/events`},
-    { fixture: `../fixtures/Events/events_after_${action}.json`}
+    { fixture: `../fixtures/Events/after_${action}.json`}
   )
 })
 
