@@ -111,8 +111,8 @@ describe('Invite actions', () => {
         .find('button').eq(1).contains('Accept').click()
 
       cy.get('.tee-times').eq(0)
-        .find('.tee-time').should('have.length', 2)
-        .eq(1).find('h3').contains('City Park Golf Course')
+        .find('.tee-time').should('have.length', 3)
+        .eq(2).find('h3').contains('City Park Golf Course')
     })
   })
 

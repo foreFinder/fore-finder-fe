@@ -53,9 +53,9 @@ Cypress.Commands.add('setInviteActionStub', (action) => {
 })
 
 Cypress.Commands.add('setUpdateStub', () => {
-  cy.intercept('PATCH', `${devEnv}/api/v1/player-event`)
+  cy.intercept('PATCH', `${devEnv}/api/v1/player-event`, {})
 })
 
 Cypress.Commands.add('setDeleteStub', () => {
-  cy.intercept('DELETE', `${devEnv}/api/v1/event/1`)
+  cy.intercept('DELETE', `${devEnv}/api/v1/event/1`, {})
 })
