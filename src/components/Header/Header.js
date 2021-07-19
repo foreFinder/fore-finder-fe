@@ -66,7 +66,13 @@ const Header = ({ screenWidth }) => {
             >
               <NavLinks to='/event-form'>Create Tee Time</NavLinks>
             </NavItem>
-        {screenWidth < 1024 && 
+
+            {/* <NavItem data-cy='friends-link'>
+              <NavLinks to='/friends'>
+                My Friends
+              </NavLinks>
+            </NavItem> */}
+        {screenWidth <= 1024 && 
             <NavItem data-cy='community-link'>
               <NavLinks to='/community'>
                 My Community

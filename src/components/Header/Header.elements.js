@@ -43,6 +43,7 @@ export const Logo = styled(Link)`
   font-size: 3rem;
   display: flex;
   align-self: center;
+  margin-left: 3rem;
 
   @media screen and (max-width: 960px) {
     font-size: 2.4rem;
