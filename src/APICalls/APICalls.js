@@ -45,7 +45,10 @@ export const getAllEvents = (playerId) => {
 }
 
 export const postEvent = (courseId, date, teeTime, openSpots, numHoles, isPrivate, hostId, selectedFriends) => {
-  return fetch('http://861341e035fa.ngrok.io/api/v1/event', {
+  if (!courseId || !teeTime) {
+    return
+  }
+  return fetch(`${devEnv}api/v1/event`, {
     method: 'POST', 
     body: JSON.stringify({
       course_id: courseId,
@@ -59,7 +62,13 @@ export const postEvent = (courseId, date, teeTime, openSpots, numHoles, isPrivat
     }),
     headers: { 'Content-Type' : 'application/json' } 
   })
-  .then(resp => resp.json())
+  .then(resp => {
+    if (resp.ok) {
+      return resp.json()
+    } else {
+      throw new Error()
+    }
+  })
 }
 
 export const postInviteAction = (playerId, eventId, inviteStatus) => {

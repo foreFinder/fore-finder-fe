@@ -1,0 +1,34 @@
+.result-message {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  /* inset: 25%; */
+  top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  margin-top: -80px;
+}
+
+.message {
+  padding: 5em;
+  background: rgb(253, 248, 228);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  box-shadow: 0px 0px 7px 0px;
+}
+
+.message > a {
+  margin-top: 1em;
+  color: #297243;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.message > a:hover {
+  text-decoration: underline;
+}
