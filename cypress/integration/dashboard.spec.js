@@ -91,6 +91,7 @@ describe('Invite actions', () => {
   beforeEach('setup initial stubs and visit Dashboard', () => {
     cy.setReadStubs()
     cy.setUpdateStub()
+    cy.setDeleteStub()
     
     cy.visit('http://localhost:3000')
   })
@@ -116,11 +117,9 @@ describe('Invite actions', () => {
   })
 
   describe('Decline button', () => {
-    beforeEach('setup stub for decline action', () => {
-      cy.setInviteActionStub('decline')
-    })
-
     it('should remove an event from a player\'s available tee times', () => {
+      cy.setInviteActionStub('decline')
+
       cy.get('.tee-times').eq(1)
         .find('.tee-time').should('have.length', 1)
 
@@ -131,6 +130,16 @@ describe('Invite actions', () => {
 
       cy.get('.tee-times').eq(1)
         .find('.tee-time').should('not.exist')
+    })
+  })
+
+  describe('Cancel button', () => {
+    it('should remove an event from a player\'s committed tee times', () => {
+      cy.setInviteActionStub('decline')
+    })
+
+    it('should delete an event if used by the host', () => {
+      cy.setInviteActionStub('cancel')
     })
   })
 })
