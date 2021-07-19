@@ -236,7 +236,7 @@ function EventForm({ courses, friends, hostId, refreshEvents }) {
             </div>
           </div>
           <div className='btn-container'>
-            <button onClick={submitForm} className='form-submit'>
+            <button disabled={!golfCourse || !teeTime ? true : false} onClick={submitForm} className='form-submit'>
               Create Tee Time
             </button>
           </div>
