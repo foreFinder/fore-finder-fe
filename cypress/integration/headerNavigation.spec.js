@@ -1,6 +1,7 @@
 describe('Header Navigation', () => {
   beforeEach('setup stubs and visit Dashboard', () => {
-    cy.setDataStubs()
+    cy.viewport(1920, 1080)
+    cy.setReadStubs()
     cy.visit('http://localhost:3000')
   })
 

@@ -1,7 +1,7 @@
 describe('Player List', () => {
   beforeEach('setup stubs and visit Dashboard', () => {
     cy.viewport(1920, 1080)
-    cy.setDataStubs()
+    cy.setReadStubs()
     cy.visit('http://localhost:3000')
   })
 
@@ -34,7 +34,7 @@ describe('Player List', () => {
     cy.get('[data-cy=friend-option]').eq(0).click()
     // check friends for Eric
     cy.get('[data-cy=player-type]').eq(0).click()
-    cy.get('[data-cy=player-card]').eq(0).contains('Eric')  
+    cy.get('[data-cy=player-card]').eq(2).contains('Eric')  
   })
 
   it('should allow you to remove friends', () => {
