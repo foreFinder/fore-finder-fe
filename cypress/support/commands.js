@@ -24,15 +24,38 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-const devEnv = 'http://861341e035fa.ngrok.io/'
+const devEnv = 'http://861341e035fa.ngrok.io'
 
-Cypress.Commands.add('setDataStubs', () => {
-  cy.fixture('../fixtures/players.json')
-    .then(players => cy.intercept(`${devEnv}api/v1/players`, players))
-  
-  cy.fixture('../fixtures/courses.json')
-    .then(courses => cy.intercept(`${devEnv}api/v1/courses`, courses))
+Cypress.Commands.add('setReadStubs', () => {
+  cy.intercept(
+    { method: 'GET', url: `${devEnv}/api/v1/players`},
+    { fixture: '../fixtures/players.json' }
+  )
 
-  cy.fixture('../fixtures/events.json')
-    .then(events => cy.intercept(`${devEnv}api/v1/players/1/events`, events))
+  cy.intercept(
+    { method: 'GET', url: `${devEnv}/api/v1/courses`},
+    { fixture: '../fixtures/courses.json'}
+  )
+
+  cy.intercept(
+    { method: 'GET', url: `${devEnv}/api/v1/players/1/events`},
+    { fixture: '../fixtures/Events/initial.json'}
+  ).as('getInitialEvents')
+})
+
+Cypress.Commands.add('setInviteActionStub', (action) => {
+  cy.wait('@getInitialEvents')
+
+  cy.intercept(
+    { method: 'GET', url: `${devEnv}/api/v1/players/1/events`},
+    { fixture: `../fixtures/Events/after_${action}.json`}
+  )
+})
+
+Cypress.Commands.add('setUpdateStub', () => {
+  cy.intercept('PATCH', `${devEnv}/api/v1/player-event`)
+})
+
+Cypress.Commands.add('setDeleteStub', () => {
+  cy.intercept('DELETE', `${devEnv}/api/v1/event/1`)
 })
