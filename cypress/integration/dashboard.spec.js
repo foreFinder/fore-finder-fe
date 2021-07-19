@@ -56,23 +56,23 @@ describe('Invite type selector', () => {
     cy.visit('http://localhost:3000')
   })
 
-  it('should render both public and private events when All is selected', () => {
+  it('should render only public events when Public is selected', () => {
     cy.get('.invite-type-select')
       .find('button').eq(1)
-      .contains('All').click()
+      .contains('Public').click()
     
     cy.get('.tee-times').eq(1).should('be.visible')
-      .find('.tee-time').should('have.length', 2)
+      .find('.tee-time').should('have.length', 1)
 
     cy.get('.tee-times').eq(1)
-      .find('.tee-time').eq(1)
+      .find('.tee-time').eq(0)
       .find('h3').contains('Riverdale Golf Club')
   })
 
-  it('should render private events when Friends is selected after selecting All', () => {
+  it('should render private events when Friends is selected after selecting Public', () => {
     cy.get('.invite-type-select')
       .find('button').eq(1)
-      .contains('All').click()
+      .contains('Public').click()
 
     cy.get('.invite-type-select')
       .find('button').eq(0)
