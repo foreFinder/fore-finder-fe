@@ -114,4 +114,23 @@ describe('Invite actions', () => {
         .eq(1).find('h3').contains('City Park Golf Course')
     })
   })
+
+  describe('Decline button', () => {
+    beforeEach('setup stub for decline action', () => {
+      cy.setInviteActionStub('decline')
+    })
+
+    it('should remove an event from a player\'s available tee times', () => {
+      cy.get('.tee-times').eq(1)
+        .find('.tee-time').should('have.length', 1)
+
+      cy.get('.tee-times').eq(1)
+        .find('.tee-time').eq(0)
+        .find('.invitation-actions')
+        .find('button').eq(0).contains('Decline').click()
+
+      cy.get('.tee-times').eq(1)
+        .find('.tee-time').should('not.exist')
+    })
+  })
 })
