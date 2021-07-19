@@ -52,12 +52,6 @@ const Header = ({ screenWidth }) => {
             mobileNav={mobileNav}
             userDropdown={userDropdown}
           >
-            {/* <NavItem data-cy='dash-link'>
-              <NavLinks to='/dashboard'>
-                Home
-              </NavLinks>
-            </NavItem> */}
-
             <NavItem
               className={selected === 'dashboard' ? 'selected' : ''}
               data-cy='dashboard-link'
@@ -72,12 +66,6 @@ const Header = ({ screenWidth }) => {
             >
               <NavLinks to='/event-form'>Create Tee Time</NavLinks>
             </NavItem>
-
-            {/* <NavItem data-cy='friends-link'>
-              <NavLinks to='/friends'>
-                My Friends
-              </NavLinks>
-            </NavItem> */}
         {screenWidth < 1024 && 
             <NavItem data-cy='community-link'>
               <NavLinks to='/community'>
@@ -86,18 +74,6 @@ const Header = ({ screenWidth }) => {
             </NavItem>
             }
           </NavMenu>
-          <UserIcon onClick={handleUserDropdown} data-cy='user-dropdown' />
-          <UserOptions
-            data-cy='user-options'
-            onClick={handleUserDropdown}
-            userDropdown={userDropdown}
-            mobileNav={mobileNav}
-          >
-            User Name
-            <NavItem data-cy='logout-link'>
-              <NavLinks to='/login'>Log Out</NavLinks>
-            </NavItem>
-          </UserOptions>
         </HeaderWrapper>
       </HeaderContainer>
     </IconContext.Provider>
