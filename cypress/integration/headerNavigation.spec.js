@@ -1,7 +1,8 @@
 describe('Header Navigation', () => {
-  beforeEach(() => {
+  beforeEach('setup stubs and visit Dashboard', () => {
     cy.viewport(1920, 1080)
-    cy.visit('/dashboard')
+    cy.setReadStubs()
+    cy.visit('http://localhost:3000')
   })
 
   it('should render the mobile menu accordingly', () => {
@@ -60,7 +61,6 @@ describe('Header Navigation', () => {
     // target logout link, click it, check url
     cy.get('[data-cy=logout-link]').click()
     cy.url().should('eq', 'http://localhost:3000/login')
-
   })
 
 })

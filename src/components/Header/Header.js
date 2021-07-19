@@ -78,7 +78,7 @@ const Header = ({ screenWidth }) => {
                 My Friends
               </NavLinks>
             </NavItem> */}
-        {screenWidth < 1024 && 
+        {screenWidth <= 1024 && 
             <NavItem data-cy='community-link'>
               <NavLinks to='/community'>
                 My Community
