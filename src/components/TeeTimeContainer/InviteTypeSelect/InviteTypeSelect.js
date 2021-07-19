@@ -22,11 +22,11 @@ const TypeSelector = ( { handleClick }) => {
         onClick={() => {
           if (!allSelected) {
             setAllSelected(!allSelected)
-            handleClick('all')
+            handleClick('public')
           }
         }}
       >
-        All
+        Public
       </button>
     </div>
   )
