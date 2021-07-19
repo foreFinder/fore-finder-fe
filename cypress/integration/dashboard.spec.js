@@ -10,7 +10,7 @@ describe('When a user first accesses the Dashboard', () => {
       .find('.container-title').contains('Committed Tee Times')
 
     cy.get('.tee-times').eq(0).should('be.visible')
-      .find('.tee-time').should('have.length', 1)
+      .find('.tee-time').should('have.length', 2)
       .eq(0).find('h3').contains('Green Valley Ranch Golf Club')
 
     cy.get('.tee-times').eq(0)
@@ -103,7 +103,7 @@ describe('Invite actions', () => {
 
     it('should add an event to a player\'s commited tee times', () => {
       cy.get('.tee-times').eq(0)
-        .find('.tee-time').should('have.length', 1)
+        .find('.tee-time').should('have.length', 2)
 
       cy.get('.tee-times').eq(1)
         .find('.tee-time').eq(0)
@@ -136,6 +136,14 @@ describe('Invite actions', () => {
   describe('Cancel button', () => {
     it('should remove an event from a player\'s committed tee times', () => {
       cy.setInviteActionStub('decline')
+
+      cy.get('.tee-times').eq(0)
+        .find('.tee-time').should('have.length', 2)
+
+      cy.get('.tee-times').eq(0)
+        .find('.tee-time').eq(1)
+        .find('.invitation-actions')
+        .find('button').eq(0).contains('Cancel').click()
     })
 
     it('should delete an event if used by the host', () => {

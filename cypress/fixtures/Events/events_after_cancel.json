@@ -35,6 +35,24 @@
         "pending": [],
         "remaining_spots": 2
       }
+    },
+    {
+      "id": 4,
+      "type": "event",
+      "attributes": {
+        "course_name": "City Park Golf Course",
+        "date": "08-19-2021",
+        "tee_time": "13:30",
+        "open_spots": 3,
+        "number_of_holes": "9",
+        "private": false,
+        "host_name": "Andrew",
+        "host_id": 3,
+        "accepted": [3, 1],
+        "declined": [], 
+        "pending": [2],
+        "remaining_spots": 1
+      }
     }
   ]
 }
