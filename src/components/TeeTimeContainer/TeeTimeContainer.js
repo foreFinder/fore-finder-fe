@@ -12,8 +12,12 @@ const TeeTimeContainer = ({
   windowWidth,
   handleInviteAction,
 }) => {
+  const [publicInvites, setPublicInvites] = useState([]);
   const [privateInvites, setPrivateInvites] = useState([]);
-  const [invitesToDisplay, setInvitesToDisplay] = useState('private');
+  const [committedTeeTimes, setCommittedTeeTimes] = useState([]);
+  const [invitesToDisplay, setInvitesToDisplay] = useState(
+    title === 'Committed Tee Times' ? '' : 'private'
+  );
 
   const getEventType = useCallback(() => {
     if (title === 'Committed Tee Times') {
@@ -22,25 +26,6 @@ const TeeTimeContainer = ({
       return 'available';
     }
   }, [title]);
-
-  const getTeeTimes = () => {
-    let teeTimes = events;
-
-    if (getEventType() === 'available' && invitesToDisplay === 'private') {
-      teeTimes = privateInvites;
-    }
-
-    return teeTimes.map((teeTime) => {
-      return (
-        <TeeTime
-          key={teeTime.id}
-          type={getEventType()}
-          event={teeTime}
-          handleInviteAction={handleInviteAction}
-        />
-      );
-    });
-  };
 
   const displayNoInviteMessage = () => {
     return (
@@ -57,24 +42,40 @@ const TeeTimeContainer = ({
       </p>
     );
   };
+  
+  const getTeeTimes = (eventsType) => {
+    return eventsType.map(event => {
+      return (
+        <TeeTime
+          key={event.id}
+          type={getEventType()}
+          event={event}
+          handleInviteAction={handleInviteAction}
+        />
+      );
+    });
+  };
 
   const revealNoInviteMessage = (message) => {
-    setTimeout(() => message.classList.remove('hidden'), 1000)
+    setTimeout(() => message.classList.remove('hidden'), 500)
   }
 
   useEffect(() => {
     if (getEventType() === 'available') {
+      setPublicInvites(events.filter(event => !event.attributes.private));
       setPrivateInvites(events.filter((event) => event.attributes.private));
+    } else {
+      setCommittedTeeTimes(events)
     }
+  }, [events]);
+
+  useEffect(() => {
     const noInviteMessages = Array.from(document.querySelectorAll('.no-invites-card'));
     if (noInviteMessages) {
       noInviteMessages.forEach(m => revealNoInviteMessage(m))
     }
-
-  }, [events, getEventType]);
-
-  console.log(events)
-
+  }, [publicInvites, privateInvites, invitesToDisplay])
+  
   return (
     <div className='tee-time-container'>
       <div className='container-title'>
@@ -84,7 +85,11 @@ const TeeTimeContainer = ({
         <InviteTypeSelect handleClick={setInvitesToDisplay} />
       )}
       <div className='tee-times'>
-        {events.length ? getTeeTimes() : displayNoInviteMessage()}
+        {title === 'Committed Tee Times' && getTeeTimes(committedTeeTimes)}
+        {invitesToDisplay === 'private' ? getTeeTimes(privateInvites) : getTeeTimes(publicInvites)}
+        {(invitesToDisplay === 'private' && !privateInvites.length) && displayNoInviteMessage()}
+        {(invitesToDisplay === 'public' && !publicInvites.length) && displayNoInviteMessage()}
+
       </div>
       <div className='type-select-con'>
         {title === 'Available Tee Times' && windowWidth >= 768 && (
