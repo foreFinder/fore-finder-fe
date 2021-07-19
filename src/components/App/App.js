@@ -46,7 +46,6 @@ function App() {
 
   useEffect(() => {
     getAllPlayers().then((players) => {
-      console.log('fetch', players)
       setAllPlayers(players.data.map((p) => ({ name: p.attributes.name, id: p.id })));
       setHostPlayer(players.data[0]);
     });

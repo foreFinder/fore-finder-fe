@@ -3,8 +3,6 @@ import React from 'react'
 import './PlayerCard.css'
 
 const PlayerCard = ({playerInfo, friends, handleFriends}) => {
-  console.log("pinfo", playerInfo);
-  console.log("friends", friends);
   return (
     <li data-cy='player-card' className='player-card'>
       <p className='player-name'>{playerInfo.name}</p>
