@@ -92,9 +92,4 @@
   .event-type-select {
     display: flex;
   }
-
-  .container-title {
-    height: 3em;
-    margin-bottom: 20px;
-  }
 }
