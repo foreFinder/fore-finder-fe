@@ -47,12 +47,22 @@ export const Logo = styled(Link)`
   @media screen and (max-width: 960px) {
     font-size: 2.4rem;
     margin-left: 2rem;
+  }
 
+  @media screen and (max-width: 489px) {
+    margin-left: 1rem;
+    font-size: 1.9rem;
   }
 `;
 
 export const LogoIcon = styled(GiGolfTee)`
   margin-right:0.5rem;
+
+  @media screen and (min-width: 1024px) {
+    margin-left:1.6rem;
+  }
+
+
 `;
 
 export const MobileIcon = styled.span`
@@ -140,6 +150,7 @@ export const UserIcon = styled(VscAccount)`
     font-size: 1.8rem;
     cursor: pointer;
     z-index: 2;
+    margin-top: .4rem;
 `;
 
 export const UserOptions = styled.ul`

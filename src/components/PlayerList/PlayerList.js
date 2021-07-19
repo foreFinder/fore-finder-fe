@@ -36,4 +36,5 @@ const PlayerList = ({screenWidth, players, friends, handleFriends}) => {
     </aside>
   )
 }
+
 export default PlayerList

@@ -39,15 +39,16 @@ const Header = ({ screenWidth }) => {
     <IconContext.Provider value={{ color: '#fff' }}>
       <HeaderContainer>
         <HeaderWrapper userDropdown={userDropdown}>
-          <MobileIcon onClick={handleMobileNav} data-cy='mobile-menu'>
-            {mobileNav ? <FaTimes /> : <FaBars />}
-          </MobileIcon>
+          <MobileIcon onClick={handleMobileNav} data-cy='ham-menu'>
+            {mobileNav ? <FaTimes/> : <FaBars/>}
+          </MobileIcon> 
           <Logo to='/dashboard' onClick={handleMenus}>
             <LogoIcon data-cy='logo' />
             ForeFinder
-          </Logo>
+          </Logo> 
           <NavMenu
-            onClick={handleMenus}
+            data-cy='nav-menu' 
+            onClick={handleMenus} 
             mobileNav={mobileNav}
             userDropdown={userDropdown}
           >
@@ -59,14 +60,14 @@ const Header = ({ screenWidth }) => {
 
             <NavItem
               className={selected === 'dashboard' ? 'selected' : ''}
-              data-cy='form-link'
+              data-cy='dashboard-link'
               onClick={() => setSelected('dashboard')}
             >
               <NavLinks to='/dashboard'>Dashboard</NavLinks>
             </NavItem>
             <NavItem
               className={selected === 'eventForm' ? 'selected' : ''}
-              data-cy='dashboard-link'
+              data-cy='form-link'
               onClick={() => setSelected('eventForm')}
             >
               <NavLinks to='/event-form'>Create Tee Time</NavLinks>
@@ -87,6 +88,7 @@ const Header = ({ screenWidth }) => {
           </NavMenu>
           <UserIcon onClick={handleUserDropdown} data-cy='user-dropdown' />
           <UserOptions
+            data-cy='user-options'
             onClick={handleUserDropdown}
             userDropdown={userDropdown}
             mobileNav={mobileNav}

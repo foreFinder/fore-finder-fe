@@ -51,7 +51,7 @@ const Dashboard = ({
       {/* <span className='dashboard-title'>
         <h1>My Tee Times</h1>
       </span> */}
-      {screenWidth >= 1024 && (
+      {screenWidth >= 1025 && (
         <PlayerList
           screenWidth={screenWidth}
           friends={friends}

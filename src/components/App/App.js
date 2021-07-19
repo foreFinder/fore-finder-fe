@@ -48,7 +48,7 @@ function App() {
   useEffect(() => {
     getAllPlayers().then((players) => {
       setAllPlayers(players.data);
-      setHostPlayer(players.data[0]);
+      setHostPlayer(players.data[1]);
     });
     getAllCourses().then((courses) => setCourses(courses.data));
   }, []);
@@ -95,6 +95,16 @@ function App() {
               players={players}
               friends={friends}
               handleFriends={{add: addFriend, remove: removeFriend}}
+              screenWidth={screenWidth}
+            />
+          )}
+        />
+        {screenWidth > 480 && <Redirect from='/community' to='/dashboard'/>}
+        <Route 
+          exact path='/community'
+          render={() => (
+            <PlayerList screenWidth={screenWidth}
+
             />
           )}
         />
