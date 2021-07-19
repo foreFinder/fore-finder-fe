@@ -65,7 +65,6 @@ function EventForm({ courses, friends, hostId }) {
       hostId,
       selectedFriends
     )
-      .then((json) => console.log(json))
       .catch((e) => console.log(e));
   };
 
