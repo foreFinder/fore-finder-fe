@@ -46,6 +46,8 @@ const Dashboard = ({
     setCommittedTeeTimes(getCommitted());
   }, [events, getAvailable, getCommitted]);
 
+  console.log(committedTeeTimes)
+
   return (
     <div className='dashboard'>
       {/* <span className='dashboard-title'>
@@ -102,23 +104,22 @@ const Dashboard = ({
           />
         </div>
       )}
-      {teeTimeType === 'committed'
-        ? screenWidth < 768 && (
-            <TeeTimeContainer
-              title='Committed Tee Times'
-              events={committedTeeTimes}
-              windowWidth={screenWidth}
-              handleInviteAction={handleInviteAction}
-            />
-          )
-        : screenWidth < 768 && (
-            <TeeTimeContainer
-              title='Available Tee Times'
-              events={availableTeeTimes}
-              windowWidth={screenWidth}
-              handleInviteAction={handleInviteAction}
-            />
-          )}
+      {(teeTimeType === 'committed' && screenWidth < 768) &&
+        <TeeTimeContainer
+          title='Committed Tee Times'
+          events={committedTeeTimes}
+          windowWidth={screenWidth}
+          handleInviteAction={handleInviteAction}
+        />
+      }
+      {(teeTimeType === 'available' && screenWidth < 768) &&
+        <TeeTimeContainer
+          title='Available Tee Times'
+          events={availableTeeTimes}
+          windowWidth={screenWidth}
+          handleInviteAction={handleInviteAction}
+        />
+      }
     </div>
   );
 };

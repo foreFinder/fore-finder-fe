@@ -10,7 +10,7 @@ const TeeTimeContainer = ({
   title,
   events,
   windowWidth,
-  handleInviteAction,
+  handleInviteAction
 }) => {
   const [publicInvites, setPublicInvites] = useState([]);
   const [privateInvites, setPrivateInvites] = useState([]);
@@ -55,6 +55,8 @@ const TeeTimeContainer = ({
       );
     });
   };
+
+  console.log(committedTeeTimes, publicInvites, privateInvites)
 
   const revealNoInviteMessage = (message) => {
     setTimeout(() => message.classList.remove('hidden'), 500)
