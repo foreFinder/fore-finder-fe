@@ -16,8 +16,10 @@ import {
   getAllEvents,
   postInviteAction,
   deleteEvent,
+  postFriendship,
+  deleteFriendship
 } from '../../APICalls/APICalls';
-import { players } from '../../APICalls/sampleData';
+// import { players } from '../../APICalls/sampleData';
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -27,9 +29,16 @@ function App() {
   const [friends, setFriends] = useState([]);
   const [courses, setCourses] = useState([]);
 
-  const addFriend = (friend) => setFriends([...friends, friend]);
-  const removeFriend = (friend) =>
-    setFriends([...friends.filter((f) => f.id !== friend.id)]);
+  const addFriend = (friend) => {
+    postFriendship(parseInt(hostPlayer.id), friend.id)
+      .then(data => setFriends([...friends, data.data.attributes.followee.id]));
+  }
+  
+  const removeFriend = (unFriend) => {
+    deleteFriendship(parseInt(hostPlayer.id), unFriend.id)
+      .then(data => setFriends([...friends.filter((f) => f.id !== unFriend.id)]))
+  }
+    
 
   const makeFriendList = () => {
     const friends = allPlayers.filter((p) =>
