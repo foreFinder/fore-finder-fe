@@ -73,8 +73,6 @@ const TeeTimeContainer = ({
 
   }, [events, getEventType]);
 
-  console.log(events)
-
   return (
     <div className='tee-time-container'>
       <div className='container-title'>
