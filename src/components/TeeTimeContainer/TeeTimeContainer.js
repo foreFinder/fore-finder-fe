@@ -56,8 +56,6 @@ const TeeTimeContainer = ({
     });
   };
 
-  console.log(committedTeeTimes, publicInvites, privateInvites)
-
   const revealNoInviteMessage = (message) => {
     setTimeout(() => message.classList.remove('hidden'), 500)
   }

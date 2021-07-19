@@ -46,8 +46,6 @@ const Dashboard = ({
     setCommittedTeeTimes(getCommitted());
   }, [events, getAvailable, getCommitted]);
 
-  console.log(committedTeeTimes)
-
   return (
     <div className='dashboard'>
       {/* <span className='dashboard-title'>
