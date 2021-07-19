@@ -11,7 +11,6 @@ import {
 } from 'react-router-dom';
 import EventForm from '../EventForm/EventForm';
 import { getAllCourses, getAllPlayers, getAllEvents, postInviteAction, deleteEvent } from '../../APICalls/APICalls';
-import { players } from '../../APICalls/sampleData'
 
 function App() {
   const [events, setEvents] = useState([])
@@ -28,7 +27,7 @@ function App() {
     const friends = allPlayers.filter((p) =>
       hostPlayer?.attributes?.friends?.includes(parseInt(p.id))
     );
-    return friends.map((f) => ({ name: f.attributes.name, id: f.id }));
+    return friends.map((f) => ({ name: f.name, id: f.id }));
   };
 
   const updateInvite = (eventId, status) => {
@@ -47,7 +46,8 @@ function App() {
 
   useEffect(() => {
     getAllPlayers().then((players) => {
-      setAllPlayers(players.data);
+      console.log('fetch', players)
+      setAllPlayers(players.data.map((p) => ({ name: p.attributes.name, id: p.id })));
       setHostPlayer(players.data[0]);
     });
     getAllCourses().then((courses) => setCourses(courses.data));
@@ -77,7 +77,7 @@ function App() {
               currentUserId={parseInt(hostPlayer.id)}
               screenWidth={screenWidth}
               handleInviteAction={{ update: updateInvite, cancel: cancelCommitment }}
-              players={players}
+              players={allPlayers}
               friends={friends}
               handleFriends={{add: addFriend, remove: removeFriend}}
             />
@@ -92,7 +92,7 @@ function App() {
           render={() => (
             <PlayerList 
               screenWidth={screenWidth}
-              players={players}
+              players={allPlayers}
               friends={friends}
               handleFriends={{add: addFriend, remove: removeFriend}}
               screenWidth={screenWidth}
@@ -100,14 +100,6 @@ function App() {
           )}
         />
         {screenWidth > 480 && <Redirect from='/community' to='/dashboard'/>}
-        <Route 
-          exact path='/community'
-          render={() => (
-            <PlayerList screenWidth={screenWidth}
-
-            />
-          )}
-        />
         <Route
           exact
           path='/event-form'
