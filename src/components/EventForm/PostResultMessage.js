@@ -24,10 +24,7 @@ function displayError() {
 
 function PostResultMessage({ postError, refreshEvents }) {
   return (
-    <div
-      className='result-message'
-      onClick={!postError && refreshEvents}
-    >
+    <div className='result-message' onClick={!postError && refreshEvents}>
       {postError ? displayError() : displaySuccess()}
     </div>
   );

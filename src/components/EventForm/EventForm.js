@@ -1,7 +1,6 @@
 import './EventForm.css';
 import { useState, useEffect } from 'react';
 import { postEvent } from '../../APICalls/APICalls';
-import { Redirect, Link } from 'react-router-dom';
 import PostResultMessage from './PostResultMessage';
 
 function EventForm({ courses, friends, hostId, refreshEvents }) {
@@ -77,10 +76,7 @@ function EventForm({ courses, friends, hostId, refreshEvents }) {
   return (
     <>
       <div className='form-container'>
-        <form
-          // className='animate__animated animate__fadeInRight'
-          onSubmit={(e) => e.preventDefault()}
-        >
+        <form onSubmit={(e) => e.preventDefault()}>
           <div className='form-title'>
             <h2>Create a New Tee Time</h2>
           </div>
@@ -203,14 +199,15 @@ function EventForm({ courses, friends, hostId, refreshEvents }) {
               {isPrivate && (
                 <>
                   <p className='friends-title'>Friends to Invite:</p>
-                  { !friends.length && 
+                  {!friends.length && (
                     <div>
                       <em className='friendless'>
-                        You don't have any friends...<br/>
+                        You don't have any friends...
+                        <br />
                         Make some by creating a public event!
                       </em>
                     </div>
-                  }
+                  )}
                   <div className='friend-list-container'>
                     {friends.map((friend, i) => {
                       return (
@@ -244,7 +241,11 @@ function EventForm({ courses, friends, hostId, refreshEvents }) {
             </div>
           </div>
           <div className='btn-container'>
-            <button disabled={!golfCourse || !teeTime ? true : false} onClick={submitForm} className='form-submit'>
+            <button
+              disabled={!golfCourse || !teeTime ? true : false}
+              onClick={submitForm}
+              className='form-submit'
+            >
               Create Tee Time
             </button>
           </div>
