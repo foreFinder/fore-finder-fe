@@ -31,12 +31,18 @@ function App() {
 
   const addFriend = (friend) => {
     postFriendship(parseInt(hostPlayer.id), friend.id)
-      .then(data => setFriends([...friends, data.data.attributes.followee.id]));
+      .then(data => setFriends([...friends, 
+        {id: data.data.attributes.followee.id, name: data.data.attributes.followee.name}
+      ]))
+      .catch(error => console.log('post error', error))   
   }
   
   const removeFriend = (unFriend) => {
     deleteFriendship(parseInt(hostPlayer.id), unFriend.id)
-      .then(data => setFriends([...friends.filter((f) => f.id !== unFriend.id)]))
+      .then(data => {
+        setFriends([...friends.filter((f) => f.id !== unFriend.id)])
+      })
+      .catch(error => console.log('delete error', error))   
   }
     
 
@@ -107,15 +113,16 @@ function App() {
                 update: updateInvite,
                 cancel: cancelCommitment,
               }}
-              players={players}
+              players={allPlayers}
               friends={friends}
               handleFriends={{ add: addFriend, remove: removeFriend }}
             />
           )}
         />
         <Route exact path='/'>
-          <Redirect to='/dashboard' /> // This is a quick fix, might want to
-          default web server to http://localhost:3000/dashboard if possible
+          <Redirect to='/dashboard' />  
+          {/* ^^This is a quick fix, might want to
+          default web server to http://localhost:3000/dashboard if possible */}
         </Route>
         {screenWidth > 1024 && <Redirect from='/community' to='/dashboard' />}
         <Route

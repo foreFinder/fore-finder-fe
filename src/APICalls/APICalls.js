@@ -113,15 +113,16 @@ export const postFriendship = (followerId, followeeId) => {
 
 export const deleteFriendship = (followerId, followeeId) => {
   return fetch(`${endpoints.friendshipDev}`, {
-    method: 'POST',
+    method: 'DELETE',
     body: JSON.stringify({
       follower_id: followerId,
       followee_id: followeeId
-    })
+    }),
+    headers: { 'Content-Type' : 'application/json' } 
   })
   .then(resp => {
     if (resp.ok) {
-      return resp.json()
+      return resp
     } else {
       throw new Error()
     }
