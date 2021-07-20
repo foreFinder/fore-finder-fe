@@ -32,15 +32,18 @@ function App() {
   const addFriend = (friend) => {
     postFriendship(parseInt(hostPlayer.id), friend.id)
       .then(data => setFriends([...friends, 
-        {id: data.data.attributes.followee.id, name: data.data.attributes.followee.name}
+        {
+          id: data.data.attributes.followee.id, 
+          name: data.data.attributes.followee.name
+        }
       ]))
       .catch(error => console.log('post error', error))   
   }
   
   const removeFriend = (unFriend) => {
-    deleteFriendship(parseInt(hostPlayer.id), unFriend.id)
+    deleteFriendship(parseInt(hostPlayer.id), parseInt(unFriend.id))
       .then(data => {
-        setFriends([...friends.filter((f) => f.id !== unFriend.id)])
+        setFriends([...friends.filter((f) => f.id !== parseInt(unFriend.id))])
       })
       .catch(error => console.log('delete error', error))   
   }
