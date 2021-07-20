@@ -203,6 +203,14 @@ function EventForm({ courses, friends, hostId, refreshEvents }) {
               {isPrivate && (
                 <>
                   <p className='friends-title'>Friends to Invite:</p>
+                  { !friends.length && 
+                    <div>
+                      <em className='friendless'>
+                        You don't have any friends...<br/>
+                        Make some by creating a public event!
+                      </em>
+                    </div>
+                  }
                   <div className='friend-list-container'>
                     {friends.map((friend, i) => {
                       return (

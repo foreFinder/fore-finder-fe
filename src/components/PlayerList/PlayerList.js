@@ -33,6 +33,11 @@ const PlayerList = ({screenWidth, players, friends, handleFriends}) => {
         </button>
       </span>
       <ul className='player-list-wrapper'>
+        {!friends.length && playerType === 'friends' &&
+        <em>
+            You don't have any friends...<br/>
+            Add some from the community!
+        </em>}
         {playerType === 'friends' ? mapPlayers(friends) : mapPlayers(players)}
       </ul>
     </aside>
