@@ -78,7 +78,7 @@
 
 .tt-containers {
   width: 100%;
-  max-width: 90%;
+  max-width: 73%;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: unset;
   column-gap: 20px;
