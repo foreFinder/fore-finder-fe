@@ -106,7 +106,7 @@ export const postFriendship = (followerId, followeeId) => {
     if (resp.ok) {
       return resp.json()
     } else {
-      throw new Error()
+      throw new Error('Unable to update friendship, please try again!')
     }
   })
 }
@@ -124,7 +124,7 @@ export const deleteFriendship = (followerId, followeeId) => {
     if (resp.ok) {
       return resp
     } else {
-      throw new Error()
+      throw new Error('Unable to update friendship, please try again!')
     }
   })
 }
