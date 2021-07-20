@@ -15,6 +15,7 @@
         "accepted": [1],
         "declined": [], 
         "pending": [2, 3],
+        "closed": [],
         "remaining_spots": 2
       }
     },
@@ -33,6 +34,7 @@
         "accepted": [2, 3],
         "declined": [], 
         "pending": [1],
+        "closed": [],
         "remaining_spots": 1
       }
     },
@@ -51,6 +53,7 @@
         "accepted": [2],
         "declined": [], 
         "pending": [],
+        "closed": [],
         "remaining_spots": 2
       }
     },
@@ -69,6 +72,7 @@
         "accepted": [3],
         "declined": [1], 
         "pending": [2],
+        "closed": [],
         "remaining_spots": 1
       }
     }
