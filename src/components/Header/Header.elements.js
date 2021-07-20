@@ -15,6 +15,7 @@ export const HeaderContainer = styled.header`
   top: 0;
   z-index: 999;
   margin-bottom: 2em;
+  box-shadow: 0px 1px 8px 0px #00000069;
 `;
 
 export const HeaderWrapper = styled.nav`
@@ -41,9 +42,13 @@ export const Logo = styled(Link)`
   text-decoration: none;
   cursor: pointer;
   font-size: 3rem;
+  font-style: italic;
   display: flex;
+  justify-content: center;
+  align-items: center;
   align-self: center;
   margin-left: 3rem;
+  text-shadow: 2px 3px 5px #00000050;
 
   @media screen and (max-width: 960px) {
     font-size: 2.4rem;
@@ -128,6 +133,7 @@ export const NavLinks = styled(Link)`
   text-decoration: none;
   padding: 0.5rem 1rem;
   height: 100%;
+  text-shadow: 2px 3px 5px #00000052;
 
   @media screen and (max-width: 960px) {
     text-align: center;

@@ -7,7 +7,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: 1.1em;
-  position: relative
+  position: relative;
 }
 
 .player-name {
@@ -47,6 +47,7 @@
   font-size: 1.15em;
   font-weight: inherit;
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .player-type-btn:nth-child(1) {
