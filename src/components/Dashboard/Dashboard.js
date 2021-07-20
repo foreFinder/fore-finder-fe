@@ -21,7 +21,8 @@ const Dashboard = ({
     return events.filter((event) => {
       if (
         event.attributes.declined.includes(currentUserId) ||
-        event.attributes.accepted.includes(currentUserId)
+        event.attributes.accepted.includes(currentUserId) ||
+        event.attributes.closed.includes(currentUserId)
       ) {
         return false;
       } else if (

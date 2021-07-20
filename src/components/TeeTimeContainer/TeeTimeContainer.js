@@ -92,6 +92,10 @@ const TeeTimeContainer = ({
         {invitesToDisplay === 'private'
           ? getTeeTimes(privateInvites)
           : getTeeTimes(publicInvites)}
+        {invitesToDisplay === '' &&
+          !events.length && 
+          <p className='no-invites-card hidden'>You are not currently committed to any tee times. Hit accept on a tee time invitation to join.</p>
+        }  
         {invitesToDisplay === 'private' &&
           !privateInvites.length &&
           displayNoInviteMessage()}
