@@ -23,7 +23,7 @@ describe('Player List', () => {
   it('should allow you to switch between friends and community players', () => {
     // check community
     cy.get('[data-cy=player-type]').eq(1).click()
-    cy.get('[data-cy=player-card]').eq(0).contains('Amy')
+    cy.get('[data-cy=player-card]').eq(0).contains('Andrew')
     // check friends
     cy.get('[data-cy=player-type]').eq(0).click()
     cy.get('[data-cy=player-card]').eq(0).contains('Andrew')
@@ -35,7 +35,7 @@ describe('Player List', () => {
     cy.get('[data-cy=friend-option]').eq(0).click()
     // check friends for Amy
     cy.get('[data-cy=player-type]').eq(0).click().wait(2000)
-    cy.get('[data-cy=player-card]').eq(2).contains('Amy')  
+    cy.get('[data-cy=player-card]').eq(0).contains('Amber')  
   })
 
   it('should allow you to remove friends', () => {

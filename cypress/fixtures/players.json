@@ -5,7 +5,7 @@
       "type": "players",
       "attributes": {
         "name": "Amy",
-        "friends": [2, 3, 0],
+        "friends": [2, 3],
         "events": []
       }
     },
@@ -23,7 +23,7 @@
       "type": "players",
       "attributes": {
         "name": "Amber",
-        "friends": [1, 2, 0],
+        "friends": [1, 2],
         "events": [1, 2]
       }
     },
@@ -32,7 +32,7 @@
       "type": "players",
       "attributes": {
         "name": "Betty",
-        "friends": [5, 6],
+        "friends": [2, 3],
         "events": [3]
       }
     }
