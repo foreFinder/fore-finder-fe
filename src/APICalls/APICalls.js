@@ -7,7 +7,7 @@ const endpoints = {
   coursesDev: `${devEnv}api/v1/courses`,
   playerEventProd: 'https://fore-finder-be.herokuapp.com/api/v1/player-event',
   playerEventDev: `${devEnv}api/v1/player-event`,
-  singleEventProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
+  singleEventProd: 'https://fore-finder-be.herokuapp.com/api/v1/event',
   singleEventDev: `${devEnv}api/v1/event`,
   friendshipProd: 'https://fore-finder-be.herokuapp.com/api/v1/friendship',
   friendshipDev: `${devEnv}api/v1/friendship`
