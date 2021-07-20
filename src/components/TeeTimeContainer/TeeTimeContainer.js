@@ -10,7 +10,7 @@ const TeeTimeContainer = ({
   title,
   events,
   windowWidth,
-  handleInviteAction,
+  handleInviteAction
 }) => {
   const [publicInvites, setPublicInvites] = useState([]);
   const [privateInvites, setPrivateInvites] = useState([]);
@@ -91,11 +91,11 @@ const TeeTimeContainer = ({
         {(invitesToDisplay === 'public' && !publicInvites.length) && displayNoInviteMessage()}
 
       </div>
-      <div className='type-select-con'>
-        {title === 'Available Tee Times' && windowWidth >= 768 && (
+      {title === 'Available Tee Times' && windowWidth >= 768 && (
+        <div className='type-select-con'>
           <InviteTypeSelect handleClick={setInvitesToDisplay} />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
