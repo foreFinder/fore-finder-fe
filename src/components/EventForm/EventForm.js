@@ -91,7 +91,7 @@ function EventForm({ courses, friends, hostId, refreshEvents }) {
                   required
                   onChange={(event) => setGolfCourse(event.target.value)}
                 >
-                  <option value='' selected data-default>
+                  <option value='' data-default>
                     Please Select a Course
                   </option>
                   {courses.map((course, i) => {
@@ -242,7 +242,7 @@ function EventForm({ courses, friends, hostId, refreshEvents }) {
           </div>
           <div className='btn-container'>
             <button
-              disabled={!golfCourse || !teeTime ? true : false}
+              disabled={!golfCourse || !teeTime || (parseInt(teeTime) < 7 || parseInt(teeTime) > 17) ? true : false}
               onClick={submitForm}
               className='form-submit'
             >
