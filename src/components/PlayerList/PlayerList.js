@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import './PlayerList.css';
 import PlayerCard from '../PlayerCard/PlayerCard';
 
-const PlayerList = ({ screenWidth, players, friends, handleFriends }) => {
+const PlayerList = ({ screenWidth, players, friends, handleFriends, userId }) => {
   const [playerType, setPlayerType] = useState('friends');
 
   const mapPlayers = (type) => {
-    return type.map((p) => (
+    return type.filter(t => parseInt(t.id) !== userId)
+    .map((p) => (
       <PlayerCard
         key={p.id}
         playerInfo={p}

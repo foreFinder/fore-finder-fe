@@ -33,7 +33,7 @@ const Dashboard = ({
 
       return false;
     });
-  }, [events]);
+  }, [events, currentUserId]);
 
   const getCommitted = useCallback(() => {
     return events.filter((event) =>
