@@ -19,7 +19,6 @@ import {
   postFriendship,
   deleteFriendship
 } from '../../APICalls/APICalls';
-// import { players } from '../../APICalls/sampleData';
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -155,6 +154,7 @@ function App() {
         <Route exact path='/'>
           <Redirect to='/dashboard' /> 
         </Route>
+        <Redirect to='/dashboard' /> 
       </Switch>
     </Router>
   );

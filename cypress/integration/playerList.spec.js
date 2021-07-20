@@ -30,18 +30,18 @@ describe('Player List', () => {
   })
 
   it('should allow you to add friends from the community', () => {
-    // Add Eric to friends
+    // Add Amy to friends
     cy.get('[data-cy=player-type]').eq(1).click()
     cy.get('[data-cy=friend-option]').eq(0).click()
-    // check friends for Eric
-    cy.get('[data-cy=player-type]').eq(0).click().wait(1000)
+    // check friends for Amy
+    cy.get('[data-cy=player-type]').eq(0).click().wait(2000)
     cy.get('[data-cy=player-card]').eq(2).contains('Amy')  
   })
 
   it('should allow you to remove friends', () => {
     // Make sure Andrew is up top, remove friend, check that Amber is now up top
     cy.get('[data-cy=player-card]').eq(0).contains('Andrew')
-    cy.get('[data-cy=friend-option]').eq(0).click().wait(1000)
+    cy.get('[data-cy=friend-option]').eq(0).click().wait(2000)
     cy.get('[data-cy=player-card]').eq(0).contains('Amber')
   })
 })
