@@ -3,7 +3,7 @@ describe('EventForm', () => {
   beforeEach(() => {
 
     cy.visit('http://localhost:3000/event-form')
-      .intercept('http://3d8bf4156a8c.ngrok.io/api/v1/courses', {
+      .intercept('http://43cb8b5b88af.ngrok.io/api/v1/courses', {
         data: [
           {
             id: '1', 
@@ -20,18 +20,45 @@ describe('EventForm', () => {
           }
         ]
       })
-      .intercept('http://3d8bf4156a8c.ngrok.io/api/v1/players', {
+      .intercept('http://43cb8b5b88af.ngrok.io/api/v1/players', {
         data: [
-          {
-            id: '1', 
-            type: 'players', 
-            attributes: {
-              name: 'Amy', 
-              friends: [2, 3], 
-              events: [2]
-            }
-          }
-        ]
+    {
+      "id": "1",
+      "type": "players",
+      "attributes": {
+        "name": "Amy",
+        "friends": [2, 3, 0],
+        "events": [2]
+      }
+    },
+    {
+      "id": "2",
+      "type": "players",
+      "attributes": {
+        "name": "Andrew",
+        "friends": [1, 3],
+        "events": [2]
+      }
+    },
+    {
+      "id": "3",
+      "type": "players",
+      "attributes": {
+        "name": "Amber",
+        "friends": [1, 2, 0],
+        "events": [1, 2]
+      }
+    },
+    {
+      "id": "4",
+      "type": "players",
+      "attributes": {
+        "name": "Betty",
+        "friends": [5, 6],
+        "events": [3]
+      }
+    }
+  ]
       })
       cy.wait(2000)
   }) 
@@ -85,7 +112,6 @@ describe('EventForm', () => {
   })
 
   it('User should be able to select a private event and invite Amber only', () => {
-
     cy.get('[type="radio"]').check('private');
     cy.get('input[type="checkbox"]').check('3')
       
@@ -98,7 +124,7 @@ describe('Sad Path Tests', () => {
   beforeEach(() => {
 
     cy.visit('http://localhost:3000/event-form')
-      .intercept('http://3d8bf4156a8c.ngrok.io/api/v1/courses', {
+      .intercept('http://43cb8b5b88af.ngrok.io/api/v1/courses', {
         data: [
           {
             id: '1', 
@@ -115,7 +141,7 @@ describe('Sad Path Tests', () => {
           }
         ]
       })
-      .intercept('http://3d8bf4156a8c.ngrok.io/api/v1/players', {
+      .intercept('http://43cb8b5b88af.ngrok.io/api/v1/players', {
         data: [
           {
             id: '1', 
@@ -131,18 +157,13 @@ describe('Sad Path Tests', () => {
       cy.wait(1000)
   })
 
-  it('Should notify user if they did not select a golf course and tried to submit form', () => {
-
-    cy.get('.form-submit').click()
-      .get('input:invalid').should('have.length', 1)
-      .get('#golfCourse').then(($input) => {
-        expect($input[0].validationMessage).to.eq('')
-      })
+  it('Should prevent user from submitting empty form with disabled button', () => {
+    cy.get('button').should('be.disabled')
   })
 
   it('Should notify user if they did not input a tee time', () => {
 
-    cy.get('.form-submit').click()
+    cy.get('.form-submit').click({force: true})
       .get('input:invalid').should('have.length', 1)
       .get('#teeTime').then(($input) => {
         expect($input[0].validationMessage).to.eq('Please fill out this field.')

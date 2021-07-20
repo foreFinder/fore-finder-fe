@@ -11,20 +11,22 @@ form {
   margin: 0 auto;
   max-height: 80vh;
   width: 60%;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
   border-radius: 16px;
   position: relative;
   overflow-y: auto;
+  max-width: 50rem;
 }
 
 .form-components-container {
-  margin-top: 1em;
+  padding-top: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: inherit;
   width: 100%;
+  background: white
 }
 
 .form-title {
@@ -33,13 +35,14 @@ form {
   align-items: center;
   font-weight: 600;
   height: 3.5em;
-  background-color: rgb(241, 243, 244);
+  background-color: rgb(221, 218, 218);
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   position: sticky;
   top: 0;
   left: 0;
   right: 0;
+  box-shadow: inset 0px 0px 2px 0px rgb(0 0 0 / 50%);
 }
 
 .form-title > h2 {
@@ -48,24 +51,25 @@ form {
 
 .btn-container {
   width: 100%;
-  display: flex; 
+  display: flex;
   justify-content: center;
-  background-color: rgb(241, 243, 244);
+  background-color: rgb(221, 218, 218);
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   position: sticky;
   bottom: 0;
   left: 0;
   right: 0;
+  box-shadow: inset 0px 0px 2px 0px rgb(0 0 0 / 50%);
 }
 
 .form-submit {
   margin: 1.8em 0;
-  padding: 6px 16px; 
-  border: unset; 
+  padding: 6px 16px;
+  border: unset;
   border-radius: 32px;
   font-weight: 600;
-  background-color: rgb(42, 222, 147);
+  background-color: rgb(18 181 113);
   color: white;
 }
 
@@ -79,7 +83,7 @@ label {
   justify-content: space-between;
   animation-duration: 2s;
   opacity: 0;
-  transition: opacity 500ms ease-in-out
+  transition: opacity 500ms ease-in-out;
 }
 
 .fade-in {
@@ -110,15 +114,13 @@ label > * {
   max-width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  justify-items: center;
+  justify-items: flex-start;
   align-items: center;
 }
 
 #numPlayers {
-  width: 4em; 
+  width: 4em;
 }
-
-
 
 @media only screen and (max-width: 480px) {
   form {

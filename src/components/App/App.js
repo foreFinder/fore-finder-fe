@@ -19,7 +19,6 @@ import {
   postFriendship,
   deleteFriendship
 } from '../../APICalls/APICalls';
-// import { players } from '../../APICalls/sampleData';
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -120,11 +119,6 @@ function App() {
             />
           )}
         />
-        <Route exact path='/'>
-          <Redirect to='/dashboard' />  
-          {/* ^^This is a quick fix, might want to
-          default web server to http://localhost:3000/dashboard if possible */}
-        </Route>
         {screenWidth > 1024 && <Redirect from='/community' to='/dashboard' />}
         <Route
           exact
@@ -158,8 +152,9 @@ function App() {
           )}
         />
         <Route exact path='/'>
-          <Redirect to='/dashboard' /> // This is a quick fix, might want to default web server to http://localhost:3000/dashboard if possible
+          <Redirect to='/dashboard' /> 
         </Route>
+        <Redirect to='/dashboard' /> 
       </Switch>
     </Router>
   );

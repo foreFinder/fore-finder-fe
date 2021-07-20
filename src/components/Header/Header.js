@@ -25,10 +25,11 @@ const Header = ({ screenWidth }) => {
   };
 
   const [userDropdown, setUserDropdown] = useState(false);
-  const handleUserDropdown = () => {
-    setMobileNav(false);
-    return setUserDropdown(!userDropdown);
-  };
+
+  // const handleUserDropdown = () => {
+  //   setMobileNav(false);
+  //   return setUserDropdown(!userDropdown);
+  // };
 
   const handleMenus = () => {
     setUserDropdown(false);
