@@ -1,4 +1,4 @@
-const devEnv = 'http://861341e035fa.ngrok.io/'
+const devEnv = 'http://5ab0117d8c0d.ngrok.io/'
 
 const endpoints = {
   playersProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
@@ -8,7 +8,9 @@ const endpoints = {
   playerEventProd: 'https://fore-finder-be.herokuapp.com/api/v1/player-event',
   playerEventDev: `${devEnv}api/v1/player-event`,
   singleEventProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
-  singleEventDev: `${devEnv}api/v1/event`
+  singleEventDev: `${devEnv}api/v1/event`,
+  friendshipProd: 'https://fore-finder-be.herokuapp.com/api/v1/friendship',
+  friendshipDev: `${devEnv}api/v1/friendship`
 }
 
 export const getAllPlayers = () => {
@@ -45,7 +47,10 @@ export const getAllEvents = (playerId) => {
 }
 
 export const postEvent = (courseId, date, teeTime, openSpots, numHoles, isPrivate, hostId, selectedFriends) => {
-  return fetch('http://3d8bf4156a8c.ngrok.io/api/v1/events', {
+  if (!courseId || !teeTime) {
+    return
+  }
+  return fetch(`${devEnv}api/v1/event`, {
     method: 'POST', 
     body: JSON.stringify({
       course_id: courseId,
@@ -59,7 +64,13 @@ export const postEvent = (courseId, date, teeTime, openSpots, numHoles, isPrivat
     }),
     headers: { 'Content-Type' : 'application/json' } 
   })
-  .then(resp => resp.json())
+  .then(resp => {
+    if (resp.ok) {
+      return resp.json()
+    } else {
+      throw new Error()
+    }
+  })
 }
 
 export const postInviteAction = (playerId, eventId, inviteStatus) => {
@@ -80,6 +91,42 @@ export const deleteEvent = (eventId, playerId) => {
     method: 'DELETE'
   })
   .then(() => getAllEvents(playerId))
+}
+
+export const postFriendship = (followerId, followeeId) => {
+  return fetch(`${endpoints.friendshipDev}`, {
+    method: 'POST', 
+    body: JSON.stringify({
+      follower_id: followerId,
+      followee_id: followeeId
+    }),
+    headers: { 'Content-Type' : 'application/json' } 
+  })
+  .then(resp => {
+    if (resp.ok) {
+      return resp.json()
+    } else {
+      throw new Error('Unable to update friendship, please try again!')
+    }
+  })
+}
+
+export const deleteFriendship = (followerId, followeeId) => {
+  return fetch(`${endpoints.friendshipDev}`, {
+    method: 'DELETE',
+    body: JSON.stringify({
+      follower_id: followerId,
+      followee_id: followeeId
+    }),
+    headers: { 'Content-Type' : 'application/json' } 
+  })
+  .then(resp => {
+    if (resp.ok) {
+      return resp
+    } else {
+      throw new Error('Unable to update friendship, please try again!')
+    }
+  })
 }
 
 // for post request, use ngrok while still in development

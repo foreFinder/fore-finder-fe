@@ -17,20 +17,27 @@ const PlayerList = ({screenWidth, players, friends, handleFriends}) => {
   }
 
   return (
-    <aside className={screenWidth > 480 ? 'player-list-desktop' : 'player-list-mobile'}>
-      <span className={screenWidth > 480 ? 'player-type-select-desktop' : 'player-type-select-mobile'}>
+    <aside data-cy='player-list' className={screenWidth > 1023 ? 'player-list-desktop' : 'player-list-mobile'}>
+      <span className={screenWidth > 1023 ? 'player-type-select-desktop' : 'player-type-select-mobile'}>
         <button
+          data-cy='player-type'
           className={playerType === 'friends' ? 'player-type-btn' : 'player-type-btn unselected'}
           onClick={() => { if (playerType === 'community') setPlayerType('friends')}}>
           Friends
         </button>
         <button
+          data-cy='player-type'
           className={playerType === 'community' ? 'player-type-btn' : 'player-type-btn unselected'}
           onClick={() => { if (playerType === 'friends') setPlayerType('community')}}>
           Community
         </button>
       </span>
       <ul className='player-list-wrapper'>
+        {!friends.length && playerType === 'friends' &&
+        <em>
+            You don't have any friends...<br/>
+            Add some from the community!
+        </em>}
         {playerType === 'friends' ? mapPlayers(friends) : mapPlayers(players)}
       </ul>
     </aside>

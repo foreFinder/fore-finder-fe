@@ -53,6 +53,7 @@ const Dashboard = ({
       </span> */}
       {screenWidth >= 1025 && (
         <PlayerList
+          userId={currentUserId}
           screenWidth={screenWidth}
           friends={friends}
           players={players}
