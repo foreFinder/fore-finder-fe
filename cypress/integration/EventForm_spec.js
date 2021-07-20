@@ -1,9 +1,11 @@
+const prodEnv = 'https://fore-finder-be.herokuapp.com'
+
 describe('EventForm', () => {
 
   beforeEach(() => {
 
     cy.visit('http://localhost:3000/event-form')
-      .intercept('http://43cb8b5b88af.ngrok.io/api/v1/courses', {
+      .intercept(`${prodEnv}/api/v1/courses`, {
         data: [
           {
             id: '1', 
@@ -20,7 +22,7 @@ describe('EventForm', () => {
           }
         ]
       })
-      .intercept('http://43cb8b5b88af.ngrok.io/api/v1/players', {
+      .intercept(`${prodEnv}/api/v1/players`, {
         data: [
     {
       "id": "1",
@@ -124,7 +126,7 @@ describe('Sad Path Tests', () => {
   beforeEach(() => {
 
     cy.visit('http://localhost:3000/event-form')
-      .intercept('http://43cb8b5b88af.ngrok.io/api/v1/courses', {
+      .intercept(`${prodEnv}/api/v1/courses`, {
         data: [
           {
             id: '1', 
@@ -141,7 +143,7 @@ describe('Sad Path Tests', () => {
           }
         ]
       })
-      .intercept('http://43cb8b5b88af.ngrok.io/api/v1/players', {
+      .intercept(`${prodEnv}/api/v1/players`, {
         data: [
           {
             id: '1', 
