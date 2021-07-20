@@ -18,22 +18,22 @@ const Dashboard = ({
   const [teeTimeType, setTeeTimeType] = useState('committed');
 
   const getAvailable = useCallback(() => {
-    return events.filter(event => {
+    return events.filter((event) => {
       if (
-        event.attributes.declined.includes(currentUserId) || 
+        event.attributes.declined.includes(currentUserId) ||
         event.attributes.accepted.includes(currentUserId)
       ) {
-        return false
+        return false;
       } else if (
-        event.attributes.pending.includes(currentUserId) || 
+        event.attributes.pending.includes(currentUserId) ||
         !event.attributes.private
       ) {
-        return true
+        return true;
       }
 
-      return false
-    })
-  }, [events])
+      return false;
+    });
+  }, [events]);
 
   const getCommitted = useCallback(() => {
     return events.filter((event) =>
@@ -48,9 +48,6 @@ const Dashboard = ({
 
   return (
     <div className='dashboard'>
-      {/* <span className='dashboard-title'>
-        <h1>My Tee Times</h1>
-      </span> */}
       {screenWidth >= 1025 && (
         <PlayerList
           userId={currentUserId}
@@ -102,22 +99,22 @@ const Dashboard = ({
           />
         </div>
       )}
-      {(teeTimeType === 'committed' && screenWidth < 768) &&
+      {teeTimeType === 'committed' && screenWidth < 768 && (
         <TeeTimeContainer
           title='Committed Tee Times'
           events={committedTeeTimes}
           windowWidth={screenWidth}
           handleInviteAction={handleInviteAction}
         />
-      }
-      {(teeTimeType === 'available' && screenWidth < 768) &&
+      )}
+      {teeTimeType === 'available' && screenWidth < 768 && (
         <TeeTimeContainer
           title='Available Tee Times'
           events={availableTeeTimes}
           windowWidth={screenWidth}
           handleInviteAction={handleInviteAction}
         />
-      }
+      )}
     </div>
   );
 };

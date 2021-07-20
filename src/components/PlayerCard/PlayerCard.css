@@ -11,22 +11,15 @@
 }
 
 .player-name {
-  /* position: absolute;
-  left: 0; */
   margin-bottom: 8px;
 }
 
-.friend-option {
-  /* position: absolute;
-  right: 0; */
-}
-
 .btn {
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   padding: 5px;
   border: 1px solid black;
   border-radius: 7px;
-  font-size: .7em;
+  font-size: 0.7em;
   font-weight: inherit;
   cursor: pointer;
   color: black;
@@ -35,9 +28,9 @@
 }
 
 .btn:hover {
-    opacity: 0.9;
-    transition-duration: 0.2s;
-    transform: scale(1.0001);
+  opacity: 0.9;
+  transition-duration: 0.2s;
+  transform: scale(1.0001);
 }
 
 .player-type-btn {
@@ -52,7 +45,7 @@
 
 .player-type-btn:nth-child(1) {
   padding-right: 8px;
-  border-right: solid 1px rgba(0, 0, 0, .2);
+  border-right: solid 1px rgba(0, 0, 0, 0.2);
 }
 
 .player-type-btn:nth-child(2) {
@@ -60,5 +53,5 @@
 }
 
 .unselected {
-  color: rgba(0, 0, 0, .25)
+  color: rgba(0, 0, 0, 0.25);
 }

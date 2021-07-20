@@ -24,15 +24,15 @@ body {
 
 button:hover {
   cursor: pointer;
-  filter: hue-rotate(90deg)
+  filter: hue-rotate(90deg);
 }
 
 input:hover {
-  cursor: pointer
+  cursor: pointer;
 }
 
 select:hover {
-  cursor: pointer
+  cursor: pointer;
 }
 
 code {

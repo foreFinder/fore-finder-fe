@@ -17,7 +17,7 @@ import {
   postInviteAction,
   deleteEvent,
   postFriendship,
-  deleteFriendship
+  deleteFriendship,
 } from '../../APICalls/APICalls';
 
 function App() {
@@ -29,22 +29,26 @@ function App() {
   const [courses, setCourses] = useState([]);
 
   const addFriend = (friend) => {
-    postFriendship(parseInt(hostPlayer.id), friend.id)
-      .then(data => setFriends([...friends, 
+    postFriendship(parseInt(hostPlayer.id), friend.id).then((data) =>
+      setFriends([
+        ...friends,
         {
-          id: data.data.attributes.followee.id, 
-          name: data.data.attributes.followee.name
-        }
-      ]))
-  }
-  
+          id: data.data.attributes.followee.id,
+          name: data.data.attributes.followee.name,
+        },
+      ])
+    );
+  };
+
   const removeFriend = (unFriend) => {
-    deleteFriendship(parseInt(hostPlayer.id), parseInt(unFriend.id))
-      .then(data => {
-        setFriends([...friends.filter((f) => parseInt(f.id) !== parseInt(unFriend.id))])
-      })
-  }
-    
+    deleteFriendship(parseInt(hostPlayer.id), parseInt(unFriend.id)).then(
+      (data) => {
+        setFriends([
+          ...friends.filter((f) => parseInt(f.id) !== parseInt(unFriend.id)),
+        ]);
+      }
+    );
+  };
 
   const makeFriendList = () => {
     const friends = allPlayers.filter((p) =>
@@ -79,7 +83,9 @@ function App() {
 
   useEffect(() => {
     getAllPlayers().then((players) => {
-      setAllPlayers(players.data.map((p) => ({ name: p.attributes.name, id: p.id })));
+      setAllPlayers(
+        players.data.map((p) => ({ name: p.attributes.name, id: p.id }))
+      );
       setHostPlayer(players.data[0]);
     });
     getAllCourses().then((courses) => setCourses(courses.data));
@@ -152,9 +158,9 @@ function App() {
           )}
         />
         <Route exact path='/'>
-          <Redirect to='/dashboard' /> 
+          <Redirect to='/dashboard' />
         </Route>
-        <Redirect to='/dashboard' /> 
+        <Redirect to='/dashboard' />
       </Switch>
     </Router>
   );

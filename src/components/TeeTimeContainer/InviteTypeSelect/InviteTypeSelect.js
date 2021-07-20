@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import './InviteTypeSelect.css'
+import { useState } from 'react';
+import './InviteTypeSelect.css';
 
-const TypeSelector = ( { handleClick }) => {
-  const [allSelected, setAllSelected] = useState(false)
+const TypeSelector = ({ handleClick }) => {
+  const [allSelected, setAllSelected] = useState(false);
 
   return (
     <div className='invite-type-select'>
-      <button 
-        className={allSelected ? 'type-select-btn unselected' : 'type-select-btn'}
+      <button
+        className={
+          allSelected ? 'type-select-btn unselected' : 'type-select-btn'
+        }
         onClick={() => {
           if (allSelected) {
-            setAllSelected(!allSelected)
-            handleClick('private')
+            setAllSelected(!allSelected);
+            handleClick('private');
           }
         }}
       >
         Friends
       </button>
       <button
-        className={allSelected ? 'type-select-btn' : 'type-select-btn unselected'}
+        className={
+          allSelected ? 'type-select-btn' : 'type-select-btn unselected'
+        }
         onClick={() => {
           if (!allSelected) {
-            setAllSelected(!allSelected)
-            handleClick('public')
+            setAllSelected(!allSelected);
+            handleClick('public');
           }
         }}
       >
         Public
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default TypeSelector
+export default TypeSelector;

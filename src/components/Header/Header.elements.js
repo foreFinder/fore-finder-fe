@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { GiGolfTee, GiGolfFlag } from 'react-icons/gi'
-import { VscAccount } from 'react-icons/vsc'
+import { GiGolfTee } from 'react-icons/gi';
+import { VscAccount } from 'react-icons/vsc';
 
 export const HeaderContainer = styled.header`
-  background: #59A371;
+  background: #59a371;
   height: 80px;
   width: 100%;
   display: flex;
@@ -30,14 +30,14 @@ export const HeaderWrapper = styled.nav`
   padding-right: 50px;
   padding-left: 50px;
 
-@media screen and (max-width: 991px) {
-  padding-right: 30px;
-  padding-left: 30px;
-}
+  @media screen and (max-width: 991px) {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
 `;
 
 export const Logo = styled(Link)`
-  color:#fff;
+  color: #fff;
   position: static;
   text-decoration: none;
   cursor: pointer;
@@ -62,13 +62,11 @@ export const Logo = styled(Link)`
 `;
 
 export const LogoIcon = styled(GiGolfTee)`
-  margin-right:0.5rem;
+  margin-right: 0.5rem;
 
   @media screen and (min-width: 1024px) {
-    margin-left:1.6rem;
+    margin-left: 1.6rem;
   }
-
-
 `;
 
 export const MobileIcon = styled.span`
@@ -102,10 +100,10 @@ export const NavMenu = styled.ul`
     height: 90vh;
     position: absolute;
     top: 80px;
-    left: ${({mobileNav}) => (mobileNav ? 0 : '-100%')};
+    left: ${({ mobileNav }) => (mobileNav ? 0 : '-100%')};
     opacity: 1;
     transition: all 0.5s ease;
-    background: #59A371;
+    background: #59a371;
   }
 `;
 
@@ -149,20 +147,20 @@ export const NavLinks = styled(Link)`
 `;
 
 export const UserIcon = styled(VscAccount)`
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(-100%, 60%);
-    font-size: 1.8rem;
-    cursor: pointer;
-    z-index: 2;
-    margin-top: .4rem;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-100%, 60%);
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 2;
+  margin-top: 0.4rem;
 `;
 
 export const UserOptions = styled.ul`
   /* display: flex; */
-  display: ${({userDropdown}) => (userDropdown ? 'flex' : 'none')};
+  display: ${({ userDropdown }) => (userDropdown ? 'flex' : 'none')};
   align-items: center;
   list-style: none;
   text-align: center;
@@ -171,11 +169,11 @@ export const UserOptions = styled.ul`
   width: 30%;
   height: 20vh;
   position: absolute;
-  right: ${({userDropdown}) => (userDropdown ? '0' : '-100%')};
-  top: ${({userDropdown}) => (userDropdown ? '80px' : '-100%')};
+  right: ${({ userDropdown }) => (userDropdown ? '0' : '-100%')};
+  top: ${({ userDropdown }) => (userDropdown ? '80px' : '-100%')};
   opacity: 1;
   transition: all 0.5s ease;
-  background: #59A371;
+  background: #59a371;
   z-index: 0;
   color: #fff;
   padding: 0;
@@ -183,8 +181,7 @@ export const UserOptions = styled.ul`
 
   @media screen and (max-width: 960px) {
     font-size: 1.1rem;
-    /* display: ${({userDropdown}) => (userDropdown ? 'flex' : 'none')};
+    /* display: ${({ userDropdown }) => (userDropdown ? 'flex' : 'none')};
     overflow-y: hidden; */
   }
 `;
-

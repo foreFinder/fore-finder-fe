@@ -11,7 +11,6 @@
 }
 
 .container-title {
-  /* margin-bottom: 24px; */
   position: sticky;
   top: 0;
   left: 0;
@@ -63,7 +62,6 @@
 
 @media only screen and (min-width: 768px) {
   .tee-time-container {
-    /* height: 560px; */
     display: grid;
     grid-template-rows: 4.5rem auto;
     grid-auto-rows: 3.75rem;

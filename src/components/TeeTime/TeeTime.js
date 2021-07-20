@@ -1,20 +1,20 @@
-import dayjs from 'dayjs'
-import './TeeTime.css'
+import dayjs from 'dayjs';
+import './TeeTime.css';
 
 const TeeTime = ({ type, event, handleInviteAction }) => {
   const formatTime = (time) => {
-    let hours = time.split(':')[0]
-    const minutes = time.split(':')[1]
-    const period = (parseInt(hours) > 11) ? 'PM' : 'AM'
+    let hours = time.split(':')[0];
+    const minutes = time.split(':')[1];
+    const period = parseInt(hours) > 11 ? 'PM' : 'AM';
 
     if (hours < 10) {
-      hours = hours.slice(1, 2)
+      hours = hours.slice(1, 2);
     } else if (hours > 12) {
-      hours = hours - 12
+      hours = hours - 12;
     }
 
-    return `${hours}:${minutes} ${period}`
-  }
+    return `${hours}:${minutes} ${period}`;
+  };
 
   return (
     <div className='tee-time'>
@@ -38,37 +38,40 @@ const TeeTime = ({ type, event, handleInviteAction }) => {
         </div>
         <div className='spot-counter'>
           <h3>Spots filled</h3>
-          <p>{event.attributes.open_spots - event.attributes.remaining_spots} of {event.attributes.open_spots}</p>
+          <p>
+            {event.attributes.open_spots - event.attributes.remaining_spots} of{' '}
+            {event.attributes.open_spots}
+          </p>
         </div>
       </div>
       <div className='invitation-actions'>
-        {type === 'committed' && 
-          <button 
+        {type === 'committed' && (
+          <button
             className='primary-btn cancel'
             onClick={() => handleInviteAction.cancel(event)}
           >
             Cancel
           </button>
-        }
-        {type === 'available' &&
+        )}
+        {type === 'available' && (
           <>
-            <button 
+            <button
               className='secondary-btn decline'
               onClick={() => handleInviteAction.update(event.id, 'declined')}
             >
               Decline
             </button>
-            <button 
-              className='primary-btn accept' 
+            <button
+              className='primary-btn accept'
               onClick={() => handleInviteAction.update(event.id, 'accepted')}
             >
               Accept
             </button>
-          </> 
-        }
+          </>
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TeeTime
+export default TeeTime;

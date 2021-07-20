@@ -10,10 +10,8 @@ import {
   NavMenu,
   NavItem,
   NavLinks,
-  UserOptions,
-  UserIcon,
 } from './Header.elements';
-import './Header.css'
+import './Header.css';
 
 const Header = ({ screenWidth }) => {
   const [mobileNav, setMobileNav] = useState(false);
@@ -26,11 +24,6 @@ const Header = ({ screenWidth }) => {
 
   const [userDropdown, setUserDropdown] = useState(false);
 
-  // const handleUserDropdown = () => {
-  //   setMobileNav(false);
-  //   return setUserDropdown(!userDropdown);
-  // };
-
   const handleMenus = () => {
     setUserDropdown(false);
     setMobileNav(false);
@@ -41,15 +34,15 @@ const Header = ({ screenWidth }) => {
       <HeaderContainer>
         <HeaderWrapper userDropdown={userDropdown}>
           <MobileIcon onClick={handleMobileNav} data-cy='ham-menu'>
-            {mobileNav ? <FaTimes/> : <FaBars/>}
-          </MobileIcon> 
+            {mobileNav ? <FaTimes /> : <FaBars />}
+          </MobileIcon>
           <Logo to='/dashboard' onClick={handleMenus}>
             <LogoIcon data-cy='logo' />
             ForeFinder
-          </Logo> 
+          </Logo>
           <NavMenu
-            data-cy='nav-menu' 
-            onClick={handleMenus} 
+            data-cy='nav-menu'
+            onClick={handleMenus}
             mobileNav={mobileNav}
             userDropdown={userDropdown}
           >
@@ -67,19 +60,11 @@ const Header = ({ screenWidth }) => {
             >
               <NavLinks to='/event-form'>Create Tee Time</NavLinks>
             </NavItem>
-
-            {/* <NavItem data-cy='friends-link'>
-              <NavLinks to='/friends'>
-                My Friends
-              </NavLinks>
-            </NavItem> */}
-        {screenWidth <= 1024 && 
-            <NavItem data-cy='community-link'>
-              <NavLinks to='/community'>
-                My Community
-              </NavLinks>
-            </NavItem>
-            }
+            {screenWidth <= 1024 && (
+              <NavItem data-cy='community-link'>
+                <NavLinks to='/community'>My Community</NavLinks>
+              </NavItem>
+            )}
           </NavMenu>
         </HeaderWrapper>
       </HeaderContainer>

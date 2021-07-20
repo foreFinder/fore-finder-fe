@@ -106,7 +106,6 @@
 }
 
 .secondary-btn {
-  /* background-color: unset; */
   width: fit-content;
   height: fit-content;
   padding: unset;
@@ -123,11 +122,11 @@
   border-radius: 32px;
   font-size: 0.9em;
   background-color: rgb(212, 74, 68);
-  color: white
+  color: white;
 }
 
 .decline:hover {
-  filter: hue-rotate(20deg)
+  filter: hue-rotate(20deg);
 }
 
 @media only screen and (min-width: 768px) {

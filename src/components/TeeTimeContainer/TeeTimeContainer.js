@@ -10,7 +10,7 @@ const TeeTimeContainer = ({
   title,
   events,
   windowWidth,
-  handleInviteAction
+  handleInviteAction,
 }) => {
   const [publicInvites, setPublicInvites] = useState([]);
   const [privateInvites, setPrivateInvites] = useState([]);
@@ -42,9 +42,9 @@ const TeeTimeContainer = ({
       </p>
     );
   };
-  
+
   const getTeeTimes = (eventsType) => {
-    return eventsType.map(event => {
+    return eventsType.map((event) => {
       return (
         <TeeTime
           key={event.id}
@@ -57,25 +57,27 @@ const TeeTimeContainer = ({
   };
 
   const revealNoInviteMessage = (message) => {
-    setTimeout(() => message.classList.remove('hidden'), 500)
-  }
+    setTimeout(() => message.classList.remove('hidden'), 500);
+  };
 
   useEffect(() => {
     if (getEventType() === 'available') {
-      setPublicInvites(events.filter(event => !event.attributes.private));
+      setPublicInvites(events.filter((event) => !event.attributes.private));
       setPrivateInvites(events.filter((event) => event.attributes.private));
     } else {
-      setCommittedTeeTimes(events)
+      setCommittedTeeTimes(events);
     }
   }, [events]);
 
   useEffect(() => {
-    const noInviteMessages = Array.from(document.querySelectorAll('.no-invites-card'));
+    const noInviteMessages = Array.from(
+      document.querySelectorAll('.no-invites-card')
+    );
     if (noInviteMessages) {
-      noInviteMessages.forEach(m => revealNoInviteMessage(m))
+      noInviteMessages.forEach((m) => revealNoInviteMessage(m));
     }
-  }, [publicInvites, privateInvites, invitesToDisplay])
-  
+  }, [publicInvites, privateInvites, invitesToDisplay]);
+
   return (
     <div className='tee-time-container'>
       <div className='container-title'>
@@ -86,10 +88,15 @@ const TeeTimeContainer = ({
       )}
       <div className='tee-times'>
         {title === 'Committed Tee Times' && getTeeTimes(committedTeeTimes)}
-        {invitesToDisplay === 'private' ? getTeeTimes(privateInvites) : getTeeTimes(publicInvites)}
-        {(invitesToDisplay === 'private' && !privateInvites.length) && displayNoInviteMessage()}
-        {(invitesToDisplay === 'public' && !publicInvites.length) && displayNoInviteMessage()}
-
+        {invitesToDisplay === 'private'
+          ? getTeeTimes(privateInvites)
+          : getTeeTimes(publicInvites)}
+        {invitesToDisplay === 'private' &&
+          !privateInvites.length &&
+          displayNoInviteMessage()}
+        {invitesToDisplay === 'public' &&
+          !publicInvites.length &&
+          displayNoInviteMessage()}
       </div>
       {title === 'Available Tee Times' && windowWidth >= 768 && (
         <div className='type-select-con'>
