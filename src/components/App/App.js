@@ -2,7 +2,7 @@ import './App.css';
 import Header from '../Header/Header';
 import Dashboard from '../Dashboard/Dashboard';
 import PlayerList from '../PlayerList/PlayerList';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -27,6 +27,7 @@ function App() {
   const [hostPlayer, setHostPlayer] = useState('');
   const [friends, setFriends] = useState([]);
   const [courses, setCourses] = useState([]);
+  const makeFriendList = useRef(() => {});
 
   const addFriend = (friend) => {
     postFriendship(parseInt(hostPlayer.id), friend.id).then((data) =>
@@ -50,7 +51,7 @@ function App() {
     );
   };
 
-  const makeFriendList = () => {
+  makeFriendList.current = () => {
     const friends = allPlayers.filter((p) =>
       hostPlayer?.attributes?.friends?.includes(parseInt(p.id))
     );
@@ -92,7 +93,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setFriends(makeFriendList());
+    setFriends(makeFriendList.current());
 
     if (hostPlayer) {
       getAllEvents(hostPlayer.id).then((events) => setEvents(events.data));
@@ -132,10 +133,10 @@ function App() {
           render={() => (
             <PlayerList
               screenWidth={screenWidth}
+              userId={parseInt(hostPlayer.id)}
               players={allPlayers}
               friends={friends}
               handleFriends={{ add: addFriend, remove: removeFriend }}
-              screenWidth={screenWidth}
             />
           )}
         />

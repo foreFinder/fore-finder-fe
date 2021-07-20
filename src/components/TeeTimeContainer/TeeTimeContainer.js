@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 import TeeTime from '../TeeTime/TeeTime';
 import InviteTypeSelect from './InviteTypeSelect/InviteTypeSelect';
@@ -18,8 +18,9 @@ const TeeTimeContainer = ({
   const [invitesToDisplay, setInvitesToDisplay] = useState(
     title === 'Committed Tee Times' ? '' : 'private'
   );
+  const getEventType = useRef(() => {});
 
-  const getEventType = useCallback(() => {
+  getEventType.current = useCallback(() => {
     if (title === 'Committed Tee Times') {
       return 'committed';
     } else if (title === 'Available Tee Times') {
@@ -48,7 +49,7 @@ const TeeTimeContainer = ({
       return (
         <TeeTime
           key={event.id}
-          type={getEventType()}
+          type={getEventType.current()}
           event={event}
           handleInviteAction={handleInviteAction}
         />
@@ -61,7 +62,7 @@ const TeeTimeContainer = ({
   };
 
   useEffect(() => {
-    if (getEventType() === 'available') {
+    if (getEventType.current() === 'available') {
       setPublicInvites(events.filter((event) => !event.attributes.private));
       setPrivateInvites(events.filter((event) => event.attributes.private));
     } else {
