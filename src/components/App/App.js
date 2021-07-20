@@ -37,7 +37,6 @@ function App() {
           name: data.data.attributes.followee.name
         }
       ]))
-      // .catch(error => console.log('post error', error))   
   }
   
   const removeFriend = (unFriend) => {
@@ -45,7 +44,6 @@ function App() {
       .then(data => {
         setFriends([...friends.filter((f) => parseInt(f.id) !== parseInt(unFriend.id))])
       })
-      // .catch(error => console.log('delete error', error))   
   }
     
 
