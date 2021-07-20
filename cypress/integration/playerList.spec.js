@@ -2,6 +2,7 @@ describe('Player List', () => {
   beforeEach('setup stubs and visit Dashboard', () => {
     cy.viewport(1920, 1080)
     cy.setReadStubs()
+    cy.setFriendshipStub()
     cy.visit('http://localhost:3000')
   })
 
@@ -33,14 +34,14 @@ describe('Player List', () => {
     cy.get('[data-cy=player-type]').eq(1).click()
     cy.get('[data-cy=friend-option]').eq(0).click()
     // check friends for Eric
-    cy.get('[data-cy=player-type]').eq(0).click()
+    cy.get('[data-cy=player-type]').eq(0).click().wait(1000)
     cy.get('[data-cy=player-card]').eq(2).contains('Amy')  
   })
 
   it('should allow you to remove friends', () => {
     // Make sure Andrew is up top, remove friend, check that Amber is now up top
     cy.get('[data-cy=player-card]').eq(0).contains('Andrew')
-    cy.get('[data-cy=friend-option]').eq(0).click()
+    cy.get('[data-cy=friend-option]').eq(0).click().wait(1000)
     cy.get('[data-cy=player-card]').eq(0).contains('Amber')
   })
 })

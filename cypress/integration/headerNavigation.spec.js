@@ -53,14 +53,14 @@ describe('Header Navigation', () => {
     cy.url().should('eq', 'http://localhost:3000/community')
   })
 
-  it('should have a dropdown for user info and "logout"', () => {
-    // target user dropdown, click it, check it opened
-    cy.get('[data-cy=user-dropdown]').click()
-    cy.get('[data-cy=user-options]')
-      .should('be.visible')
-    // target logout link, click it, check url
-    cy.get('[data-cy=logout-link]').click()
-    cy.url().should('eq', 'http://localhost:3000/login')
-  })
+  // it('should have a dropdown for user info and "logout"', () => {
+  //   // target user dropdown, click it, check it opened
+  //   cy.get('[data-cy=user-dropdown]').click()
+  //   cy.get('[data-cy=user-options]')
+  //     .should('be.visible')
+  //   // target logout link, click it, check url
+  //   cy.get('[data-cy=logout-link]').click()
+  //   cy.url().should('eq', 'http://localhost:3000/login')
+  // })
 
 })

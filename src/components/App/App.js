@@ -120,11 +120,6 @@ function App() {
             />
           )}
         />
-        <Route exact path='/'>
-          <Redirect to='/dashboard' />  
-          {/* ^^This is a quick fix, might want to
-          default web server to http://localhost:3000/dashboard if possible */}
-        </Route>
         {screenWidth > 1024 && <Redirect from='/community' to='/dashboard' />}
         <Route
           exact
@@ -158,7 +153,7 @@ function App() {
           )}
         />
         <Route exact path='/'>
-          <Redirect to='/dashboard' /> // This is a quick fix, might want to default web server to http://localhost:3000/dashboard if possible
+          <Redirect to='/dashboard' /> 
         </Route>
       </Switch>
     </Router>
