@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-const devEnv = 'http://861341e035fa.ngrok.io'
+const devEnv = 'http://43cb8b5b88af.ngrok.io'
 
 Cypress.Commands.add('setReadStubs', () => {
   cy.intercept(
@@ -58,4 +58,15 @@ Cypress.Commands.add('setUpdateStub', () => {
 
 Cypress.Commands.add('setDeleteStub', () => {
   cy.intercept('DELETE', `${devEnv}/api/v1/event/1`, {})
+})
+
+Cypress.Commands.add('setFriendshipStub', () => {
+  cy.intercept({
+    method: 'POST',
+    url: `${devEnv}/api/v1/friendship` 
+  })
+  cy.intercept({
+    method: 'DELETE', 
+    url: `${devEnv}/api/v1/friendship`
+  }, {})
 })
