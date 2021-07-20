@@ -37,15 +37,15 @@ function App() {
           name: data.data.attributes.followee.name
         }
       ]))
-      .catch(error => console.log('post error', error))   
+      // .catch(error => console.log('post error', error))   
   }
   
   const removeFriend = (unFriend) => {
     deleteFriendship(parseInt(hostPlayer.id), parseInt(unFriend.id))
       .then(data => {
-        setFriends([...friends.filter((f) => f.id !== parseInt(unFriend.id))])
+        setFriends([...friends.filter((f) => parseInt(f.id) !== parseInt(unFriend.id))])
       })
-      .catch(error => console.log('delete error', error))   
+      // .catch(error => console.log('delete error', error))   
   }
     
 
