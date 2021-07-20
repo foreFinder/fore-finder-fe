@@ -14,7 +14,7 @@ const endpoints = {
 }
 
 export const getAllPlayers = () => {
-  return fetch(endpoints.playersDev)
+  return fetch(endpoints.playersProd)
     .then(resp => {
       if (!resp.ok) {
         throw new Error("Can't fetch any players, please try again!")
@@ -25,7 +25,7 @@ export const getAllPlayers = () => {
 }
 
 export const getAllCourses = () => {
-  return fetch(endpoints.coursesDev)
+  return fetch(endpoints.coursesProd)
     .then(resp => {
       if (!resp.ok) {
         throw new Error("Can't fetch any courses, please try again!")
@@ -36,7 +36,7 @@ export const getAllCourses = () => {
 }
 
 export const getAllEvents = (playerId) => {
-  return fetch(`${endpoints.playersDev}/${playerId}/events`)
+  return fetch(`${endpoints.playersProd}/${playerId}/events`)
     .then(resp => {
       if (!resp.ok) {
         throw new Error('Can\'t fetch any events, please try again!')
@@ -50,7 +50,7 @@ export const postEvent = (courseId, date, teeTime, openSpots, numHoles, isPrivat
   if (!courseId || !teeTime) {
     return
   }
-  return fetch(`${devEnv}api/v1/event`, {
+  return fetch(`https://fore-finder-be.herokuapp.com/api/v1/event`, {
     method: 'POST', 
     body: JSON.stringify({
       course_id: courseId,
@@ -74,7 +74,7 @@ export const postEvent = (courseId, date, teeTime, openSpots, numHoles, isPrivat
 }
 
 export const postInviteAction = (playerId, eventId, inviteStatus) => {
-  return fetch(endpoints.playerEventDev, {
+  return fetch(endpoints.playerEventProd, {
     method: 'PATCH',
     body: JSON.stringify({
       player_id: playerId,
@@ -87,14 +87,14 @@ export const postInviteAction = (playerId, eventId, inviteStatus) => {
 }
 
 export const deleteEvent = (eventId, playerId) => {
-  return fetch(`${endpoints.singleEventDev}/${eventId}`, {
+  return fetch(`${endpoints.singleEventProd}/${eventId}`, {
     method: 'DELETE'
   })
   .then(() => getAllEvents(playerId))
 }
 
 export const postFriendship = (followerId, followeeId) => {
-  return fetch(`${endpoints.friendshipDev}`, {
+  return fetch(`${endpoints.friendshipProd}`, {
     method: 'POST', 
     body: JSON.stringify({
       follower_id: followerId,
@@ -112,7 +112,7 @@ export const postFriendship = (followerId, followeeId) => {
 }
 
 export const deleteFriendship = (followerId, followeeId) => {
-  return fetch(`${endpoints.friendshipDev}`, {
+  return fetch(`${endpoints.friendshipProd}`, {
     method: 'DELETE',
     body: JSON.stringify({
       follower_id: followerId,
