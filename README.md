@@ -85,7 +85,7 @@ Lighthouse Report
 ### Project Progression
 Because this project was our first full-stack effort, planning was an important first step. We used a single GitHub [project board](https://github.com/orgs/foreFinder/projects/1) to add and maintain tasks for both the FE and BE so that we could easily determine what each team was currently working on. Along with building out all applicable user stories, the front-end also utilized a [Miro board](https://miro.com/app/board/o9J_l7sQVZc=/) to wireframe the initial design of the UI and model its components.
 
-Once the planning was complete, the the front-end was able to use the [JSON contract](https://miro.com/app/board/o9J_l7sQVZc=/) modeled by the back-end to build out initial functionality using mock data assuming that the data structure would not change. Once the endpoints were completed and the data we needed skulpted, we were able to link up the back and front-end fairly painless
+Once the planning was complete, the the front-end was able to use the [JSON contract](https://miro.com/app/board/o9J_l7sQVZc=/) modeled by the back-end to build out initial functionality using mock data assuming that the data structure would not change. Once the endpoints were completed and the data we needed skulpted, we were able to link up the back and front-end fairly painlessly.
 
 
 ### Reflections
