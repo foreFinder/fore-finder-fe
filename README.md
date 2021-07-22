@@ -1,8 +1,6 @@
 [![CircleCI](https://circleci.com/gh/foreFinder/fore-finder-fe/tree/main.svg?style=shield)](https://circleci.com/gh/foreFinder/fore-finder-fe/tree/main)
 
 # ForeFinder
-<!-- <img src='./docs/mobileNav.gif' alt='' width="400"> -->
-![GIF showing mobile app navigation](./docs/mobileNav.gif)
 
 
 ## Table of Contents
