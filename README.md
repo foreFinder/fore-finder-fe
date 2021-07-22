@@ -75,21 +75,27 @@ Lighthouse Report
 ![Lighthouse Report]()
 
 
-### Learning Goals
+## Learning Goals
 - Communicating as a full-stack team to ensure data flowed efficently and effectively from front to back
 - Learning, developing, and practicing a Git Rebase workflow
 - Configuring and utilizing CircleCI to ensure early and consistent deployment to production
 - Interfacing with PWA technologies to allow mobile installation and caching
 
 
-### Project Progression
+## Project Progression
+
 Because this project was our first full-stack effort, planning was an important first step. We used a single GitHub [project board](https://github.com/orgs/foreFinder/projects/1) to add and maintain tasks for both the FE and BE so that we could easily determine what each team was currently working on. Along with building out all applicable user stories, the front-end also utilized a [Miro board](https://miro.com/app/board/o9J_l7sQVZc=/) to wireframe the initial design of the UI and model its components.
 
 Once the planning was complete, the the front-end was able to use the [JSON contract](https://miro.com/app/board/o9J_l7sQVZc=/) modeled by the back-end to build out initial functionality using mock data assuming that the data structure would not change. Once the endpoints were completed and the data we needed skulpted, we were able to link up the back and front-end fairly painlessly.
 
+We continually were referring back to our project board and communicating with one another about progress which was very helpful as we needed to slim down our MVP due to time constraints.  One feature we hoped to have that was later cut out was a login page with authentication of the user.  As we continue to iterate on this project, that will be one feature that we hope to add.  
 
-### Reflections
+The last part of the project was to learn a new tech or framework to incorporate into the application.  The front-end team decided to make ForeFinder a progressive web app because we recognized that most users would be using the app from a mobile device.  Seeing as none of the FE team members had experience setting up a PWA, we ran into some struggles with the documentation surrounding service workers and what needed to be included in the manifest.  Luckily, through our continued learned we discovered the framework Workbox which helped clear up the confusion we were facing with writing our own service worker and manifest files. 
 
+
+## Reflections
+
+All in all, the front-end team was very satisfied with how the project turned out.  We all worked well together as a team, communicated effectively and learned a new feature with how to make an application a functioning PWA.  Seeing as this was the first time that we worked with a back-end team to build a full-stack application, it was very beneficial to learn how to communicate with a back-end team about the FE needs and how we were going to be using/manipulating the data that was being returned from the BE team. Lastly, while it was a bit of a steep learning curve, we all found value with using an interactive git rebase workflow for this project.  
 
 ## Authors
 <table>
