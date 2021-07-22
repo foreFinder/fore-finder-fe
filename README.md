@@ -72,7 +72,7 @@ The user will also be able to see their friends list and all members of the Fore
 
 Lighthouse Report 
 
-![Lighthouse Report]()
+![Lighthouse Report](./docs/lighthouse.png)
 
 
 ## Learning Goals
