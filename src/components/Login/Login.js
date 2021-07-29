@@ -6,12 +6,17 @@ function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  handleLogin = () => {
+    return
+  }
+
   return (
     <form>
       <label for='email'>Email:</label>
       <input 
         type='email' 
         id='email'
+        name='email'
         value={email} 
         onChange={e => setEmail(e.target.value)}
         required
@@ -20,10 +25,12 @@ function Login() {
       <input
         type='password'
         id='password'
+        name='password'
         value={password}
         onChange={e => setPassword(e.target.value)}
         required
       />
+      <button onClick={() => handleLogin}>Login</button>
     </form>
   )
 }

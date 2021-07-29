@@ -2,6 +2,7 @@ import './App.css';
 import Header from '../Header/Header';
 import Dashboard from '../Dashboard/Dashboard';
 import PlayerList from '../PlayerList/PlayerList';
+import Login from '../Login/Login'
 import React, { useState, useEffect, useRef } from 'react';
 import {
   BrowserRouter as Router,
@@ -109,6 +110,10 @@ function App() {
       <Header screenWidth={screenWidth} />
       <Switch>
         <Route
+          exact path='/'
+          render={() => <Login /> }
+        />
+        <Route
           exact
           path='/dashboard'
           render={() => (
@@ -158,9 +163,9 @@ function App() {
             />
           )}
         />
-        <Route exact path='/'>
+        {/* <Route exact path='/'>
           <Redirect to='/dashboard' />
-        </Route>
+        </Route> */}
         <Redirect to='/dashboard' />
       </Switch>
     </Router>
