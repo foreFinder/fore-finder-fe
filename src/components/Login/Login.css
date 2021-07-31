@@ -1,3 +1,18 @@
-label {
+.components-container {
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-container {
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
   
+}
+
+.logLab {
+  color: black; 
+  opacity: 100;
 }

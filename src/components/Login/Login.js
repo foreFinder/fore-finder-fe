@@ -29,7 +29,7 @@ function Login() {
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
-      <label for='email'>Email:</label>
+      <label for='email' className='logLab'>Email:</label>
       <input 
         type='email' 
         id='email'
@@ -38,7 +38,7 @@ function Login() {
         onChange={e => setEmail(e.target.value)}
         required
       />
-      <label for='password'>Password:</label>
+      <label for='password' className='logLab'>Password:</label>
       <input
         type='password'
         id='password'
