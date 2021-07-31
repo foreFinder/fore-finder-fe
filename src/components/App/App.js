@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import Dashboard from '../Dashboard/Dashboard';
 import PlayerList from '../PlayerList/PlayerList';
 import Login from '../Login/Login'
+import CreateProfile from '../CreateProfile/CreateProfile'
 import React, { useState, useEffect, useRef } from 'react';
 import {
   BrowserRouter as Router,
@@ -112,6 +113,10 @@ function App() {
         <Route
           exact path='/'
           render={() => <Login /> }
+        />
+        <Route 
+          exact path='/create-profile'
+          render={() => <CreateProfile />}
         />
         <Route
           exact
