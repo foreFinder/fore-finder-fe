@@ -11,7 +11,7 @@ function Login() {
   }
 
   return (
-    <form>
+    <form onSubmit={(e) => e.preventDefault()}>
       <label for='email'>Email:</label>
       <input 
         type='email' 
@@ -31,6 +31,7 @@ function Login() {
         required
       />
       <button onClick={() => handleLogin}>Login</button>
+      <button onClick={}>Create Profile</button>
     </form>
   )
 }
