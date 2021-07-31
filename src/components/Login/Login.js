@@ -1,13 +1,30 @@
 import './Login.css'
-import {useState, useEffect} from 'react'
+import { useState } from 'react'
+import { Route, Redirect } from 'react-router-dom'
+import Dashboard from '../Dashboard/Dashboard'
+import CreateProfile from '../CreateProfile/CreateProfile'
 
 function Login() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  handleLogin = () => {
-    return
+  const  handleLogin = () => {
+    return (
+      <Route
+         exact path='/dashboard' 
+         render={() => <Dashboard />}
+      />
+    )
+  }
+
+  const handleCreateProfile = () => {
+    return(
+      <Route 
+        exact path='/create-profile'
+        render={() => <CreateProfile />}
+      />
+    )
   }
 
   return (
@@ -31,7 +48,7 @@ function Login() {
         required
       />
       <button onClick={() => handleLogin}>Login</button>
-      <button onClick={}>Create Profile</button>
+      <button onClick={() => handleCreateProfile}>Create Profile</button>
     </form>
   )
 }
