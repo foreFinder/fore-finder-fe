@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { postEvent } from '../../APICalls/APICalls';
 import PostResultMessage from './PostResultMessage';
 
-function EventForm({ courses, friends, hostId, refreshEvents }) {
+function EventForm({ courses, friends, hostId, refreshEvents, animateLabels }) {
   const today = new Date().toISOString().slice(0, 10);
   const tomorrow = new Date(new Date(today).getTime() + 86400000)
     .toISOString()
@@ -26,14 +26,6 @@ function EventForm({ courses, friends, hostId, refreshEvents }) {
     } else if (!e.target.checked) {
       setSelectedFriends(selectedFriends.filter((f) => f !== e.target.value));
     }
-  };
-
-  const animateLabels = (rate) => {
-    const allLabels = Array.from(document.querySelectorAll('label'));
-    const labels = allLabels.filter((l) => !l.classList.contains('sub-label'));
-    labels.forEach((l, i) => {
-      setTimeout(() => l.classList.add('fade-in'), i * rate);
-    });
   };
 
   useEffect(() => {
