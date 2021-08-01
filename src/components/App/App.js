@@ -84,6 +84,14 @@ function App() {
 
   const handleResize = () => setScreenWidth(window.innerWidth);
 
+  const animateLabels = (rate) => {
+    const allLabels = Array.from(document.querySelectorAll('label'));
+    const labels = allLabels.filter((l) => !l.classList.contains('sub-label'));
+    labels.forEach((l, i) => {
+      setTimeout(() => l.classList.add('fade-in'), i * rate);
+    });
+  };
+
   useEffect(() => {
     getAllPlayers().then((players) => {
       setAllPlayers(
@@ -116,7 +124,9 @@ function App() {
         />
         <Route 
           exact path='/create-profile'
-          render={() => <CreateProfile />}
+          render={() => <CreateProfile 
+            animateLabels={animateLabels}
+          />}
         />
         <Route
           exact
@@ -165,6 +175,7 @@ function App() {
               friends={friends}
               hostId={hostPlayer.id}
               refreshEvents={refreshEvents}
+              animateLabels={animateLabels}
             />
           )}
         />
