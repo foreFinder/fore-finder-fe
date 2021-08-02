@@ -119,7 +119,7 @@ function App() {
       <Header screenWidth={screenWidth} />
       <Switch>
         <Route
-          exact path='/'
+          exact path='/login'
           render={() => <Login /> }
         />
         <Route 
@@ -182,7 +182,7 @@ function App() {
         {/* <Route exact path='/'>
           <Redirect to='/dashboard' />
         </Route> */}
-        <Redirect to='/dashboard' />
+        <Redirect to='/login' />
       </Switch>
     </Router>
   );

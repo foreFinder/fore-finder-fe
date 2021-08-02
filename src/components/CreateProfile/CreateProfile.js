@@ -8,6 +8,10 @@ function CreateProfile({ animateLabels }) {
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
 
+  const submitProfile = () => {
+
+  }
+
   useEffect(() => {
     animateLabels(80)
   }, [])
@@ -64,7 +68,7 @@ function CreateProfile({ animateLabels }) {
                 required
               />
             </label>
-            
+            <button onClick={submitProfile} className='form-submit'>Create Profile</button>
           </div>
         </div>
       </form>
