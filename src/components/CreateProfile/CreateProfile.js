@@ -1,10 +1,12 @@
 import './CreateProfile.css'
 import { useState, useEffect } from 'react'
+import { setCacheNameDetails } from 'workbox-core'
 
 function CreateProfile({ animateLabels }) {
   const [name, setName] = useState('')
   const [userName, setUserName] = useState('')
   const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
 
   useEffect(() => {
     animateLabels(80)
@@ -51,6 +53,18 @@ function CreateProfile({ animateLabels }) {
                 required
               />
             </label>
+            <label htmlFor='email'>
+              Email:
+              <input
+                type='email'
+                id='email'
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder='ex: john.doe@email.com'
+                required
+              />
+            </label>
+            
           </div>
         </div>
       </form>
