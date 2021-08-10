@@ -5,6 +5,7 @@ import { setCacheNameDetails } from 'workbox-core'
 function CreateProfile({ animateLabels }) {
   const [name, setName] = useState('')
   const [userName, setUserName] = useState('')
+  const [password, setPassword] = useState('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
 
@@ -42,6 +43,16 @@ function CreateProfile({ animateLabels }) {
                 id='userName'
                 value={userName}
                 onChange={e => setUserName(e.target.value)}
+                required
+              />
+            </label>
+            <label htmlFor='password'>
+              Username:
+              <input 
+                type='text'
+                id='password'
+                value={password}
+                onChange={e => setPassword(e.target.value)}
                 required
               />
             </label>

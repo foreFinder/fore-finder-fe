@@ -1,6 +1,6 @@
 import './Login.css'
 import { useState } from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import Dashboard from '../Dashboard/Dashboard'
 import CreateProfile from '../CreateProfile/CreateProfile'
 
@@ -59,8 +59,12 @@ function Login() {
             </label>
           </div>
         </div>
-        <button onClick={() => handleLogin} className='form-submit'>Login</button>
-        <button onClick={() => handleCreateProfile} className='form-submit'>Create Profile</button>
+        <div className='login-btn-container'>
+          <button onClick={() => handleLogin} className='form-submit'>Login</button>
+          <Link to='/create-profile'>
+            <button onClick={() => handleCreateProfile} className='form-submit'>Create Profile</button>
+          </Link>
+        </div>
       </form>
     </div>
   )
