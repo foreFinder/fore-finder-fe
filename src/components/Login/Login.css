@@ -16,3 +16,8 @@
   color: black; 
   opacity: 100;
 }
+
+.login-btn-container {
+  display: flex; 
+  justify-content: space-evenly; 
+}
