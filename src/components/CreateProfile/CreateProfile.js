@@ -47,7 +47,7 @@ function CreateProfile({ animateLabels }) {
               />
             </label>
             <label htmlFor='password'>
-              Username:
+              Password:
               <input 
                 type='text'
                 id='password'
@@ -79,7 +79,9 @@ function CreateProfile({ animateLabels }) {
                 required
               />
             </label>
-            <button onClick={submitProfile} className='form-submit'>Create Profile</button>
+            <div className='profile-btn-container'>
+              <button onClick={submitProfile} className='form-submit profile-btn'>Create Profile</button>
+            </div>
           </div>
         </div>
       </form>
