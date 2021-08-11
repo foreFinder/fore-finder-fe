@@ -14,6 +14,8 @@ function Login() {
   const client_secret = '2L5M20Rqua4Xi8PGsZOlEWI5'
 
   const  handleLogin = () => {
+    // validate inputs before route happens
+      // error handling for invalid login details
     return (
       <Route
          exact path='/dashboard' 
