@@ -13,7 +13,11 @@ function CreateProfile({ animateLabels }) {
 
   const submitProfile = () => {
     // Post to BE DB and redirect to homepage
-    }
+  }
+
+  const confirmSamePW = () => {
+    return password === passwordConfirm
+  }
 
   useEffect(() => {
     animateLabels(80)
