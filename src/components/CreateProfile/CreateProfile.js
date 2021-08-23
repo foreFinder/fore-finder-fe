@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react'
 import { setCacheNameDetails } from 'workbox-core'
 
 function CreateProfile({ animateLabels }) {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
+  const [name, setName] = useState('')
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
@@ -31,27 +30,15 @@ function CreateProfile({ animateLabels }) {
         </div>
         <div className='form-components-container'>
           <div className='form-components'>
-            <label htmlFor='firstName'>
+            <label htmlFor='name'>
               First Name:
               <input 
                 type='text'
-                id='firstName'
-                name='firstName'
-                value={firstName}
-                onChange={e => setFirstName(e.target.value)}
+                id='name'
+                name='name'
+                value={name}
+                onChange={e => setName(e.target.value)}
                 placeholder='ex: John'
-                required
-              />
-            </label>
-            <label htmlFor='lastName'>
-              Last Name:
-              <input 
-                type='text'
-                id='lastName'
-                name='lastName'
-                value={lastName}
-                onChange={e => setLastName(e.target.value)}
-                placeholder='ex: Doe'
                 required
               />
             </label>
