@@ -93,11 +93,12 @@ function App() {
   };
 
   useEffect(() => {
+    // future iterations will need to find player from login table and setHostPlayer from login information
     getAllPlayers().then((players) => {
       setAllPlayers(
         players.data.map((p) => ({ name: p.attributes.name, id: p.id }))
       );
-      setHostPlayer(players.data[0]);
+      setHostPlayer(players.data[1]);
     });
     getAllCourses().then((courses) => setCourses(courses.data));
   }, []);
