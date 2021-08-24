@@ -98,7 +98,7 @@ function App() {
       setAllPlayers(
         players.data.map((p) => ({ name: p.attributes.name, id: p.id }))
       );
-      setHostPlayer(players.data[1]);
+      setHostPlayer(players.data[0]);
     });
     getAllCourses().then((courses) => setCourses(courses.data));
   }, []);

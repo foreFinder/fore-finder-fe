@@ -2,7 +2,7 @@ describe('Header Navigation', () => {
   beforeEach('setup stubs and visit Dashboard', () => {
     cy.viewport(1920, 1080)
     cy.setReadStubs()
-    cy.visit('http://localhost:3000')
+    cy.visit('http://localhost:3000/dashboard')
   })
 
   it('should render the mobile menu accordingly', () => {
