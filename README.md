@@ -1,8 +1,6 @@
 [![CircleCI](https://circleci.com/gh/foreFinder/fore-finder-fe/tree/main.svg?style=shield)](https://circleci.com/gh/foreFinder/fore-finder-fe/tree/main)
 
 # ForeFinder
-<!-- <img src='./docs/mobileNav.gif' alt='' width="400"> -->
-![GIF showing mobile app navigation](./docs/mobileNav.gif)
 
 
 ## Table of Contents
@@ -18,7 +16,7 @@ Check out our ✨[Heroku Deployment](https://forefinder.herokuapp.com/dashboard)
 
 
 ## Overview
-ForeFinder is a mobile-focused web application that makes linking up with others for a round of golf easier. Coordination can sometimes be a difficult task when filling spots for a tee time, but ForeFinder provides the tools to make that task a hole in one. Add friends to your ForeFinder network to create a private tee time invitation, or send out an invite to the entire ForeFinder community to get your slots filled ASAP!
+ForeFinder is a mobile-focused web application that makes linking up with others for a round of golf easier. Coordination can sometimes be a difficult task when filling spots for a tee time, but ForeFinder provides the tools to make that task a hole in one. Add friends to your ForeFinder network to create a private tee time invitation, or send out an invite to the entire ForeFinder community to get your slots filled ASAP! With future iterations this app will also help courses in securing lost revenue from last minute cancellations by parties, which is a large loss for most courses currently. 
 
  - Developed in tandem with a team from the back-end program at [Turing School of Software & Design](https://turing.edu/) (view their repo [here](https://forefinder.herokuapp.com/dashboard))
  - Built using [React](https://reactjs.org/) + [React Router](reactrouter.com)
@@ -40,6 +38,7 @@ ForeFinder is a mobile-focused web application that makes linking up with others
 1. Visit the [deployed app](https://forefinder.herokuapp.com/dashboard) in a Chrome browser
 2. Open the Chrome controls (three dots in the top right) and select "Add to Homepage" (mobile) or "Install ForeFinder" (desktop)
 3. The ForeFinder app should now be accessible as an app on your phone's home screen or in your computer's "Chrome Apps" folder
+4. You do not need to create a login at this stage of development.  The app and almost all the features are accessible and operational while still in development! 
 
 ## Walkthrough
 
