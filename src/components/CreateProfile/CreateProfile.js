@@ -8,7 +8,7 @@ function CreateProfile({ animateLabels }) {
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
-  const [phone, setPhone] = useState(null)
+  const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
 
   const submitProfile = () => {
@@ -53,10 +53,9 @@ function CreateProfile({ animateLabels }) {
                 type='tel'
                 id='phone'
                 name='phone'
-                pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
                 placeholder='123-456-7890'
                 value={phone}
-                onChange={e => () => setPhone(e.target.value)}
+                onChange={e => setPhone(e.target.value)}
                 required
               />
             </label>
@@ -68,7 +67,7 @@ function CreateProfile({ animateLabels }) {
                 name='email'
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                placeholder='ex: john.doe@email.com'
+                placeholder='ex: john.doe@example.com'
                 required
               />
             </label>
@@ -87,7 +86,7 @@ function CreateProfile({ animateLabels }) {
             <label htmlFor='password'>
               Password:
               <input 
-                type='text'
+                type='password'
                 id='password'
                 name='password'
                 value={password}
@@ -101,7 +100,7 @@ function CreateProfile({ animateLabels }) {
             <label htmlFor='passwordConfirm'>
               Confirm Password:
               <input 
-                type='text'
+                type='password'
                 id='passwordConfirm'
                 name='passwordConfirm'
                 value={passwordConfirm}
