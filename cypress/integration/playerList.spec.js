@@ -3,7 +3,7 @@ describe('Player List', () => {
     cy.viewport(1920, 1080)
     cy.setReadStubs()
     cy.setFriendshipStub()
-    cy.visit('http://localhost:3000')
+    cy.visit('http://localhost:3000/dashboard')
   })
 
   it('should render as sidebar in desktop view', () => {
