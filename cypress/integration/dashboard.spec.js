@@ -1,7 +1,7 @@
 describe('When a user first accesses the Dashboard', () => {
   beforeEach('setup stubs and visit Dashboard', () => {
     cy.setReadStubs()
-    cy.visit('http://localhost:3000')
+    cy.visit('http://localhost:3000/dashboard')
   })
 
   it('should display their committed tee times', () => {
