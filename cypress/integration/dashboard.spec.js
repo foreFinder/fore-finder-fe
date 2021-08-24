@@ -53,7 +53,7 @@ describe('When a user first accesses the Dashboard', () => {
 describe('Invite type selector', () => {
   beforeEach('setup stubs and visit Dashboard', () => {
     cy.setReadStubs()
-    cy.visit('http://localhost:3000')
+    cy.visit('http://localhost:3000/dashboard')
   })
 
   it('should render only public events when Public is selected', () => {
@@ -93,7 +93,7 @@ describe('Invite actions', () => {
     cy.setUpdateStub()
     cy.setDeleteStub()
     
-    cy.visit('http://localhost:3000')
+    cy.visit('http://localhost:3000/dashboard')
   })
 
   describe('Accept button', () => {
