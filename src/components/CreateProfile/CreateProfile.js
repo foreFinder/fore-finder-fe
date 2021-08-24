@@ -8,13 +8,15 @@ function CreateProfile({ animateLabels }) {
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
-  const [phone, setPhone] = useState('')
+  const [phone, setPhone] = useState(null)
   const [email, setEmail] = useState('')
 
   const submitProfile = () => {
     // Post to BE DB and redirect to homepage
+    confirmSamePW ? 
     createNewProfile(name, phone, email, userName, password, passwordConfirm)
-      .then(resp => console.log(resp))
+      .then(resp => console.log(resp)) :
+    alert('Passwords do not match, please try again!')
   }
 
   const confirmSamePW = () => {
@@ -27,7 +29,7 @@ function CreateProfile({ animateLabels }) {
 
   return (
     <div className='form-container'>
-      <form>
+      <form onSubmit={(e) => e.preventDefault}>
         <div className='form-title'>
           <h2>Create a New Profile</h2>
         </div>
