@@ -1,5 +1,6 @@
 import './CreateProfile.css'
 import { useState, useEffect } from 'react'
+import { createNewProfile } from '../../APICalls/APICalls'
 import { setCacheNameDetails } from 'workbox-core'
 
 function CreateProfile({ animateLabels }) {
@@ -12,6 +13,8 @@ function CreateProfile({ animateLabels }) {
 
   const submitProfile = () => {
     // Post to BE DB and redirect to homepage
+    createNewProfile(name, phone, email, userName, password, passwordConfirm)
+      .then(resp => console.log(resp))
   }
 
   const confirmSamePW = () => {
