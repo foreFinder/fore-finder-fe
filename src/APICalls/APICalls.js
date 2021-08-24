@@ -11,6 +11,7 @@ const endpoints = {
   singleEventDev: `${devEnv}api/v1/event`,
   friendshipProd: 'https://fore-finder-be.herokuapp.com/api/v1/friendship',
   friendshipDev: `${devEnv}api/v1/friendship`
+  createProfileProd: 'https://fore-finder-be.herokuapp.com/api/v1/players'
 }
 
 export const getAllPlayers = () => {
