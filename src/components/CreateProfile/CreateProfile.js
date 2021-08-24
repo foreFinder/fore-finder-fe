@@ -92,7 +92,7 @@ function CreateProfile({ animateLabels }) {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 autoComplete='new-password'
-                pattern="[0-9a-fA-F]{8,}"
+                pattern="[0-9a-fA-F]{8}"
                 title='Password must be at least 8 characters and include at least 1 number and 1 uppercase letter'
                 required
               />

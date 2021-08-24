@@ -144,12 +144,14 @@ export const createNewProfile = (name, phone, email, userName, password, passwor
     headers: { 'Content-Type' : 'application/json' }
   })
   .then(resp => {
+    console.log(resp)
     if (resp.ok) {
       return resp
     } else {
-      throw new Error('Unabale to create new profile, please try again!')
+      throw new Error('Unable to create new profile, please try again!')
     }
   })
+  .catch(err => console.log(err))
 }
 
 // for post request, use ngrok while still in development
