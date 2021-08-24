@@ -151,7 +151,6 @@ export const createNewProfile = (name, phone, email, userName, password, passwor
       throw new Error('Unable to create new profile, please try again!')
     }
   })
-  .catch(err => console.log(err))
 }
 
 // for post request, use ngrok while still in development
