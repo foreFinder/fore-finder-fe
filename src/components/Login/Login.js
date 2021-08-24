@@ -10,9 +10,6 @@ function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const client_id = '82670248652-tn3p68stodh94frteuucrfali5vk51ik.apps.googleusercontent.com'
-  const client_secret = '2L5M20Rqua4Xi8PGsZOlEWI5'
-
   const  handleLogin = () => {
     // validate inputs before route happens
       // error handling for invalid login details
@@ -71,7 +68,7 @@ function Login() {
         </div>
         <div className='login-btn-container'>
           <GoogleLogin
-            clientId={client_id}
+            clientId={process.env.REACT_APP_GOOGLE_OAUTH_KEY}
             buttonText='Login with Google'
             onSuccess={responseGoogle}
             onFailure={responseGoogle}

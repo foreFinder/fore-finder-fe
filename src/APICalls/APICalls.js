@@ -148,7 +148,7 @@ export const createNewProfile = (name, phone, email, userName, password, passwor
     if (resp.ok) {
       return resp
     } else {
-      throw new Error('Unable to create new profile, please try again!')
+      // throw new Error('Unable to create new profile, please try again!')
     }
   })
 }
