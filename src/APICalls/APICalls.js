@@ -10,8 +10,8 @@ const endpoints = {
   singleEventProd: 'https://fore-finder-be.herokuapp.com/api/v1/event',
   singleEventDev: `${devEnv}api/v1/event`,
   friendshipProd: 'https://fore-finder-be.herokuapp.com/api/v1/friendship',
-  friendshipDev: `${devEnv}api/v1/friendship`
-  createProfileProd: 'https://fore-finder-be.herokuapp.com/api/v1/players'
+  friendshipDev: `${devEnv}api/v1/friendship`,
+  createProfileProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
 }
 
 export const getAllPlayers = () => {
@@ -126,6 +126,28 @@ export const deleteFriendship = (followerId, followeeId) => {
       return resp
     } else {
       throw new Error('Unable to update friendship, please try again!')
+    }
+  })
+}
+
+export const createNewProfile = (name, phone, email, userName, password, passwordConfir) => {
+  return fetch(`${endpoints.createProfileProd}`, {
+    method: 'POST', 
+    body: JSON.stringify({
+      name: name, 
+      phone: phone, 
+      email: email, 
+      username: userName, 
+      password: password, 
+      password_confirmation: passwordConfir
+    }),
+    headers: { 'Content-Type' : 'application/json' }
+  })
+  .then(resp => {
+    if (resp.ok) {
+      return resp
+    } else {
+      throw new Error('Unabale to create new profile, please try again!')
     }
   })
 }
