@@ -152,5 +152,3 @@ export const createNewProfile = (name, phone, email, userName, password, passwor
     }
   })
 }
-
-// for post request, use ngrok while still in development
