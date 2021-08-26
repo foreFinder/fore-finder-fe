@@ -69,6 +69,13 @@ function App() {
   const validateGoogleLogin = () => {
     // need to validate the user exists in the database
       // otherwise, needs to redirect to another page to complete the rest of login information needed (mainly phone and email)
+    // upon good validation, need to setHostPlayer, setEvents, setFriends
+  }
+
+  const validateLogin = () => {
+    // need to validate the user exists in the database
+      // otherwise, needs to redirect to another page to complete the rest of login information needed (mainly phone and email)
+    // upon good validation, need to setHostPlayer, setEvents, setFriends
   }
 
   const cancelCommitment = (event) => {
