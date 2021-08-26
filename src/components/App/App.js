@@ -66,6 +66,11 @@ function App() {
     );
   };
 
+  const validateGoogleLogin = () => {
+    // need to validate the user exists in the database
+      // otherwise, needs to redirect to another page to complete the rest of login information needed (mainly phone and email)
+  }
+
   const cancelCommitment = (event) => {
     if (event.attributes.host_id === parseInt(hostPlayer.id)) {
       deleteEvent(event.id, hostPlayer.id).then((events) =>
