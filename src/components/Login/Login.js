@@ -5,20 +5,13 @@ import Dashboard from '../Dashboard/Dashboard'
 import CreateProfile from '../CreateProfile/CreateProfile'
 import { GoogleLogin } from 'react-google-login' 
 
-function Login() {
+function Login({ validateLogin }) {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const  handleLogin = () => {
-    // validate inputs before route happens
-      // error handling for invalid login details
-    return (
-      <Route
-         exact path='/dashboard' 
-         render={() => <Dashboard />}
-      />
-    )
+  const  handleStandardLogin = () => {
+    
   }
 
   const handleCreateProfile = () => {
@@ -75,7 +68,7 @@ function Login() {
             cookiePolicy={'single_host_origin'}
             className='form-submit'
           />
-          <button onClick={() => handleLogin} className='form-submit'>Login</button>
+          <button onClick={() => validateLogin(email, password)} className='form-submit'>Login</button>
           <Link to='/create-profile'>
             <button onClick={() => handleCreateProfile} className='form-submit'>Create Profile</button>
           </Link>

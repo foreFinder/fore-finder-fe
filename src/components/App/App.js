@@ -20,6 +20,7 @@ import {
   deleteEvent,
   postFriendship,
   deleteFriendship,
+  validateStandardLogin,
 } from '../../APICalls/APICalls';
 
 function App() {
@@ -76,6 +77,16 @@ function App() {
     // need to validate the user exists in the database
       // otherwise, needs to redirect to another page to complete the rest of login information needed (mainly phone and email)
     // upon good validation, need to setHostPlayer, setEvents, setFriends
+    validateStandardLogin(email, password)
+      .then(data => {
+        console.log(data)
+      })
+    return (
+      <Route
+         exact path='/dashboard' 
+         render={() => <Dashboard />}
+      />
+    )
   }
 
   const cancelCommitment = (event) => {
@@ -133,7 +144,7 @@ function App() {
       <Switch>
         <Route
           exact path='/login'
-          render={() => <Login /> }
+          render={() => <Login validateLogin={validateLogin}/> }
         />
         <Route 
           exact path='/create-profile'
