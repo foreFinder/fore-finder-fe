@@ -12,6 +12,7 @@ const endpoints = {
   friendshipProd: 'https://fore-finder-be.herokuapp.com/api/v1/friendship',
   friendshipDev: `${devEnv}api/v1/friendship`,
   createProfileProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
+  validateLoginProd: 'https://fore-finder-be.herokuapp.com/api/v1/sessions'
 }
 
 export const getAllPlayers = () => {
@@ -140,6 +141,7 @@ export const createNewProfile = (name, phone, email, userName, password, passwor
       username: userName, 
       password: password, 
       password_confirmation: passwordConfir
+      // optional Google ID for new profiles with Google login
     }),
     headers: { 'Content-Type' : 'application/json' }
   })
@@ -149,6 +151,23 @@ export const createNewProfile = (name, phone, email, userName, password, passwor
       return resp
     } else {
       throw new Error('Unable to create new profile, please try again!')
+    }
+  })
+}
+
+export const validateStandardLogin = (email, password) => {
+  return fetch(`${endpoints.validateLoginProd}`, {
+    method: 'POST', 
+    body: JSON.stringify({
+      email: email, 
+      password: password
+    }), 
+    headers: { 'Content-Type' : 'application/json' }
+  })
+  .then(resp => {
+    console.log(resp)
+    if (resp.ok) {
+      return resp
     }
   })
 }

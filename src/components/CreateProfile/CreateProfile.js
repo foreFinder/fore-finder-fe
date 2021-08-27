@@ -36,14 +36,14 @@ function CreateProfile({ animateLabels }) {
         <div className='form-components-container'>
           <div className='form-components'>
             <label htmlFor='name'>
-              First Name:
+              Full Name:
               <input 
                 type='text'
                 id='name'
                 name='name'
                 value={name}
                 onChange={e => setName(e.target.value)}
-                placeholder='ex: John'
+                placeholder='ex: John Doe'
                 required
               />
             </label>
