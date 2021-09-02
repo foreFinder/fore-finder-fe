@@ -79,9 +79,7 @@ function App() {
     // upon good validation, need to setHostPlayer, setEvents, setFriends
     validateStandardLogin(email, password)
       .then(data => {
-        if(data.status === 200) {
-          console.log(data.body)
-        }
+        setHostPlayer(data.id)
       })
   }
 
@@ -117,7 +115,6 @@ function App() {
       setAllPlayers(
         players.data.map((p) => ({ name: p.attributes.name, id: p.id }))
       );
-      setHostPlayer(players.data[0]);
     });
     getAllCourses().then((courses) => setCourses(courses.data));
   }, []);
