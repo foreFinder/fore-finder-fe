@@ -10,10 +10,6 @@ function Login({ validateLogin }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const  handleStandardLogin = () => {
-    
-  }
-
   const handleCreateProfile = () => {
     return(
       <Route 

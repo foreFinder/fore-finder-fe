@@ -73,20 +73,16 @@ function App() {
     // upon good validation, need to setHostPlayer, setEvents, setFriends
   }
 
-  const validateLogin = () => {
+  const validateLogin = (email, password) => {
     // need to validate the user exists in the database
       // otherwise, needs to redirect to another page to complete the rest of login information needed (mainly phone and email)
     // upon good validation, need to setHostPlayer, setEvents, setFriends
     validateStandardLogin(email, password)
       .then(data => {
-        console.log(data)
+        if(data.status === 200) {
+          console.log(data.body)
+        }
       })
-    return (
-      <Route
-         exact path='/dashboard' 
-         render={() => <Dashboard />}
-      />
-    )
   }
 
   const cancelCommitment = (event) => {

@@ -1,4 +1,4 @@
-const devEnv = 'http://43cb8b5b88af.ngrok.io/'
+const devEnv = 'http://6968-97-118-230-57.ngrok.io/'
 
 const endpoints = {
   playersProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
@@ -12,7 +12,8 @@ const endpoints = {
   friendshipProd: 'https://fore-finder-be.herokuapp.com/api/v1/friendship',
   friendshipDev: `${devEnv}api/v1/friendship`,
   createProfileProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
-  validateLoginProd: 'https://fore-finder-be.herokuapp.com/api/v1/sessions'
+  validateLoginProd: 'https://fore-finder-be.herokuapp.com/api/v1/sessions',
+  validateLoginDev: `${devEnv}api/v1/sessions`
 }
 
 export const getAllPlayers = () => {
@@ -148,7 +149,7 @@ export const createNewProfile = (name, phone, email, userName, password, passwor
   .then(resp => {
     console.log(resp)
     if (resp.ok) {
-      return resp
+      return resp.json()
     } else {
       throw new Error('Unable to create new profile, please try again!')
     }
@@ -165,9 +166,9 @@ export const validateStandardLogin = (email, password) => {
     headers: { 'Content-Type' : 'application/json' }
   })
   .then(resp => {
-    console.log(resp)
     if (resp.ok) {
-      return resp
+      return resp.json()
     }
   })
+
 }
