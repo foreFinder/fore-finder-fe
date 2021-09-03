@@ -33,7 +33,7 @@ function App() {
   const makeFriendList = useRef(() => {});
 
   const addFriend = (friend) => {
-    postFriendship(parseInt(hostPlayer.id), friend.id).then((data) =>
+    postFriendship(hostPlayer, friend.id).then((data) =>
       setFriends([
         ...friends,
         {
