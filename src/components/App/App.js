@@ -45,7 +45,7 @@ function App() {
   };
 
   const removeFriend = (unFriend) => {
-    deleteFriendship(parseInt(hostPlayer.id), parseInt(unFriend.id)).then(
+    deleteFriendship(hostPlayer, parseInt(unFriend.id)).then(
       (data) => {
         setFriends([
           ...friends.filter((f) => parseInt(f.id) !== parseInt(unFriend.id)),
@@ -62,7 +62,7 @@ function App() {
   };
 
   const updateInvite = (eventId, status) => {
-    postInviteAction(hostPlayer.id, eventId, status).then((events) =>
+    postInviteAction(hostPlayer, eventId, status).then((events) =>
       setEvents(events.data)
     );
   };
@@ -79,26 +79,26 @@ function App() {
     // upon good validation, need to setHostPlayer, setEvents, setFriends
     validateStandardLogin(email, password)
       .then(data => {
-        setHostPlayer(data.data.id)
+        setHostPlayer(parseInt(data.data.id))
         setFriends(data.data.attributes.friends)
         setEvents(data.data.attributes.events)
       })
   }
 
   const cancelCommitment = (event) => {
-    if (event.attributes.host_id === parseInt(hostPlayer.id)) {
-      deleteEvent(event.id, hostPlayer.id).then((events) =>
+    if (event.attributes.host_id === hostPlayer.id) {
+      deleteEvent(event.id, hostPlayer).then((events) =>
         setEvents(events.data)
       );
     } else {
-      postInviteAction(hostPlayer.id, event.id, 'declined').then((events) =>
+      postInviteAction(hostPlayer, event.id, 'declined').then((events) =>
         setEvents(events.data)
       );
     }
   };
 
   const refreshEvents = () => {
-    getAllEvents(hostPlayer.id).then((events) => setEvents(events.data));
+    getAllEvents(hostPlayer).then((events) => setEvents(events.data));
   };
 
   const handleResize = () => setScreenWidth(window.innerWidth);
@@ -125,7 +125,10 @@ function App() {
     setFriends(makeFriendList.current());
 
     if (hostPlayer) {
-      getAllEvents(hostPlayer).then((events) => setEvents(events.data));
+      getAllEvents(parseInt(hostPlayer)).then((events) => {
+        console.log(events)
+        setEvents(events.data)
+      });
     }
   }, [allPlayers, hostPlayer]);
 
@@ -172,7 +175,7 @@ function App() {
           render={() => (
             <PlayerList
               screenWidth={screenWidth}
-              userId={parseInt(hostPlayer.id)}
+              userId={hostPlayer}
               players={allPlayers}
               friends={friends}
               handleFriends={{ add: addFriend, remove: removeFriend }}
@@ -192,7 +195,7 @@ function App() {
             <EventForm
               courses={courses}
               friends={friends}
-              hostId={hostPlayer.id}
+              hostId={hostPlayer}
               refreshEvents={refreshEvents}
               animateLabels={animateLabels}
             />
