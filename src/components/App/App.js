@@ -80,6 +80,7 @@ function App() {
     validateStandardLogin(email, password)
       .then(data => {
         setHostPlayer(data.id)
+        setFriends(data.attributes.friends)
       })
   }
 
