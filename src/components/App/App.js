@@ -81,6 +81,7 @@ function App() {
       .then(data => {
         setHostPlayer(data.id)
         setFriends(data.attributes.friends)
+        setEvents(data.attributes.events)
       })
   }
 
