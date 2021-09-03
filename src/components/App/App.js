@@ -79,10 +79,9 @@ function App() {
     // upon good validation, need to setHostPlayer, setEvents, setFriends
     validateStandardLogin(email, password)
       .then(data => {
-        console.log(data)
-        setHostPlayer(data.id)
-        // setFriends(data.attributes.friends)
-        // setEvents(data.attributes.events)
+        setHostPlayer(data.data.id)
+        setFriends(data.data.attributes.friends)
+        setEvents(data.data.attributes.events)
       })
   }
 
@@ -126,7 +125,7 @@ function App() {
     setFriends(makeFriendList.current());
 
     if (hostPlayer) {
-      getAllEvents(hostPlayer.id).then((events) => setEvents(events.data));
+      getAllEvents(hostPlayer).then((events) => setEvents(events.data));
     }
   }, [allPlayers, hostPlayer]);
 
@@ -154,7 +153,7 @@ function App() {
           render={() => (
             <Dashboard
               events={events}
-              currentUserId={parseInt(hostPlayer.id)}
+              currentUserId={hostPlayer}
               screenWidth={screenWidth}
               handleInviteAction={{
                 update: updateInvite,
