@@ -79,9 +79,10 @@ function App() {
     // upon good validation, need to setHostPlayer, setEvents, setFriends
     validateStandardLogin(email, password)
       .then(data => {
+        console.log(data)
         setHostPlayer(data.id)
-        setFriends(data.attributes.friends)
-        setEvents(data.attributes.events)
+        // setFriends(data.attributes.friends)
+        // setEvents(data.attributes.events)
       })
   }
 
