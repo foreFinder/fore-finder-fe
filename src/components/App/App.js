@@ -10,6 +10,7 @@ import {
   Switch,
   Route,
   Redirect,
+  Link,
 } from 'react-router-dom';
 import EventForm from '../EventForm/EventForm';
 import {
@@ -20,6 +21,7 @@ import {
   deleteEvent,
   postFriendship,
   deleteFriendship,
+  validateStandardLogin,
 } from '../../APICalls/APICalls';
 
 function App() {
@@ -32,7 +34,7 @@ function App() {
   const makeFriendList = useRef(() => {});
 
   const addFriend = (friend) => {
-    postFriendship(parseInt(hostPlayer.id), friend.id).then((data) =>
+    postFriendship(hostPlayer, friend.id).then((data) =>
       setFriends([
         ...friends,
         {
@@ -44,7 +46,7 @@ function App() {
   };
 
   const removeFriend = (unFriend) => {
-    deleteFriendship(parseInt(hostPlayer.id), parseInt(unFriend.id)).then(
+    deleteFriendship(hostPlayer, parseInt(unFriend.id)).then(
       (data) => {
         setFriends([
           ...friends.filter((f) => parseInt(f.id) !== parseInt(unFriend.id)),
@@ -61,25 +63,54 @@ function App() {
   };
 
   const updateInvite = (eventId, status) => {
-    postInviteAction(hostPlayer.id, eventId, status).then((events) =>
+    postInviteAction(hostPlayer, eventId, status).then((events) =>
       setEvents(events.data)
     );
   };
 
+  const validateGoogleLogin = () => {
+    // need to validate the user exists in the database
+      // otherwise, needs to redirect to another page to complete the rest of login information needed (mainly phone and email)
+    // upon good validation, need to setHostPlayer, setEvents, setFriends
+  }
+
+  const validateLogin = (email, password) => {
+    // need to validate the user exists in the database
+      // otherwise, needs to redirect to another page to complete the rest of login information needed (mainly phone and email)
+    // upon good validation, need to setHostPlayer, setEvents, setFriends
+      validateStandardLogin(email, password)
+        .then(data => {
+          setHostPlayer(parseInt(data.data.id))
+          setFriends(data.data.attributes.friends)
+          setEvents(data.data.attributes.events)
+        })
+  }
+
+  useEffect(() => {
+    if (hostPlayer && friends && events) {
+      return(
+        <Route 
+          exact path='/dashboard'
+          render={() => <Dashboard />}
+        />
+      )
+    }
+  }, [hostPlayer, friends, events])
+
   const cancelCommitment = (event) => {
-    if (event.attributes.host_id === parseInt(hostPlayer.id)) {
-      deleteEvent(event.id, hostPlayer.id).then((events) =>
+    if (event.attributes.host_id === hostPlayer.id) {
+      deleteEvent(event.id, hostPlayer).then((events) =>
         setEvents(events.data)
       );
     } else {
-      postInviteAction(hostPlayer.id, event.id, 'declined').then((events) =>
+      postInviteAction(hostPlayer, event.id, 'declined').then((events) =>
         setEvents(events.data)
       );
     }
   };
 
   const refreshEvents = () => {
-    getAllEvents(hostPlayer.id).then((events) => setEvents(events.data));
+    getAllEvents(hostPlayer).then((events) => setEvents(events.data));
   };
 
   const handleResize = () => setScreenWidth(window.innerWidth);
@@ -98,7 +129,6 @@ function App() {
       setAllPlayers(
         players.data.map((p) => ({ name: p.attributes.name, id: p.id }))
       );
-      setHostPlayer(players.data[0]);
     });
     getAllCourses().then((courses) => setCourses(courses.data));
   }, []);
@@ -107,7 +137,10 @@ function App() {
     setFriends(makeFriendList.current());
 
     if (hostPlayer) {
-      getAllEvents(hostPlayer.id).then((events) => setEvents(events.data));
+      getAllEvents(parseInt(hostPlayer)).then((events) => {
+        console.log(events)
+        setEvents(events.data)
+      });
     }
   }, [allPlayers, hostPlayer]);
 
@@ -121,7 +154,7 @@ function App() {
       <Switch>
         <Route
           exact path='/login'
-          render={() => <Login /> }
+          render={() => <Login validateLogin={validateLogin}/> }
         />
         <Route 
           exact path='/create-profile'
@@ -135,7 +168,7 @@ function App() {
           render={() => (
             <Dashboard
               events={events}
-              currentUserId={parseInt(hostPlayer.id)}
+              currentUserId={hostPlayer}
               screenWidth={screenWidth}
               handleInviteAction={{
                 update: updateInvite,
@@ -154,7 +187,7 @@ function App() {
           render={() => (
             <PlayerList
               screenWidth={screenWidth}
-              userId={parseInt(hostPlayer.id)}
+              userId={hostPlayer}
               players={allPlayers}
               friends={friends}
               handleFriends={{ add: addFriend, remove: removeFriend }}
@@ -174,7 +207,7 @@ function App() {
             <EventForm
               courses={courses}
               friends={friends}
-              hostId={hostPlayer.id}
+              hostId={hostPlayer}
               refreshEvents={refreshEvents}
               animateLabels={animateLabels}
             />

@@ -3,6 +3,7 @@ import './PlayerList.css';
 import PlayerCard from '../PlayerCard/PlayerCard';
 
 const PlayerList = ({ screenWidth, players, friends, handleFriends, userId }) => {
+  
   const [playerType, setPlayerType] = useState('friends');
 
   const mapPlayers = (type) => {
