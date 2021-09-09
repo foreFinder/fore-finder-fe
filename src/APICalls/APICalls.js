@@ -167,9 +167,7 @@ export const validateStandardLogin = (email, password) => {
   })
   .then(resp => {
     if (resp.ok) {
-      console.log(resp)
       return resp.json()
     }
   })
-
 }

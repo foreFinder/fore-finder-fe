@@ -10,6 +10,7 @@ import {
   Switch,
   Route,
   Redirect,
+  Link,
 } from 'react-router-dom';
 import EventForm from '../EventForm/EventForm';
 import {
@@ -77,13 +78,21 @@ function App() {
     // need to validate the user exists in the database
       // otherwise, needs to redirect to another page to complete the rest of login information needed (mainly phone and email)
     // upon good validation, need to setHostPlayer, setEvents, setFriends
-    validateStandardLogin(email, password)
-      .then(data => {
-        setHostPlayer(parseInt(data.data.id))
-        setFriends(data.data.attributes.friends)
-        setEvents(data.data.attributes.events)
-      })
+      validateStandardLogin(email, password)
+        .then(data => {
+          setHostPlayer(parseInt(data.data.id))
+          setFriends(data.data.attributes.friends)
+          setEvents(data.data.attributes.events)
+        })
   }
+
+  useEffect(() => {
+    if (hostPlayer) {
+      return (
+        <Redirect from='/login' to='/dashboard' />
+      )
+    }
+  }, [hostPlayer])
 
   const cancelCommitment = (event) => {
     if (event.attributes.host_id === hostPlayer.id) {
