@@ -87,12 +87,15 @@ function App() {
   }
 
   useEffect(() => {
-    if (hostPlayer) {
-      return (
-        <Redirect from='/login' to='/dashboard' />
+    if (hostPlayer && friends && events) {
+      return(
+        <Route 
+          exact path='/dashboard'
+          render={() => <Dashboard />}
+        />
       )
     }
-  }, [hostPlayer])
+  }, [hostPlayer, friends, events])
 
   const cancelCommitment = (event) => {
     if (event.attributes.host_id === hostPlayer.id) {
