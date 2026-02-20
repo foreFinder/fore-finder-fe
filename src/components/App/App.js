@@ -7,10 +7,9 @@ import CreateProfile from '../CreateProfile/CreateProfile'
 import React, { useState, useEffect, useRef } from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
-  Redirect,
-  Link,
+  Navigate,
 } from 'react-router-dom';
 import EventForm from '../EventForm/EventForm';
 import {
@@ -67,12 +66,6 @@ function App() {
       setEvents(events.data)
     );
   };
-
-  const validateGoogleLogin = () => {
-    // need to validate the user exists in the database
-      // otherwise, needs to redirect to another page to complete the rest of login information needed (mainly phone and email)
-    // upon good validation, need to setHostPlayer, setEvents, setFriends
-  }
 
   const validateLogin = (email, password) => {
     // need to validate the user exists in the database
@@ -151,21 +144,18 @@ function App() {
   return (
     <Router>
       <Header screenWidth={screenWidth} />
-      <Switch>
+      <Routes>
         <Route
-          exact path='/login'
-          render={() => <Login validateLogin={validateLogin}/> }
-        />
-        <Route 
-          exact path='/create-profile'
-          render={() => <CreateProfile 
-            animateLabels={animateLabels}
-          />}
+          path='/login'
+          element={<Login validateLogin={validateLogin} />}
         />
         <Route
-          exact
+          path='/create-profile'
+          element={<CreateProfile animateLabels={animateLabels} />}
+        />
+        <Route
           path='/dashboard'
-          render={() => (
+          element={
             <Dashboard
               events={events}
               currentUserId={hostPlayer}
@@ -178,32 +168,27 @@ function App() {
               friends={friends}
               handleFriends={{ add: addFriend, remove: removeFriend }}
             />
-          )}
+          }
         />
-        {screenWidth > 1024 && <Redirect from='/community' to='/dashboard' />}
         <Route
-          exact
           path='/community'
-          render={() => (
-            <PlayerList
-              screenWidth={screenWidth}
-              userId={hostPlayer}
-              players={allPlayers}
-              friends={friends}
-              handleFriends={{ add: addFriend, remove: removeFriend }}
-            />
-          )}
-        />
-        {screenWidth > 480 && <Redirect from='/community' to='/dashboard' />}
-        <Route
-          exact
-          path='/community'
-          render={() => <PlayerList screenWidth={screenWidth} />}
+          element={
+            screenWidth > 480 ? (
+              <Navigate to='/dashboard' />
+            ) : (
+              <PlayerList
+                screenWidth={screenWidth}
+                userId={hostPlayer}
+                players={allPlayers}
+                friends={friends}
+                handleFriends={{ add: addFriend, remove: removeFriend }}
+              />
+            )
+          }
         />
         <Route
-          exact
           path='/event-form'
-          render={() => (
+          element={
             <EventForm
               courses={courses}
               friends={friends}
@@ -211,13 +196,10 @@ function App() {
               refreshEvents={refreshEvents}
               animateLabels={animateLabels}
             />
-          )}
+          }
         />
-        {/* <Route exact path='/'>
-          <Redirect to='/dashboard' />
-        </Route> */}
-        <Redirect to='/login' />
-      </Switch>
+        <Route path='*' element={<Navigate to='/login' />} />
+      </Routes>
     </Router>
   );
 }
