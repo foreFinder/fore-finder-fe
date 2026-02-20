@@ -1,10 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { Paper, Title, Stack, Text, Anchor } from '@mantine/core';
+import { Link } from 'react-router-dom';
 
 import TeeTime from '../TeeTime/TeeTime';
 import InviteTypeSelect from './InviteTypeSelect/InviteTypeSelect';
-import { Link } from 'react-router-dom';
-
-import './TeeTimeContainer.css';
 
 const TeeTimeContainer = ({
   title,
@@ -30,17 +29,17 @@ const TeeTimeContainer = ({
 
   const displayNoInviteMessage = () => {
     return (
-      <p className='no-invites-card hidden'>
+      <Text className='no-invites-card' c='dimmed' ta='center' py='xl'>
         There are currently no tee time invitations from{' '}
         {invitesToDisplay === 'private'
           ? 'your friends'
           : 'the ForeFinder community'}
         . Would you like to{' '}
-        <Link className='no-invites-link' to='/event-form'>
+        <Anchor className='no-invites-link' component={Link} to='/event-form' fw={700} c='green.6'>
           create an event
-        </Link>
+        </Anchor>
         ?
-      </p>
+      </Text>
     );
   };
 
@@ -57,10 +56,6 @@ const TeeTimeContainer = ({
     });
   };
 
-  const revealNoInviteMessage = (message) => {
-    setTimeout(() => message.classList.remove('hidden'), 500);
-  };
-
   useEffect(() => {
     if (getEventType.current() === 'available') {
       setPublicInvites(events.filter((event) => !event.attributes.private));
@@ -70,45 +65,44 @@ const TeeTimeContainer = ({
     }
   }, [events]);
 
-  useEffect(() => {
-    const noInviteMessages = Array.from(
-      document.querySelectorAll('.no-invites-card')
-    );
-    if (noInviteMessages) {
-      noInviteMessages.forEach((m) => revealNoInviteMessage(m));
-    }
-  }, [publicInvites, privateInvites, invitesToDisplay]);
-
   return (
-    <div className='tee-time-container'>
-      <div className='container-title'>
-        <h2>{title}</h2>
+    <Paper className='tee-time-container' shadow='sm' style={{ maxHeight: '80vh', minHeight: '80vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ background: 'rgb(221, 218, 218)', padding: '1rem', textAlign: 'center', position: 'sticky', top: 0, borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
+        <Title order={3} fw={600} size='1.25rem'>
+          {title}
+        </Title>
       </div>
+
       {title === 'Available Tee Times' && windowWidth < 768 && (
-        <InviteTypeSelect handleClick={setInvitesToDisplay} />
+        <div style={{ padding: '0.75rem' }}>
+          <InviteTypeSelect handleClick={setInvitesToDisplay} />
+        </div>
       )}
-      <div className='tee-times'>
+
+      <Stack gap='xs' p='md' style={{ overflowY: 'auto', flex: 1 }}>
         {title === 'Committed Tee Times' && getTeeTimes(committedTeeTimes)}
         {invitesToDisplay === 'private'
           ? getTeeTimes(privateInvites)
           : getTeeTimes(publicInvites)}
-        {invitesToDisplay === '' &&
-          !events.length && 
-          <p className='no-invites-card hidden'>You are not currently committed to any tee times. Hit accept on a tee time invitation to join.</p>
-        }  
+        {invitesToDisplay === '' && !events.length && (
+          <Text c='dimmed' ta='center' py='xl'>
+            You are not currently committed to any tee times. Hit accept on a tee time invitation to join.
+          </Text>
+        )}
         {invitesToDisplay === 'private' &&
           !privateInvites.length &&
           displayNoInviteMessage()}
         {invitesToDisplay === 'public' &&
           !publicInvites.length &&
           displayNoInviteMessage()}
-      </div>
+      </Stack>
+
       {title === 'Available Tee Times' && windowWidth >= 768 && (
-        <div className='type-select-con'>
+        <div style={{ background: 'rgb(221, 218, 218)', padding: '1rem', display: 'flex', justifyContent: 'center', borderBottomLeftRadius: 16, borderBottomRightRadius: 16, position: 'sticky', bottom: 0 }}>
           <InviteTypeSelect handleClick={setInvitesToDisplay} />
         </div>
       )}
-    </div>
+    </Paper>
   );
 };
 

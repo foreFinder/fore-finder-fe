@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
+import { SegmentedControl, SimpleGrid, Group } from '@mantine/core';
 import PlayerList from '../PlayerList/PlayerList';
-
 import TeeTimeContainer from '../TeeTimeContainer/TeeTimeContainer';
-import './Dashboard.css';
 
 const Dashboard = ({
   events,
@@ -48,7 +47,7 @@ const Dashboard = ({
   }, [events, getAvailable, getCommitted]);
 
   return (
-    <div className='dashboard'>
+    <div className='dashboard' style={{ display: 'flex', flexDirection: screenWidth < 768 ? 'column' : 'row', width: '100%' }}>
       {screenWidth >= 1025 && (
         <PlayerList
           userId={currentUserId}
@@ -58,34 +57,22 @@ const Dashboard = ({
           handleFriends={handleFriends}
         />
       )}
-      <span className='event-type-select'>
-        <button
-          className={
-            teeTimeType === 'committed'
-              ? 'event-type-btn'
-              : 'event-type-btn unselected'
-          }
-          onClick={() => {
-            if (teeTimeType === 'available') setTeeTimeType('committed');
-          }}
-        >
-          Committed
-        </button>
-        <button
-          className={
-            teeTimeType === 'available'
-              ? 'event-type-btn'
-              : 'event-type-btn unselected'
-          }
-          onClick={() => {
-            if (teeTimeType === 'committed') setTeeTimeType('available');
-          }}
-        >
-          Available
-        </button>
-      </span>
+
+      {screenWidth < 768 && (
+        <Group justify='flex-end' pr='md' mb='md' mt='xl'>
+          <SegmentedControl
+            value={teeTimeType}
+            onChange={setTeeTimeType}
+            data={[
+              { label: 'Committed', value: 'committed' },
+              { label: 'Available', value: 'available' },
+            ]}
+          />
+        </Group>
+      )}
+
       {screenWidth >= 768 && (
-        <div className='tt-containers'>
+        <SimpleGrid cols={2} spacing='md' style={{ width: '100%', maxWidth: '73%', margin: '3em auto', padding: '0 20px' }}>
           <TeeTimeContainer
             title='Committed Tee Times'
             events={committedTeeTimes}
@@ -98,8 +85,9 @@ const Dashboard = ({
             windowWidth={screenWidth}
             handleInviteAction={handleInviteAction}
           />
-        </div>
+        </SimpleGrid>
       )}
+
       {teeTimeType === 'committed' && screenWidth < 768 && (
         <TeeTimeContainer
           title='Committed Tee Times'

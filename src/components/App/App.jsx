@@ -1,9 +1,8 @@
-import './App.css';
 import Header from '../Header/Header';
 import Dashboard from '../Dashboard/Dashboard';
 import PlayerList from '../PlayerList/PlayerList';
-import Login from '../Login/Login'
-import CreateProfile from '../CreateProfile/CreateProfile'
+import Login from '../Login/Login';
+import CreateProfile from '../CreateProfile/CreateProfile';
 import React, { useState, useEffect, useRef } from 'react';
 import {
   BrowserRouter as Router,
@@ -68,21 +67,18 @@ function App() {
   };
 
   const validateLogin = (email, password) => {
-    // need to validate the user exists in the database
-      // otherwise, needs to redirect to another page to complete the rest of login information needed (mainly phone and email)
-    // upon good validation, need to setHostPlayer, setEvents, setFriends
-      validateStandardLogin(email, password)
-        .then(data => {
-          setHostPlayer(parseInt(data.data.id))
-          setFriends(data.data.attributes.friends)
-          setEvents(data.data.attributes.events)
-        })
+    validateStandardLogin(email, password)
+      .then(data => {
+        setHostPlayer(parseInt(data.data.id))
+        setFriends(data.data.attributes.friends)
+        setEvents(data.data.attributes.events)
+      })
   }
 
   useEffect(() => {
     if (hostPlayer && friends && events) {
       return(
-        <Route 
+        <Route
           exact path='/dashboard'
           render={() => <Dashboard />}
         />
@@ -108,16 +104,7 @@ function App() {
 
   const handleResize = () => setScreenWidth(window.innerWidth);
 
-  const animateLabels = (rate) => {
-    const allLabels = Array.from(document.querySelectorAll('label'));
-    const labels = allLabels.filter((l) => !l.classList.contains('sub-label'));
-    labels.forEach((l, i) => {
-      setTimeout(() => l.classList.add('fade-in'), i * rate);
-    });
-  };
-
   useEffect(() => {
-    // future iterations will need to find player from login table and setHostPlayer from login information
     getAllPlayers().then((players) => {
       setAllPlayers(
         players.data.map((p) => ({ name: p.attributes.name, id: p.id }))
@@ -151,7 +138,7 @@ function App() {
         />
         <Route
           path='/create-profile'
-          element={<CreateProfile animateLabels={animateLabels} />}
+          element={<CreateProfile />}
         />
         <Route
           path='/dashboard'
@@ -194,7 +181,6 @@ function App() {
               friends={friends}
               hostId={hostPlayer}
               refreshEvents={refreshEvents}
-              animateLabels={animateLabels}
             />
           }
         />
