@@ -1,45 +1,38 @@
-const devEnv = 'http://6968-97-118-230-57.ngrok.io/'
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001'
 
 const endpoints = {
-  playersProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
-  playersDev: `${devEnv}api/v1/players`,
-  coursesProd: 'https://fore-finder-be.herokuapp.com/api/v1/courses',
-  coursesDev: `${devEnv}api/v1/courses`,
-  playerEventProd: 'https://fore-finder-be.herokuapp.com/api/v1/player-event',
-  playerEventDev: `${devEnv}api/v1/player-event`,
-  singleEventProd: 'https://fore-finder-be.herokuapp.com/api/v1/event',
-  singleEventDev: `${devEnv}api/v1/event`,
-  friendshipProd: 'https://fore-finder-be.herokuapp.com/api/v1/friendship',
-  friendshipDev: `${devEnv}api/v1/friendship`,
-  createProfileProd: 'https://fore-finder-be.herokuapp.com/api/v1/players',
-  validateLoginProd: 'https://fore-finder-be.herokuapp.com/api/v1/sessions',
-  validateLoginDev: `${devEnv}api/v1/sessions`
+  players: `${API_BASE}/api/v1/players`,
+  courses: `${API_BASE}/api/v1/courses`,
+  playerEvent: `${API_BASE}/api/v1/player-event`,
+  singleEvent: `${API_BASE}/api/v1/event`,
+  friendship: `${API_BASE}/api/v1/friendship`,
+  sessions: `${API_BASE}/api/v1/sessions`,
 }
 
 export const getAllPlayers = () => {
-  return fetch(endpoints.playersProd)
+  return fetch(endpoints.players)
     .then(resp => {
       if (!resp.ok) {
         throw new Error("Can't fetch any players, please try again!")
       } else {
         return resp.json()
-      } 
+      }
     })
 }
 
 export const getAllCourses = () => {
-  return fetch(endpoints.coursesProd)
+  return fetch(endpoints.courses)
     .then(resp => {
       if (!resp.ok) {
         throw new Error("Can't fetch any courses, please try again!")
       } else {
         return resp.json()
-      } 
+      }
     })
 }
 
 export const getAllEvents = (playerId) => {
-  return fetch(`${endpoints.playersProd}/${playerId}/events`)
+  return fetch(`${endpoints.players}/${playerId}/events`)
     .then(resp => {
       if (!resp.ok) {
         throw new Error('Can\'t fetch any events, please try again!')
@@ -53,19 +46,19 @@ export const postEvent = (courseId, date, teeTime, openSpots, numHoles, isPrivat
   if (!courseId || !teeTime) {
     return
   }
-  return fetch(`https://fore-finder-be.herokuapp.com/api/v1/event`, {
-    method: 'POST', 
+  return fetch(`${endpoints.singleEvent}`, {
+    method: 'POST',
     body: JSON.stringify({
       course_id: courseId,
-      date: date, 
+      date: date,
       tee_time: teeTime,
-      open_spots: openSpots, 
+      open_spots: openSpots,
       number_of_holes: numHoles,
       private: isPrivate,
-      host_id: hostId, 
+      host_id: hostId,
       invitees: selectedFriends,
     }),
-    headers: { 'Content-Type' : 'application/json' } 
+    headers: { 'Content-Type' : 'application/json' }
   })
   .then(resp => {
     if (resp.ok) {
@@ -77,7 +70,7 @@ export const postEvent = (courseId, date, teeTime, openSpots, numHoles, isPrivat
 }
 
 export const postInviteAction = (playerId, eventId, inviteStatus) => {
-  return fetch(endpoints.playerEventProd, {
+  return fetch(endpoints.playerEvent, {
     method: 'PATCH',
     body: JSON.stringify({
       player_id: playerId,
@@ -90,20 +83,20 @@ export const postInviteAction = (playerId, eventId, inviteStatus) => {
 }
 
 export const deleteEvent = (eventId, playerId) => {
-  return fetch(`${endpoints.singleEventProd}/${eventId}`, {
+  return fetch(`${endpoints.singleEvent}/${eventId}`, {
     method: 'DELETE'
   })
   .then(() => getAllEvents(playerId))
 }
 
 export const postFriendship = (followerId, followeeId) => {
-  return fetch(`${endpoints.friendshipProd}`, {
-    method: 'POST', 
+  return fetch(`${endpoints.friendship}`, {
+    method: 'POST',
     body: JSON.stringify({
       follower_id: followerId,
       followee_id: followeeId
     }),
-    headers: { 'Content-Type' : 'application/json' } 
+    headers: { 'Content-Type' : 'application/json' }
   })
   .then(resp => {
     if (resp.ok) {
@@ -115,13 +108,13 @@ export const postFriendship = (followerId, followeeId) => {
 }
 
 export const deleteFriendship = (followerId, followeeId) => {
-  return fetch(`${endpoints.friendshipProd}`, {
+  return fetch(`${endpoints.friendship}`, {
     method: 'DELETE',
     body: JSON.stringify({
       follower_id: followerId,
       followee_id: followeeId
     }),
-    headers: { 'Content-Type' : 'application/json' } 
+    headers: { 'Content-Type' : 'application/json' }
   })
   .then(resp => {
     if (resp.ok) {
@@ -133,21 +126,19 @@ export const deleteFriendship = (followerId, followeeId) => {
 }
 
 export const createNewProfile = (name, phone, email, userName, password, passwordConfir) => {
-  return fetch(`${endpoints.createProfileProd}`, {
-    method: 'POST', 
+  return fetch(`${endpoints.players}`, {
+    method: 'POST',
     body: JSON.stringify({
-      name: name, 
-      phone: phone, 
-      email: email, 
-      username: userName, 
-      password: password, 
+      name: name,
+      phone: phone,
+      email: email,
+      username: userName,
+      password: password,
       password_confirmation: passwordConfir
-      // optional Google ID for new profiles with Google login
     }),
     headers: { 'Content-Type' : 'application/json' }
   })
   .then(resp => {
-    console.log(resp)
     if (resp.ok) {
       return resp.json()
     } else {
@@ -157,12 +148,12 @@ export const createNewProfile = (name, phone, email, userName, password, passwor
 }
 
 export const validateStandardLogin = (email, password) => {
-  return fetch(`${endpoints.validateLoginProd}`, {
-    method: 'POST', 
+  return fetch(`${endpoints.sessions}`, {
+    method: 'POST',
     body: JSON.stringify({
-      email: email, 
+      email: email,
       password: password
-    }), 
+    }),
     headers: { 'Content-Type' : 'application/json' }
   })
   .then(resp => {
